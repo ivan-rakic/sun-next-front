@@ -64,7 +64,7 @@ export default function Header({
   }, []);
 
   const menu = data?.data?.map((el: any) => {
-    return <Link key={el.id} href={el.attributes.slug} >{el.attributes.label}</Link>
+    return <Link key={el.attributes.slug} id={el.attributes.slug} className={"podcast"} href={el.attributes.slug}>{el.attributes.label}</Link>
   });
 
   const socialLinks = socials?.data?.map((el: any) => {
@@ -92,6 +92,7 @@ export default function Header({
         <nav className={styles.header_main__navigation}>
           {
             menu ? menu : (
+              // fallback
               <>
                 <Link target='_blank' href='/podcast'>Podcast</Link>
                 <Link target='_blank' href='/kosmos-mi'>Kosmos Mi</Link>
@@ -108,6 +109,7 @@ export default function Header({
       <div className={styles.header__socials}>
         {
           socialLinks ? socialLinks : (
+            // fallback
             <>
               <Link href='/podcast'>
                 <SiFacebook color='white' />

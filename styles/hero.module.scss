@@ -1,11 +1,15 @@
 .span_hero {
     display: flex;
-    background: url("/images/arches.png"), linear-gradient(135deg,  rgba(254,191,1,0.9) 0%,rgba(254,191,1,0.5) 100%);
+    background: url("/images/arches.png"), linear-gradient(135deg, rgba(248,181,0,1) 0%,rgba(248,181,0,1) 27%,rgba(248,181,0,1) 27%,rgba(89,37,104,1) 75%,rgba(89,37,104,1) 100%); 
     background-position: center;
     backdrop-filter: blur(3px);
     font-size: 12px;
     padding: 5px 20px;
+    color: black;
 }
+
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fceabb+0,fccd4d+50,f8b500+51,fbdf93+100;Orange+3D+%235 */
+
 
 .hero {
     height: calc(60vh);
@@ -13,7 +17,9 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    // background-color: rgba(40, 237, 63, 0.2);
+    background-image: url("/images/banner-back.png");
+    background-position-y: center;
+    background-size: 80wv;
     background-color: rgba(0, 0, 0, 0.298);
     backdrop-filter: blur(3px);
 

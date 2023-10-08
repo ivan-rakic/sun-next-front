@@ -52,13 +52,13 @@ export default function Slider() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const responseJson: any = await Promise.all([
-        //   fetch('http://localhost:1337/api/slides?populate=*'),
-        // ]).then((responses) => Promise.all(responses.map((response) => response.json()))).catch((err) => console.log(err));
+        const responseJson: any = await Promise.all([
+          fetch('http://localhost:1337/api/slides?populate=*'),
+        ]).then((responses) => Promise.all(responses.map((response) => response.json()))).catch((err) => console.log(err));
 
-        // console.log(responseJson[0]);
+        console.log(responseJson[0]);
 
-        // setFeaturedContent(responseJson[0]);
+        setFeaturedContent(responseJson[0]);
       }
       catch (err) {
         console.log(err);
@@ -73,23 +73,24 @@ export default function Slider() {
   //   console.log(checkOutBox);
   // }, [featuredContent]);
 
-  const featuredContentBox = "test";
+  // const featuredContentBox = "test";
 
-  // const featuredContentBox = data?.map((el: any) => {
-  //   return (
-  //     <>
-  //       <Link key={el?.id} target='_blank' href={el ? el?.attributes?.link : ""}>
-  //         <span>{el.title}</span>
-  //       </Link>
-  //     </>
-  //   )
-  // });
+  const featuredContentBox = data?.slides?.data[0]?.attributes.slideBox.map((el: any) => {
+    console.log(el);
+    return (
+      <>
+        <Link key={el?.id} target='_blank' href={"test"}>
+          <span color={'white'}>{el.title}</span>
+        </Link>
+      </>
+    )
+  });
 
   return (
     <main className={styles.slider}>
       <div className={styles.slider_content}>
         <AutoplaySlider play={true} transitionDelay={3000} style={{ backgroundcolor: 'red' }} animation='openAnimation' bullets={false} className={styles.awe_slider}>
-          <div>
+          {/* <div>
             <Image src={pic1} alt='nesto' className={styles.awe_slider_img} />
           </div>
           <div>
@@ -97,14 +98,14 @@ export default function Slider() {
           </div>
           <div>
             <Image src={pic3} alt='nesto' className={styles.awe_slider_img} />
-          </div>
-          {/* {
-              featuredContentBox ? featuredContentBox : (
-                <>
-                  not working
-                </>
-              )
-            } */}
+          </div> */}
+          {
+            featuredContentBox ? featuredContentBox : (
+              <>
+                not working
+              </>
+            )
+          }
         </AutoplaySlider>
       </div>
     </main>

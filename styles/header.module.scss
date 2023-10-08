@@ -32,8 +32,13 @@ $color-primary: #f9f9f9;
 
             a {
                 color: $color-primary;
-                margin-right: 8px;
+                margin-right: 6px;
+                padding: 2px 4px;
                 text-decoration: none;
+            }
+
+            a:last-child {
+                margin-right: 0px;
             }
         }
     }

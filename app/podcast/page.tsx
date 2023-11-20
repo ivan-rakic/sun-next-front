@@ -1,12 +1,12 @@
 import Image from 'next/image'
-import styles from '@/index.module.scss'
+import styles from '@/styles/index.module.scss'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 
 export default function Podcast() {
   return (
     <>
-      <main className={undefined}>
+      <main className={styles.content}>
         <section className={undefined}>
           THIS IS PODCAST PAGE
           {/* 3 featured divs */}

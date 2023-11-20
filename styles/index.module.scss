@@ -1,18 +1,85 @@
 .content {
-    max-width: 1440px;
+    max-width: 1300px;
     width: 100%;
     margin: 0 auto;
-    margin-top: 40px;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(3px);
-    border: 1px solid orange;
-    border-radius: 10px;
 
-    &__banner {
+    // Section Title
+    h2 {
+        text-align: center;
+        display: block;
         width: 100%;
-        height: 25vh;
+    }
+
+    &__featuredBox {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 80px;
+
+
+
+        // Left and right side - shared styles
+        &_left,
+        &_right {
+            flex: 0 0 50%;
+            border: solid 5px transparent;
+        }
+
+        &_right {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+    }
+
+    &__podcastBox {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 80px;
+    }
+
+    &__podcastBox {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 80px;
+    }
+
+    &__donateBox {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 80px;
+    }
+
+    &__residentsBox {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 80px;
+    }
+
+    &__friendsBox {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 80px;
     }
 }

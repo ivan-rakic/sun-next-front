@@ -1,4 +1,147 @@
 .container {
     width: 100%;
-    background: url('../public/images/star-180.png') no-repeat top center;
+    // background: url('../public/images/white-dwarf-star.png') no-repeat top center;
+}
+
+.newsBig_box {
+    position: relative;
+    min-height: 300px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    img {
+        height: 220px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    p {
+        color: white;
+        font-size: 1.8rem;
+    }
+
+    div {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        label {
+            font-size: 14px;
+            color: rgb(9, 183, 21);
+            padding: 0px 2px;
+            margin: 0 2px;
+        }
+    }
+}
+
+.newsSmall_box {
+    position: relative;
+    min-height: 300px;
+    width: 50%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    img {
+        height: 220px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    p {
+        font-size: 1.2rem;
+        color: rgb(255, 255, 255);
+    }
+
+    div {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        label {
+            font-size: 14px;
+            color: rgb(9, 183, 21);
+            padding: 0px 2px;
+            margin: 0 2px;
+        }
+    }
+}
+
+.podcastBox {
+    position: relative;
+    min-height: 280px;
+    width: 33%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    div {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        position: absolute;
+        top: 12px;
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
+            padding: 0px 2px;
+            margin: 0 2px;
+            text-transform: uppercase;
+        }
+    }
+
+    img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    p {
+        font-size: 1.2rem;
+        color: rgb(255, 255, 255);
+    }
+
+
+}
+
+.donateBox {
+    background-color: rgb(193, 198, 61);
+    padding: 60px;
+}
+
+.residentsBox {
+    background-color: red;
+}
+
+.friendsBox {
+    background-color: rgb(46, 105, 255);
+    display: flex;
+    width: 100%;
+
+    &_box{
+        height: 80px;
+        width: 20%;
+    }
+
 }

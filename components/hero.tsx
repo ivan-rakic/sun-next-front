@@ -17,7 +17,6 @@ export default function Hero() {
           <Slider />
         </div>
       </section>
-      <span className={styles.span_hero}>Podcast / Articles / Featured</span>
     </>
   )
 }

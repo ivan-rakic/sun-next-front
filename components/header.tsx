@@ -7,7 +7,8 @@ import styles from '@/styles/header.module.scss'
 import { useEffect, useState } from 'react';
 
 import Logo from '../public/images/logo.png'
-import LogoWhite from '../public/images/next-logo-w.png'
+import LogoWhite from '../public/images/white-dwarf-star-logo.png'
+import WhiteStar from '../public/images/white-dwarf-star.png'
 import LogoIcon from '../public/images/icon.png'
 
 import { SiFacebook, SiInstagram, SiMixcloud, SiSoundcloud, SiTwitter, SiYoutube } from 'react-icons/si'
@@ -94,23 +95,23 @@ export default function Header({
             menu ? menu : (
               // fallback
               <>
-                <Link target='_blank' href='/podcast'>Podcast</Link>
-                <Link target='_blank' href='/kosmos-mi'>Kosmos Mi</Link>
-                <Link target='_blank' href='/podcast'>Podrži Sunce</Link>
-                <Link target='_blank' href='/podcast'>Projekti</Link>
+                <Link href='/podcast'>Podcast</Link>
+                <Link href='/kosmos-mi'>Kosmos Mi</Link>
+                <Link href='/podrzi-sunce'>Podrži Sunce</Link>
+                <Link href='/projekti'>Projekti</Link>
               </>
             )
           }
         </nav>
       </div>
       <div className={styles.header_main__logo}>
-        <Image src={LogoWhite} alt='logo' quality={100} />
+        <Image fill className={styles.header_main__logo} src={LogoWhite} alt='logo' quality={100} />
       </div>
       <div className={styles.header__socials}>
         {
           socialLinks ? socialLinks : (
             // fallback
-            <>
+            <nav>
               <Link href='/podcast'>
                 <SiFacebook color='white' />
               </Link>
@@ -126,7 +127,7 @@ export default function Header({
               <Link href='/podcast'>
                 <SiYoutube color='white' />
               </Link>
-            </>
+            </nav>
           )
         }
       </div>

@@ -45,9 +45,9 @@ export default function Slider() {
       }
       `
 
-  const { loading, error, data } = useQuery(SLIDES)
+  // const { loading, error, data } = useQuery(SLIDES)
 
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,29 +67,29 @@ export default function Slider() {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   let checkOutBox = featuredContent?.data?.find((el: any) => el)?.attributes?.checkOutBox?.map((el: any) => el);
-  //   setCheckOutBox(checkOutBox);
-  //   console.log(checkOutBox);
-  // }, [featuredContent]);
+  useEffect(() => {
+    let checkOutBox = featuredContent?.data?.find((el: any) => el)?.attributes?.checkOutBox?.map((el: any) => el);
+    setCheckOutBox(checkOutBox);
+    console.log(checkOutBox);
+  }, [featuredContent]);
 
-  // const featuredContentBox = "test";
+  const featuredContentBox = "test";
 
-  const featuredContentBox = data?.slides?.data[0]?.attributes.slideBox.map((el: any) => {
-    console.log(el);
-    return (
-      <>
-        <Link key={el?.id} target='_blank' href={"test"}>
-          <span color={'white'}>{el.title}</span>
-        </Link>
-      </>
-    )
-  });
+  // const featuredContentBox = data?.slides?.data[0]?.attributes.slideBox.map((el: any) => {
+  //   console.log(el);
+  //   return (
+  //     <>
+  //       <Link key={el?.id} target='_blank' href={"test"}>
+  //         <span color={'white'}>{el.title}</span>
+  //       </Link>
+  //     </>
+  //   )
+  // });
 
   return (
     <main className={styles.slider}>
       <div className={styles.slider_content}>
-        <AutoplaySlider play={true} transitionDelay={3000} style={{ backgroundcolor: 'red' }} animation='openAnimation' bullets={false} className={styles.awe_slider}>
+        {/* <AutoplaySlider play={true} transitionDelay={3000} style={{ backgroundcolor: 'red' }} animation='openAnimation' bullets={false} className={styles.awe_slider}> */}
           {/* <div>
             <Image src={pic1} alt='nesto' className={styles.awe_slider_img} />
           </div>
@@ -106,7 +106,7 @@ export default function Slider() {
               </>
             )
           }
-        </AutoplaySlider>
+        {/* </AutoplaySlider> */}
       </div>
     </main>
   )

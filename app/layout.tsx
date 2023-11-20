@@ -7,9 +7,6 @@ import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Hero from '@/components/hero'
 
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client"
-import { use } from 'react'
-
 
 const inter = Changa({ weight: ['400'], subsets: ['latin'] })
 
@@ -45,14 +42,10 @@ const fallBackLinks = [
   },
 ]
 
-const client = new ApolloClient({
-  uri: 'http://localhost:1337/graphql',
-  cache: new InMemoryCache()
-})
+
 
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
   return (
-    <ApolloProvider client={client}>
       <html lang="en">
         <body className={inter.className}>
           <div className={globalStyles.container}>
@@ -65,6 +58,5 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
           </div>
         </body>
       </html>
-    </ApolloProvider>
   )
 }

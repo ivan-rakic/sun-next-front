@@ -16,3 +16,419 @@ body {
   background-color: #000;
   color: #fff;
 }
+
+#portal {
+  color: #199729;
+}
+
+#podrzi-sunce {
+  color: #950EA8;
+}
+
+#kosmos-mi{
+  color: #DC287F;
+}
+
+#projekti {
+  color: #2591de;
+}
+
+// HERO SLIDER STYLES ---------------------------------------------
+// HERO CONTAINER AND SLIDER STYLES FOR HERO
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  margin-top: -10px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 60px;
+  box-shadow: 0 0 3px 6px #fff, 0 0 0 14px orange;
+}
+
+
+// -------------------------------------------------------------------------------
+// THIS IS CAROUSEL STYLES --------------------------------------------
+// ---- Need to be global styles, used on index page for residents slideshow
+//--------------------------------------------------------------------------------
+
+.alice-carousel {
+  overflow: visible !important;
+  position: relative;
+}
+
+.alice-carousel__prev-btn,
+.alice-carousel__next-btn {
+  position: absolute;
+  width: 60px !important;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.alice-carousel__prev-btn {
+  display: flex !important;
+  justify-content: flex-start;
+  left: 0;
+}
+
+.alice-carousel__next-btn {
+  display: flex !important;
+  justify-content: flex-end;
+  right: 0;
+}
+
+// --- Left arrow button
+.custom-prev-button {
+  left: 0px;
+}
+
+// --- Right arrow button
+.custom-next-button {
+  right: 0px;
+}
+
+// --- Both arrow buttons styles
+.custom-next-button,
+.custom-prev-button {
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.5rem;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(151, 108, 0, 0.8)), url("/images/fake-brick.png");
+  border: 3px ridge orange;
+  border-radius: 50%;
+  transition: 0.3s ease-in-out;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alice-carousel__stage-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 300px;
+  padding: 10px;
+}
+
+.alice-carousel__stage-r-name {
+  position: absolute;
+  font-size: 1.1rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2px 6px;
+  bottom: 45px;
+  left: 50px;
+  z-index: 2;
+}
+
+.alice-carousel__stage-r-desc {
+  position: absolute;
+  width: 80%;
+  bottom: 0px;
+  left: 35px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), url("/images/fake-brick.png");
+  padding: 4px 8px;
+  border-radius: 10px;
+  z-index: 1;
+  font-size: 0.9rem;
+  line-height: 1.2 !important;
+}
+
+.alice-carousel__stage-r-stat {
+  position: absolute;
+  top: 10px;
+  right: 25%;
+  background: linear-gradient(rgb(205, 144, 24), rgba(241, 188, 11, 0.945)), url("/images/fake-brick.png");
+  padding: 5px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.alice-carousel__stage-div div {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 20px;
+}
+
+.alice-carousel__stage-imageDiv {
+  position: relative;
+}
+
+
+.alice-carousel__stage-div img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 0 3px 6px #fff, 0 0 0 14px orange;
+}
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/* ------------------------------- PLAYER ------------------------------  */
+/* -------------------------------------------------------------------------- */
+
+#stickPlayer {
+  max-width: 600px;
+  min-width: 600px;
+  width: 100%;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+// PLAYER - play and pause buttons and animation
+//-----------------------------------------------
+
+.stickPlayer__controls {
+  width: 260px;
+  height: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 6px;
+  z-index: 100;
+}
+
+.stickPlayer__controls::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  background-image: url('/images/roto-star.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate 46s both infinite;
+  z-index: 50;
+}
+
+.stickPlayer__controls::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 320px;
+  height: 320px;
+  background-image: url('/images/roto-star.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate 52s both infinite;
+  animation-delay: 4s;
+  opacity: 0.2;
+  z-index: 50;
+}
+
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.jp-play,
+.jp-pause {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  z-index: 150;
+  background-color: rgba(151, 108, 0, 0.8);
+}
+
+.jp-play svg,
+.jp-pause svg {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  fill: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.jp-play:hover svg,
+.jp-pause:hover svg {
+  fill: red;
+}
+
+
+// PLAYER - controls and info
+//-----------------------------------------------
+
+#rj-player {}
+
+.rj-info {
+  text-decoration: none;
+  font-family: 'Changa', sans-serif;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
+.rjp-trackinfo-container {
+  width: 100%;
+  text-align: center;
+}
+
+.rjp-label {
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding: 0 10px;
+  color: orange;
+}
+
+.rjp-info {
+  font-size: 1.3rem;
+  line-height: 1.2;
+  font-weight: 400;
+  padding: 0 10px;
+}
+
+.rjp-player-container {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 36px;
+  padding-left: 10px;
+  left: 0px;
+  bottom: 45px;
+  z-index: 50;
+}
+
+.jp-controls {
+  display: flex;
+  align-items: center;
+}
+
+.jp-controls a svg {
+  fill: white;
+  margin: 5px;
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  background-color: orange;
+  border-radius: 2px;
+}
+
+
+// Mute and Unmute volume controls
+// --------------------------------
+.jp-mute,
+.jp-unmute {
+  width: 40px;
+  height: 36px;
+  z-index: 150;
+  transition: 0.3s;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+}
+
+.jp-mute:hover,
+.jp-unmute:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+#rj-player .rjp-player-container .jp-mute:active,
+#rj-player .rjp-player-container .jp-unmute:active,
+#rj-player .rjp-player-container .jp-mute:focus,
+#rj-player .rjp-player-container .jp-unmute:focus {
+  text-decoration: none;
+}
+
+#rj-player .rjp-player-container .jp-volume-bar-wrapper {
+  display: none;
+  background: rgba(255, 172, 40, 0.3);
+  height: 32px;
+  padding: 0 8px;
+  border-radius: 3px;
+  z-index: 9;
+
+}
+
+#rj-player .rjp-player-container .jp-mute:hover~.jp-volume-bar-wrapper,
+#rj-player .rjp-player-container .jp-unmute:hover~.jp-volume-bar-wrapper,
+#rj-player .rjp-player-container .jp-volume-bar-wrapper:hover {
+  display: flex;
+  align-items: center;
+}
+
+#rj-player .rjp-player-container .jp-volume-bar {
+  background: black;
+  width: 170px;
+  height: 16px;
+}
+
+#rj-player .rjp-player-container .jp-volume-bar-value {
+  background: #fff;
+  height: 16px;
+}
+
+/* loading on player animation gif */
+
+// .jp-play.player-loading,
+// .jp-pause.player-loading {
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }
+
+// .jp-play::before, .jp-pause::before, .jp-play::after, .jp-pause::after {
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 80px;
+//   height: 80px;
+// }
+
+// .jp-play:hover::before, .jp-pause:hover::before, .jp-play:hover::after, .jp-pause:hover::after {
+//   border-color: transparent;
+//   filter: blur(2px);
+//   transform: scale(5);
+//   transition: 1000ms transform ease, 2100ms blur ease, 900ms border-color ease;
+// }
+
+// .jp-play:hover::after, .jp-pause:hover::after {
+//   transition-delay: 100ms;
+// }

@@ -1,87 +1,117 @@
 "use client";
-import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Script from 'next/script';
 
+import { RiPlayCircleLine, RiPauseCircleLine, RiVolumeUpLine, RiVolumeMuteLine } from "react-icons/ri";
 
-import Image from 'next/image'
-import styles from '../styles/slider.module.scss'
-import Link from 'next/link';
 
 export default function Player() {
 
-  const [playerData, setPlayerData] = useState<any>([]);
-  const [checkOutBox, setCheckOutBox] = useState<any>([]);
-
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const responseJson: any = await Promise.all([
-          fetch('https://stream.radiojar.com/'),
-        ]).then((responses) => Promise.all(responses.map((response) => response.json()))).catch((err) => console.log(err));
-        // ]).then((responses) => Promise.all(responses.map((response) => response.json()))).catch((err) => console.log(err));
+    const rjq: any = (window as any).rjq;
+    rjq('#rjp-radiojar-player').radiojar('player', {
+      "streamName": "4qawu2xta2zuv",
+      "enableUpdates": true,
+      "defaultImage": "//www.radiojar.com/img/sample_images/Radio_Stations_Avatar_BLUE.png",
+      "autoplay": false
+    });
 
-        console.log(responseJson[0], 'player');
-
-        // setPlayerData(responseJson[0]);
+    rjq('#rjp-radiojar-player').off('rj-track-load-event');
+    rjq('#rjp-radiojar-player').on('rj-track-load-event', function (event, data) {
+      updateInfo(data);
+      if (data.title != "" || data.artist != "") {
+        rjq('.rjp-trackinfo-container').show();
+        rjq('#trackInfo').html(data.artist + ' - "' + data.title + '"')
+      } else {
+        rjq('.rjp-trackinfo-container').hide();
       }
-      catch (err) {
-        console.log(err);
+    });
+
+    function updateInfo(data: any) {
+      if (data.thumb) {
+        rjq('#rj-cover').html('<a href="#"><img src="' + data.thumb + '" alt="" title="" /></a>')
+      } else {
+        rjq('#rj-cover').html('')
       }
     }
-    // fetchData();
   }, []);
 
+  // TODO
+  // Track info is not updating when new track is playing
+
+  const trackInfoRef = React.useRef<any>(null);
+
+  let trackInfo, artist, title;
+
+  if (trackInfoRef.current?.textContent) {
+    trackInfo = trackInfoRef.current.textContent.split(' - ');
+    artist = trackInfo[0]?.trim();
+    title = trackInfo[1]?.trim();
+  }
+
   useEffect(() => {
-    // let checkOutBox = playerData?.data?.find((el: any) => el)?.attributes?.checkOutBox.map((el: any) => el);
-    // setCheckOutBox(checkOutBox);
-    // console.log(checkOutBox);
-  }, [playerData]);
+    const observer = new MutationObserver((mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          // console.log('New content:', trackInfoRef.current?.textContent);
+        }
+      }
+    });
 
+    if (trackInfoRef.current) {
+      observer.observe(trackInfoRef.current, { childList: true, subtree: true });
+    }
 
-  // const playerDataBox = checkOutBox?.map((el: any) => {
-  //   return (
-  //     <>
-  //       <Link key={el?.id} target='_blank' href={el ? el?.attributes?.link : ""}>
-  //         <span>{el.title}</span>
-  //       </Link>
-  //     </>
-  //   )
-  // });
+    return () => {
+      observer.disconnect();
+    };
+  }, [trackInfoRef]);
 
+  if (typeof window !== 'undefined' && 'mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: title,
+      artist: artist,
+      album: "",
+      artwork: [
+        { src: 'track-icon-96x96.png', sizes: '96x96', type: 'image/png' },
+        { src: 'track-icon-128x128.png', sizes: '128x128', type: 'image/png' },
+        { src: 'track-icon-192x192.png', sizes: '192x192', type: 'image/png' },
+        { src: 'track-icon-256x256.png', sizes: '256x256', type: 'image/png' },
+        { src: 'track-icon-384x384.png', sizes: '384x384', type: 'image/png' },
+        { src: 'track-icon-512x512.png', sizes: '512x512', type: 'image/png' },
+      ]
+    });
 
-
+    navigator.mediaSession.setActionHandler('play', function () { /* Code to handle play action */ });
+    navigator.mediaSession.setActionHandler('pause', function () { /* Code to handle pause action */ });
+    // Add other action handlers as needed
+  };
 
   return (
-    <main className={undefined}>
-      <div id="stickPlayer" className="players-holder container">
-        <div className="logo-play-holder">
-          <div className="sun-logo-div">
-          </div>
-          <div className="jp-buttons-wrapper">
-            <a href="javascript:;" className="jp-play" title="Play"><i className="icon-play"></i></a>
-            <a href="javascript:;" style={{ display: 'none' }} className="jp-pause" title="Pause"><i className="icon-pause"></i></a>
-          </div>
+    <main>
+      <Script src="//www.radiojar.com/wrappers/api-plugins/v1/radiojar-min.js" strategy="beforeInteractive" />
+      <div id="stickPlayer">
+        <div className="stickPlayer__controls">
+          <a href="javascript:;" className="jp-play" title="Play"><RiPlayCircleLine /></a>
+          <a href="javascript:;" style={{ display: 'none' }} className="jp-pause" title="Pause"><RiPauseCircleLine /></a>
         </div>
         <div id="rj-player">
           {/* <div id="rj-cover">
-                <img src="" />
-              </div> */}
+            <img src="" />
+          </div> */}
           <div className="rj-info">
             <div className="rjp-trackinfo-container">
               <h4 className="rjp-label">Now playing:</h4>
-              <p id="trackInfo" className="rjp-info">Artist - Song name</p>
+              <p ref={trackInfoRef} id="trackInfo" className="rjp-info">Artist - Song</p>
             </div>
             <div className="rjp-player-container">
               <div id="rjp-radiojar-player"></div>
               <div id="rj-player-controls" className="rj-player-controls">
-                <div className="jp-gui jp-interface">
+                <div>
                   <div className="jp-controls">
-                    <a href="javascript:;" style={{ display: 'block' }} className="jp-mute" title="Mute"><i
-                      className="icon-volume-up"></i></a>
-                    <a href="javascript:;" style={{ display: 'none' }} className="jp-unmute" title="Unmute"><i
-                      className="icon-volume-off"></i></a>
+                    <a href="javascript:;" style={{ display: 'block' }} className="jp-mute" title="Mute"><RiVolumeUpLine /></a>
+                    <a href="javascript:;" style={{ display: 'none' }} className="jp-unmute" title="Unmute"><RiVolumeMuteLine /></a>
                     <div className="jp-volume-bar-wrapper">
                       <div className="jp-volume-bar">
                         <div className="jp-volume-bar-value"></div>
@@ -94,33 +124,6 @@ export default function Player() {
           </div>
         </div>
       </div>
-      {/* <script type="text/javascript" src="//www.radiojar.com/wrappers/api-plugins/v1/radiojar-min.js"></script>
-      <script>
-        rjq('#rjp-radiojar-player').radiojar('player', {
-          "streamName": "4qawu2xta2zuv",
-        "enableUpdates": true,
-        "defaultImage": "//www.radiojar.com/img/sample_images/Radio_Stations_Avatar_BLUE.png",
-        "autoplay": false
-    });
-        rjq('#rjp-radiojar-player').off('rj-track-load-event');
-        rjq('#rjp-radiojar-player').on('rj-track-load-event', function (event, data) {
-          updateInfo(data);
-        if (data.title != "" || data.artist != "") {
-          rjq('.rjp-trackinfo-container').show();
-        rjq('#trackInfo').html(data.artist + ' - "' + data.title + '"')
-      } else {
-          rjq('.rjp-trackinfo-container').hide();
-      }
-    });
-        function updateInfo(data) {
-      if (data.thumb) {
-          rjq('#rj-cover').html('<a href="#"><img src="' + data.thumb + '" alt="" title="" /></a>')
-        } else {
-          rjq('#rj-cover').html('')
-        }
-    }
-      </script> */}
-    </main>
-
+    </main >
   )
 }

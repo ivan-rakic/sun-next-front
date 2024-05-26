@@ -1,0 +1,118 @@
+.donate {
+    display: flex;
+
+    &_main {
+        position: relative;
+
+        article {
+            header {
+                min-height: 420px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                margin-bottom: 40px;
+
+                div {
+                    margin-bottom: -40px;
+                    width: 100%;
+                    width: 96%;
+                    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(85, 60, 1, 0.8)), url("https://www.transparenttextures.com/patterns/black-lozenge.png");
+                    border: 2px solid rgba(211, 162, 1, 0.719);
+                    border-radius: 6px;
+                    padding: 20px;
+
+                    h2 {
+                        font-size: 2.5rem;
+                        color: white;
+                        text-shadow: 0 0 6px black;
+                        line-height: 1;
+                        margin-bottom: 30px;
+                    }
+
+                    time {
+                        border-top: 2px solid white;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 420px;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 4px;
+                opacity: 0.9;
+                z-index: -1;
+            }
+
+        }
+    }
+
+    &_promo {
+        background-color: blue;
+        margin: 0 20px;
+    }
+}
+
+// .container {
+//     max-width: 1240px;
+//     margin: 0 auto;
+// }
+
+// .content {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     flex-wrap: wrap;
+//     align-items: flex-start;
+//     height: 100%;
+
+//     &__redactionBox {
+//         width: 100%;
+//         display: flex;
+//         flex-direction: row;
+//         flex-wrap: wrap;
+//         margin-top: 40px;
+
+//         h2 {
+//             text-align: center;
+//             display: block;
+//             width: 100%;
+//             border-bottom: 5px groove paleturquoise;
+//             margin-bottom: 20px;
+//         }
+
+//         &_redactionContainer {
+//             width: 100%;
+//             display: flex;
+//             flex-direction: row;
+//             flex-wrap: wrap;
+//             justify-content: space-between;
+//         }
+
+//         &_entity {
+//             display: flex;
+//             flex-direction: row;
+//             flex: 0 0 32%;
+//             margin-bottom: 40px;
+
+//             img {
+//                 height: 200px;
+//                 width: 160px;
+//                 object-fit: cover;
+//                 object-position: center;
+//                 display: inline-block;
+//             }
+
+//             h2 {
+//                 text-decoration: none;
+//             }
+//         }
+
+//     }
+// }

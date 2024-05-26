@@ -1,12 +1,12 @@
 'use client';
 
-import { Changa, Inter } from 'next/font/google'
+import { Changa, Changa_One, Inter } from 'next/font/google'
 import '@/styles/globals.scss'
 import globalStyles from '@/styles/reusable.module.scss'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Hero from '@/components/hero'
-
+import React from 'react';
 
 const inter = Changa({ weight: ['400'], subsets: ['latin'] })
 
@@ -15,48 +15,23 @@ export const metadata = {
   description: 'sunradio...',
 }
 
-const fallBackLinks = [
-  {
-    id: 1,
-    url: '/about',
-    newTab: false,
-    text: 'PODCAST',
-  },
-  {
-    id: 2,
-    url: '/about',
-    newTab: false,
-    text: 'ABOUT US',
-  },
-  {
-    id: 3,
-    url: '/about',
-    newTab: false,
-    text: 'SUPPORT',
-  },
-  {
-    id: 4,
-    url: '/about',
-    newTab: false,
-    text: 'WHO ARE WE',
-  },
-]
-
-
-
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
+  const [headerData, setHeaderData] = React.useState(null);
+
+
   return (
-      <html lang="en">
-        <body className={inter.className}>
-          <div className={globalStyles.container}>
-            <Header links={fallBackLinks} logoUrl={null} logorText={null} />
-            <Hero />
-            <main>
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </body>
-      </html>
+    <html lang="en">
+      <body className={inter.className}>
+        <div className={globalStyles.container}>
+          <Header data={null as any} />
+          <Hero />
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </div>
+      </body>
+    </html>
   )
 }
+

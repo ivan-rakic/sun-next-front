@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+'use client';
 import React from 'react'
 import 'react-alice-carousel/lib/alice-carousel.css';
 import dynamic from 'next/dynamic';
@@ -15,28 +15,19 @@ import img4 from '../public/images/mountains.jpg'
 import Link from 'next/link'
 import { RiArrowLeftDoubleFill, RiArrowRightDoubleFill } from 'react-icons/ri';
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  try {
-    const response = await fetch('http://localhost:1337/api/header?[populate]=*');
-    const data = await response.json();
-    return { props: { data } };
-  } catch (error) {
-    console.error('Error:', error);
-    return { props: { data: {} } };  // Return empty data prop on error
-  }
-}
+
 
 const AliceCarousel = dynamic(
   () => import('react-alice-carousel'),
   { ssr: true }  // This line will disable server-side rendering
 );
 
-export default function Home({ data }: { data: any }) {
+export default function Home() {
 
   const slides = [img1, img2, img3, img4, img2, img3, img1, img4]; // Add more images as needed
   return (
     <main className={styles.content}>
-      {data && <div>{JSON.stringify(data)}</div>}
+      {/* {data && <div>{JSON.stringify(data)}</div>} */}
       {/* ---------- 
         ------ LATEST PODCAST SECTION 
         ---------- */}
@@ -259,7 +250,7 @@ export default function Home({ data }: { data: any }) {
             renderNextButton={() => <button className="custom-next-button"><RiArrowRightDoubleFill /></button>}
             renderPrevButton={() => <button className="custom-prev-button"><RiArrowLeftDoubleFill /></button>}
           >
-            {/* {slides.map((slide, index) => (
+            {slides.map((slide, index) => (
               <div className='alice-carousel__stage-div' key={index}>
                 <p className='alice-carousel__stage-r-name'>malo duze i ime i asd</p>
                 <p className='alice-carousel__stage-r-desc'>opis kakav god hoces i kakav god neces, ponekad kratak ponekad dug</p>
@@ -268,7 +259,7 @@ export default function Home({ data }: { data: any }) {
                   <Image src={slide} alt='test' />
                 </div>
               </div>
-            ))} */}
+            ))}
           </AliceCarousel>
         </div>
       </section>

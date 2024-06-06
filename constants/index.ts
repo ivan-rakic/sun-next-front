@@ -54,3 +54,90 @@ MixCloud
 SoundCloud
 Twitter
 Youtube`;
+
+export const featureData = [
+    {
+        key: 'protraceni-zivoti-irski',
+        imageSrc: '/images/astronaut.jpg',
+        title: 'Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?',
+        slug: 'protraceni-zivoti-irski',
+        author: 'ivander',
+        timeToRead: '5 min',
+        roundedImage: true,
+    },
+    {
+        key: 'nije-zivot-jedna-tegla-ajvara',
+        imageSrc: '/images/beach.jpg',
+        title: 'Nije život jedna tegla ajvara',
+        slug: 'nije-zivot-jedna-tegla-ajvara',
+        author: 'ivander',
+        timeToRead: '3 min',
+        roundedImage: true,
+    },
+    {
+        key: 'mali-korak-za-muziku-veliki-za-domacu-bluz-scenu',
+        imageSrc: '/images/ocean.jpg',
+        title: 'Mali korak za muziku, veliki za domaću bluz scenu - pesma “Locked Down”',
+        slug: 'mali-korak-za-muziku-veliki-za-domacu-bluz-scenu',
+        author: 'ivander',
+        timeToRead: '4 min',
+        roundedImage: true,
+    },
+];
+
+export const podcastsData = [
+    {
+        key: 'protraceni-zivoti-irski',
+        imageSrc: '/images/astronaut.jpg',
+        title: 'Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?',
+        slug: 'protraceni-zivoti-irski',
+        author: 'ivander',
+        timeToRead: '5 min',
+        roundedImage: true,
+    },
+    {
+        key: 'nije-zivot-jedna-tegla-ajvara',
+        imageSrc: '/images/beach.jpg',
+        title: 'Nije život jedna tegla ajvara',
+        slug: 'nije-zivot-jedna-tegla-ajvara',
+        author: 'ivander',
+        timeToRead: '3 min',
+        roundedImage: true,
+    },
+    {
+        key: 'mali-korak-za-muziku-veliki-za-domacu-bluz-scenu',
+        imageSrc: '/images/ocean.jpg',
+        title: 'Mali korak za muziku, veliki za domaću bluz scenu - pesma “Locked Down”',
+        slug: 'mali-korak-za-muziku-veliki-za-domacu-bluz-scenu',
+        author: 'ivander',
+        timeToRead: '4 min',
+        roundedImage: true,
+    },
+    {
+        key: 'mali-korak-za-muziku-veliki-za-domacu-bluz-scenu',
+        imageSrc: '/images/ocean.jpg',
+        title: 'Mali korak za muziku, veliki za domaću bluz scenu - pesma “Locked Down”',
+        slug: 'mali-korak-za-muziku-veliki-za-domacu-bluz-scenu',
+        author: 'ivander',
+        timeToRead: '4 min',
+        roundedImage: true,
+    },
+    {
+        key: 'mali-korak-za-muziku-veliki-za-domacu-bluz-scenu',
+        imageSrc: '/images/ocean.jpg',
+        title: 'Mali korak za muziku, veliki za domaću bluz scenu - pesma “Locked Down”',
+        slug: 'mali-korak-za-muziku-veliki-za-domacu-bluz-scenu',
+        author: 'ivander',
+        timeToRead: '4 min',
+        roundedImage: true,
+    },
+    {
+        key: 'mali-korak-za-muziku-veliki-za-domacu-bluz-scenu',
+        imageSrc: '/images/ocean.jpg',
+        title: 'Mali korak za muziku, veliki za domaću bluz scenu - pesma “Locked Down”',
+        slug: 'mali-korak-za-muziku-veliki-za-domacu-bluz-scenu',
+        author: 'ivander',
+        timeToRead: '4 min',
+        roundedImage: true,
+    },
+];

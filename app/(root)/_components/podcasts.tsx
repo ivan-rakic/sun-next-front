@@ -1,14 +1,16 @@
+// @flow
 import * as React from 'react';
 import {Container} from "@/components/container";
+import {featureData, podcastsData} from "@/constants";
 import {BlogCard} from "@/app/(root)/_components/blog-card";
-import {featureData} from "@/constants";
 
-export const Features = () => {
+
+export const Podcasts = () => {
     return (
         <div>
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-                    {featureData.map((card) => (
+                    {podcastsData.map((card) => (
                         <BlogCard
                             key={card.slug}
                             imageSrc={card.imageSrc}
@@ -21,5 +23,6 @@ export const Features = () => {
                     ))}
                 </div>
             </Container>
-        </div>);
+        </div>
+    );
 };

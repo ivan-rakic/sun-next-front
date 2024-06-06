@@ -1,23 +1,4 @@
 .footer {
-    max-width: 1240px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    box-sizing: border-box;
-    margin-top: 100px;
-
-    h4 {
-        display: block;
-        font-size: 16px;
-        line-height: 16px;
-        font-weight: bold;
-        padding: 5px 8px;
-        border-radius: 3px;
-    }
-
     &_title_about {
         border-bottom: 6px ridge #2591de;
     }
@@ -32,26 +13,5 @@
 
     &_title_networks {
         border-bottom: 6px ridge #DC287F;
-    }
-
-    h3 {
-        display: block;
-        font-size: 14px;
-        margin-top: 40px;
-    }
-
-    section {
-        display: flex;
-        flex-direction: column;
-        flex: 0 0 25%;
-        height: 100%;
-        box-sizing: border-box;
-        padding: 0 10px;
-
-        p {
-            font-size: 14px;
-            padding: 8px 6px;
-        }
-
     }
 }

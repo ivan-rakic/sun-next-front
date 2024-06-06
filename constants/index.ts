@@ -40,3 +40,17 @@ export const navLinks = [
         color: 'ff0000',
     },
 ];
+
+export const ABOUT_CONTENT = `Sun Radio je slobodna internet radio stanica čija je misija stvaranje otvorenih formi umetničke, obrazovne i zabavne prirode. Alternativni javni servis za svu decu Sunca.`;
+
+export const CONTACT_CONTENT = `Kontaktirajte nas:
+redakcija.sun@gmail.com
+Support the Sun:
+Donate - More Info`;
+
+export const NETWORKS_CONTENT = `Facebook
+Instagram
+MixCloud
+SoundCloud
+Twitter
+Youtube`;

@@ -4,7 +4,7 @@ import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Hero from '@/components/hero'
 import React from 'react';
-import { Changa, Changa_One, Inter } from 'next/font/google'
+import { Changa } from 'next/font/google'
 
 
 const inter = Changa({ weight: ['400'], subsets: ['latin'] })
@@ -20,7 +20,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
     <html>
       <body className={inter.className}>
         <div className={globalStyles.container}>
-          <Header />
+          <Header data={null} />
           <Hero />
           <main>
             {children}

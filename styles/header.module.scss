@@ -2,29 +2,7 @@
 $color-primary: #f9f9f9;
 
 .header {
-    font-family: Kanit, Changa, Arial, sans-serif;
-    height: 45px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 100;
-    // background-image: url('/images/star-180.png');
-    // background-position: top center;
-    // background-size: 18%;
-    // background-repeat: no-repeat;
-
     &_main {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
-        text-align: center;
-        position: relative;
-
         &__navigation {
             width: 45%;
             height: 100%;
@@ -32,7 +10,6 @@ $color-primary: #f9f9f9;
             justify-content: flex-start;
             align-items: center;
             padding-left: 20px;
-            // clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%);
 
             a {
                 display: inline-block;
@@ -51,7 +28,7 @@ $color-primary: #f9f9f9;
 
 
             a:last-child {
-                margin-right: 0px;
+                margin-right: 0;
             }
         }
 
@@ -91,38 +68,6 @@ $color-primary: #f9f9f9;
                     // border: 10px dotted rgba(255, 166, 0, 0.333);
                     z-index: -1;
                 }
-
-                // &:hover {
-                //     transition: 300ms all ease;
-                // }
-
-
-                // &::before,
-                // &::after {
-                //     content: '';
-                //     position: absolute;
-                //     width: 180px;
-                //     height: 180;
-                //     left: 50%;
-                //     top: -80px;
-                //     transform: translateX(-50%);
-                //     border-radius: 50%;
-                //     border: 20px solid rgba(255, 240, 164, 0.2);
-                //     filter: blur(0);
-                //     z-index: -1;
-                // }
-
-                // &:hover::before,
-                // &:hover::after {
-                //     border-color: transparent;
-                //     filter: blur(3px);
-                //     transform: scale(4);
-                //     transition: 3000ms transform ease, 6100ms blur ease, 2400ms border-color ease;
-                // }
-
-                // &:hover::after {
-                //     transition-delay: 300ms;
-                // }
             }
 
         }
@@ -135,22 +80,6 @@ $color-primary: #f9f9f9;
             justify-content: flex-end;
             align-items: center;
             box-sizing: border-box;
-
-            // &::before {
-            //     content: "";
-            //     position: absolute;
-            //     top: 0;
-            //     right: 0;
-            //     width: 500px;
-            //     height: 100%;
-            //     background-size: contain;
-            //     background-repeat: no-repeat;
-            //     background-color: #c0028a;
-            //     clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 5% 100%, 0% 50%);
-            //     opacity: 0.6;
-            //     border-radius: 5px;
-            //     z-index: -1;
-            // }
 
             nav {
                 border: 1px solid transparent;

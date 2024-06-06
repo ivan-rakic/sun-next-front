@@ -19,8 +19,8 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
   return (
     <html>
       <body className={inter.className}>
-        <div className={globalStyles.container}>
-          <Header data={null} />
+        <div className='w-full'>
+          <Header/>
           <Hero />
           <main>
             {children}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {getIconComponent} from "@/libs";
+import {getIconComponent} from "../lib";
 import Link from "next/link";
 
 type Props = {

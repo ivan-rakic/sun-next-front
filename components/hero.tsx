@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styles from '../styles/hero.module.scss'
 import Slider from './slider'
 import Player from './player';

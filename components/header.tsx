@@ -5,7 +5,7 @@ import {NavLinks} from "@/components/nav-links";
 import {LogoLink} from "@/components/logo-link";
 
 interface HeaderProps {
-  data: any;
+  data?: any;
 }
 
 export default function Header({ data }: HeaderProps) {

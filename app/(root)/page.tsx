@@ -8,10 +8,10 @@ import Image from 'next/image'
 import styles from '@/styles/index.module.scss'
 import stylesRes from '@/styles/reusable.module.scss'
 
-import img1 from '../public/images/astronaut.jpg'
-import img2 from '../public/images/beach.jpg'
-import img3 from '../public/images/ocean.jpg'
-import img4 from '../public/images/mountains.jpg'
+import img1 from '../../public/images/astronaut.jpg'
+import img2 from '../../public/images/beach.jpg'
+import img3 from '../../public/images/ocean.jpg'
+import img4 from '../../public/images/mountains.jpg'
 import Link from 'next/link'
 import { RiArrowLeftDoubleFill, RiArrowRightDoubleFill } from 'react-icons/ri';
 
@@ -28,8 +28,8 @@ export default function Home() {
   return (
     <main className={styles.content}>
       {/* {data && <div>{JSON.stringify(data)}</div>} */}
-      {/* ---------- 
-        ------ LATEST PODCAST SECTION 
+      {/* ----------
+        ------ LATEST PODCAST SECTION
         ---------- */}
       <section className={`${stylesRes.content_container} ${styles.content__featuredBox}`}>
         <div className={styles.content__featuredBox_header}>
@@ -70,7 +70,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* ---------- 
+      {/* ----------
         ------ LATEST PODCAST ARTICLES SECTION
          ---------- */}
       <section className={`${stylesRes.content_container} ${styles.content__podcastBox}`}>
@@ -209,7 +209,7 @@ export default function Home() {
         </div>
         {/* <Link href='/podcast' className={styles.content__podcastBox_articles_linkLead}>Svi Tekstovi</Link> */}
       </section>
-      {/* ---------- 
+      {/* ----------
         ------ CALL TO ACTION - donations section
          ---------- */}
       <section className={styles.content__donateContainer}>
@@ -226,7 +226,7 @@ export default function Home() {
         <div className={styles.content__donateContainer_ctaContainer}>
         </div>
       </section>
-      {/* ---------- 
+      {/* ----------
         ------ LATEST RESIDENT featured content
          ---------- */}
       <section className={`${stylesRes.content_container} ${styles.content__residentsBox}`}>

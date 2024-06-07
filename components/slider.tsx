@@ -1,56 +1,56 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import { useQuery, gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
-import Image from 'next/image'
-import styles from '../styles/slider.module.scss'
-import Link from 'next/link';
+import Image from "next/image";
+import styles from "../styles/slider.module.scss";
+import Link from "next/link";
 
-import pic1 from '../public/images/astronaut.jpg'
-import pic2 from '../public/images/flowers.jpg'
-import pic3 from '../public/images/trees.jpg'
+import pic1 from "../public/images/astronaut.jpg";
+import pic2 from "../public/images/flowers.jpg";
+import pic3 from "../public/images/trees.jpg";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
+import "swiper/css";
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-import 'swiper/css';
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-
-import { Autoplay, EffectFade, EffectCreative, EffectFlip, Navigation, Pagination, EffectCube } from 'swiper/modules';
+import {
+  Autoplay,
+} from "swiper/modules";
 export default function Slider() {
-
-
   const [featuredContent, setFeaturedContent] = useState<any>([]);
   const [checkOutBox, setCheckOutBox] = useState<any>([]);
 
   const slides = [pic1, pic2, pic3, pic2, pic1, pic3]; // Add more images as needed
 
-  const SLIDES = gql`{
-      slides{
-          data{
-            attributes{
-              slideBox{
-                title
-                isFeatured
-                cover {
-                  data{
-                    attributes{
-                      name
-                    }
+  const SLIDES = gql`
+    {
+      slides {
+        data {
+          attributes {
+            slideBox {
+              title
+              isFeatured
+              cover {
+                data {
+                  attributes {
+                    name
                   }
                 }
-                isFeatured
               }
+              isFeatured
             }
           }
         }
       }
-      `
+    }
+  `;
 
   // const { loading, error, data } = useQuery(SLIDES)
 
@@ -75,7 +75,9 @@ export default function Slider() {
   // }, []);
 
   useEffect(() => {
-    let checkOutBox = featuredContent?.data?.find((el: any) => el)?.attributes?.checkOutBox?.map((el: any) => el);
+    let checkOutBox = featuredContent?.data
+      ?.find((el: any) => el)
+      ?.attributes?.checkOutBox?.map((el: any) => el);
     setCheckOutBox(checkOutBox);
   }, [featuredContent]);
 
@@ -96,7 +98,7 @@ export default function Slider() {
     <main className={styles.slider}>
       <div className={styles.slider_content}>
         <Swiper
-          effect={'slide'}
+          effect={"slide"}
           autoplay={{ delay: 12000 }}
           speed={2600}
           allowTouchMove
@@ -106,29 +108,45 @@ export default function Slider() {
           slidesPerView={1}
         >
           <SwiperSlide>
-            <Image src={pic2} alt='test' />
-            <Link className={styles.slider_content__info} href="http://freepik.com">
+            <Image src={pic2} alt="test" />
+            <Link
+              className={styles.slider_content__info}
+              href="http://freepik.com"
+            >
               <div>
                 <h2>123Ponesi Sunce sa Sobom - Novi serijal emisija</h2>
-                <p> 123 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju! </p>
+                <p>
+                  {" "}
+                  123 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju!{" "}
+                </p>
               </div>
             </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={pic3} alt='test' />
-            <Link className={styles.slider_content__info} href="http://freepik.com">
+            <Image src={pic3} alt="test" />
+            <Link
+              className={styles.slider_content__info}
+              href="http://freepik.com"
+            >
               <div>
                 <h2>333 Ponesi Sunce sa Sobom</h2>
-                <p>333 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju! </p>
+                <p>
+                  333 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju!{" "}
+                </p>
               </div>
             </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={pic1} alt='test' />
-            <Link className={styles.slider_content__info} href="http://freepik.com">
+            <Image src={pic1} alt="test" />
+            <Link
+              className={styles.slider_content__info}
+              href="http://freepik.com"
+            >
               <div>
                 <h2>444 Ponesi Sunce sa Sobom</h2>
-                <p>444 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju! </p>
+                <p>
+                  444 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju!{" "}
+                </p>
               </div>
             </Link>
           </SwiperSlide>
@@ -143,6 +161,6 @@ export default function Slider() {
             </div>
           ))} */}
       </div>
-    </main >
-  )
+    </main>
+  );
 }

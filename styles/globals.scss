@@ -12,7 +12,7 @@ body {
   display: flex;
   justify-content: center;
   overflow-x: hidden;
-  background: url('../public/images/stars.png') no-repeat center center fixed;
+  background: url("../public/images/stars.png") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -26,11 +26,11 @@ body {
 }
 
 #podrzi-sunce {
-  color: #950EA8;
+  color: #950ea8;
 }
 
-#kosmos-mi{
-  color: #DC287F;
+#kosmos-mi {
+  color: #dc287f;
 }
 
 #projekti {
@@ -63,9 +63,10 @@ body {
   border-radius: 50%;
   margin: 0 auto;
   margin-bottom: 60px;
-  box-shadow: 0 0 3px 6px #fff, 0 0 0 14px orange;
+  box-shadow:
+    0 0 3px 6px #fff,
+    0 0 0 14px orange;
 }
-
 
 // -------------------------------------------------------------------------------
 // THIS IS CAROUSEL STYLES --------------------------------------------
@@ -114,7 +115,8 @@ body {
   cursor: pointer;
   color: #fff;
   font-size: 1.5rem;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(151, 108, 0, 0.8)), url("/images/fake-brick.png");
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(151, 108, 0, 0.8)),
+    url("/images/fake-brick.png");
   border: 3px ridge orange;
   border-radius: 50%;
   transition: 0.3s ease-in-out;
@@ -149,7 +151,8 @@ body {
   width: 80%;
   bottom: 0;
   left: 35px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), url("/images/fake-brick.png");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)),
+    url("/images/fake-brick.png");
   padding: 4px 8px;
   border-radius: 10px;
   z-index: 1;
@@ -161,7 +164,8 @@ body {
   position: absolute;
   top: 10px;
   right: 25%;
-  background: linear-gradient(rgb(205, 144, 24), rgba(241, 188, 11, 0.945)), url("/images/fake-brick.png");
+  background: linear-gradient(rgb(205, 144, 24), rgba(241, 188, 11, 0.945)),
+    url("/images/fake-brick.png");
   padding: 5px;
   border-radius: 50%;
   z-index: 1;
@@ -180,18 +184,16 @@ body {
   position: relative;
 }
 
-
 .alice-carousel__stage-div img {
   width: 250px;
   height: 250px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  box-shadow: 0 0 3px 6px #fff, 0 0 0 14px orange;
+  box-shadow:
+    0 0 3px 6px #fff,
+    0 0 0 14px orange;
 }
-
-
-
 
 /* -------------------------------------------------------------------------- */
 /* ------------------------------- PLAYER ------------------------------  */
@@ -223,13 +225,13 @@ body {
 }
 
 .stickPlayer__controls::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: 280px;
   height: 280px;
-  background-image: url('/images/roto-star.png');
+  background-image: url("/images/roto-star.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -240,13 +242,13 @@ body {
 }
 
 .stickPlayer__controls::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: 320px;
   height: 320px;
-  background-image: url('/images/roto-star.png');
+  background-image: url("/images/roto-star.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -293,15 +295,15 @@ body {
   fill: red;
 }
 
-
 // PLAYER - controls and info
 //-----------------------------------------------
 
-#rj-player {}
+#rj-player {
+}
 
 .rj-info {
   text-decoration: none;
-  font-family: 'Changa', sans-serif;
+  font-family: "Changa", sans-serif;
   display: flex;
   flex-direction: column;
   color: #fff;
@@ -354,7 +356,6 @@ body {
   border-radius: 2px;
 }
 
-
 // Mute and Unmute volume controls
 // --------------------------------
 .jp-mute,
@@ -387,11 +388,10 @@ body {
   padding: 0 8px;
   border-radius: 3px;
   z-index: 9;
-
 }
 
-#rj-player .rjp-player-container .jp-mute:hover~.jp-volume-bar-wrapper,
-#rj-player .rjp-player-container .jp-unmute:hover~.jp-volume-bar-wrapper,
+#rj-player .rjp-player-container .jp-mute:hover ~ .jp-volume-bar-wrapper,
+#rj-player .rjp-player-container .jp-unmute:hover ~ .jp-volume-bar-wrapper,
 #rj-player .rjp-player-container .jp-volume-bar-wrapper:hover {
   display: flex;
   align-items: center;

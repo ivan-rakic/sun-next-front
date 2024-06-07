@@ -2,110 +2,113 @@
 $color-primary: #f9f9f9;
 
 .header {
-    &_main {
-        &__navigation {
-            width: 45%;
-            height: 100%;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            padding-left: 20px;
+  &_main {
+    &__navigation {
+      width: 45%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 20px;
 
-            a {
-                display: inline-block;
-                text-decoration: none;
-                border: none;
-                font-size: 1.2rem;
-                margin-right: 25px;
-                text-shadow: 0 0 3px black;
-                color: white;
-                transition: all 0.3s ease-in-out;
-            }
+      a {
+        display: inline-block;
+        text-decoration: none;
+        border: none;
+        font-size: 1.2rem;
+        margin-right: 25px;
+        text-shadow: 0 0 3px black;
+        color: white;
+        transition: all 0.3s ease-in-out;
+      }
 
-            a:hover {
-                color: orange;
-            }
+      a:hover {
+        color: orange;
+      }
 
-
-            a:last-child {
-                margin-right: 0;
-            }
-        }
-
-        &__logo {
-            position: relative;
-            display: flex;
-            justify-content: center; // Horizontally center the child elements
-            align-items: center;
-            width: 12%;
-
-            a {
-                display: flex;
-                width: 210px;
-                height: 140px;
-                position: relative;
-                background-image: url('/images/white-dwarf-star-logo.png');
-                background-position: top center;
-                background-size: contain;
-                background-repeat: no-repeat;
-
-                &::after {
-                    content: "";
-                    position: absolute;
-                    top: -125px;
-                    left: -35px;
-                    width: 270px;
-                    height: 270px;
-                    border-radius: 50%;
-                    // background is a radial gradient with image combined
-                    background-image: radial-gradient(ellipse at center, rgba(227, 208, 41, 0.25) 0%, rgba(0, 0, 0, 0.01) 100%), url('/images/roto-star.png');
-                    background-blend-mode: color-dodge;
-                    background-position: center;
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    border: 5px solid rgba(255, 166, 0, 0.133);
-                    opacity: 0.8;
-                    // border: 10px dotted rgba(255, 166, 0, 0.333);
-                    z-index: -1;
-                }
-            }
-
-        }
-
-        &__socials {
-            width: 45%;
-            height: 100%;
-            padding-right: 20px;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            box-sizing: border-box;
-
-            nav {
-                border: 1px solid transparent;
-                display: flex;
-                border-radius: 3px;
-                transition: all 0.3s ease-in-out;
-            }
-
-            a {
-                text-decoration: none;
-                margin: 0 4px;
-                border-radius: 5px;
-                height: 34px;
-                padding: 3px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                svg {
-                    width: 31px;
-                    height: 20px;
-                    object-fit: cover;
-                    fill: white;
-                    filter: drop-shadow(0 0 3px black);
-                }
-            }
-        }
+      a:last-child {
+        margin-right: 0;
+      }
     }
+
+    &__logo {
+      position: relative;
+      display: flex;
+      justify-content: center; // Horizontally center the child elements
+      align-items: center;
+      width: 12%;
+
+      a {
+        display: flex;
+        width: 210px;
+        height: 140px;
+        position: relative;
+        background-image: url("/images/white-dwarf-star-logo.png");
+        background-position: top center;
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: -125px;
+          left: -35px;
+          width: 270px;
+          height: 270px;
+          border-radius: 50%;
+          // background is a radial gradient with image combined
+          background-image: radial-gradient(
+              ellipse at center,
+              rgba(227, 208, 41, 0.25) 0%,
+              rgba(0, 0, 0, 0.01) 100%
+            ),
+            url("/images/roto-star.png");
+          background-blend-mode: color-dodge;
+          background-position: center;
+          background-size: contain;
+          background-repeat: no-repeat;
+          border: 5px solid rgba(255, 166, 0, 0.133);
+          opacity: 0.8;
+          // border: 10px dotted rgba(255, 166, 0, 0.333);
+          z-index: -1;
+        }
+      }
+    }
+
+    &__socials {
+      width: 45%;
+      height: 100%;
+      padding-right: 20px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      box-sizing: border-box;
+
+      nav {
+        border: 1px solid transparent;
+        display: flex;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      a {
+        text-decoration: none;
+        margin: 0 4px;
+        border-radius: 5px;
+        height: 34px;
+        padding: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          width: 31px;
+          height: 20px;
+          object-fit: cover;
+          fill: white;
+          filter: drop-shadow(0 0 3px black);
+        }
+      }
+    }
+  }
 }

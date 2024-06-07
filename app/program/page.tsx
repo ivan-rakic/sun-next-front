@@ -1,7 +1,4 @@
-import Image from 'next/image'
-import styles from '@/styles/index.module.scss'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
+import styles from "@/styles/index.module.scss";
 
 export default function Program() {
   return (
@@ -14,5 +11,5 @@ export default function Program() {
         <div className={undefined}>56</div>
       </section>
     </main>
-  )
+  );
 }

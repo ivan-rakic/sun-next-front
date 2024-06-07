@@ -13,9 +13,9 @@ export const GET_HEADER = gql`
               }
             }
           }
-          social_menus{
-            data{
-              attributes{
+          social_menus {
+            data {
+              attributes {
                 slug
                 link
                 label

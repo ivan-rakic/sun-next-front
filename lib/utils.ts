@@ -1,20 +1,25 @@
-import { RiPlanetLine, RiAliensLine, RiSunLine, RiSoundModuleLine } from 'react-icons/ri';
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import {
+  RiPlanetLine,
+  RiAliensLine,
+  RiSunLine,
+  RiSoundModuleLine,
+} from "react-icons/ri";
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
-export const getIconComponent = (slug:string) => {
+export const getIconComponent = (slug: string) => {
   switch (slug) {
-    case 'portal':
+    case "portal":
       return RiPlanetLine;
-    case 'kosmos-mi':
+    case "kosmos-mi":
       return RiAliensLine;
-    case 'podrzi-sunce':
+    case "podrzi-sunce":
       return RiSunLine;
-    case 'projekti':
+    case "projekti":
       return RiSoundModuleLine;
     default:
       return null;

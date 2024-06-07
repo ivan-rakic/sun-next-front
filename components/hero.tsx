@@ -1,6 +1,6 @@
-import styles from '../styles/hero.module.scss'
-import Slider from './slider'
-import Player from './player';
+import styles from "../styles/hero.module.scss";
+import Slider from "./slider";
+import Player from "./player";
 
 export default function Hero() {
   return (
@@ -16,5 +16,5 @@ export default function Hero() {
       </section>
       <span className={styles.span_highlight}></span>
     </div>
-  )
+  );
 }

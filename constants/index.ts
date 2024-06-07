@@ -141,3 +141,10 @@ export const podcastsData = [
         roundedImage: true,
     },
 ];
+
+export const slides = [
+    { src: '/images/astronaut.jpg', name: "Slide 1", desc: "Description 1", stat: "Stat 1" },
+    { src: '/images/beach.jpg', name: "Slide 2", desc: "Description 2", stat: "Stat 2" },
+    { src: '/images/ocean.jpg', name: "Slide 3", desc: "Description 3", stat: "Stat 3" },
+    { src: '/images/mountains.jpg', name: "Slide 4", desc: "Description 4", stat: "Stat 4" }
+];

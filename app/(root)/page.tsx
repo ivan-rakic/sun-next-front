@@ -13,10 +13,13 @@ import {Features} from "@/app/(root)/_components/features";
 import {Podcasts} from "@/app/(root)/_components/podcasts";
 import {Carousel} from "@/app/(root)/_components/carousel";
 import React from "react";
+import {slides} from "@/constants";
 
 
 
 export default function Home() {
+
+
   return (
       <main className={styles.content}>
         <section className={`${stylesRes.content_container} ${styles.content__featuredBox}`}>
@@ -114,7 +117,7 @@ export default function Home() {
         </section>
         <section className={`${stylesRes.content_container} ${styles.content__residentsBox}`}>
           <h2>Popular Residents</h2>
-          <Carousel/>
+          <Carousel slides={slides}/>
         </section>
       </main>
   )

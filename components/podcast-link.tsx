@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {getIconComponent} from "@/lib";
+import * as React from 'react'
 import Link from "next/link";
+import {getIconComponent} from "@/lib/utils";
 
 type Props = {
     slug: string,

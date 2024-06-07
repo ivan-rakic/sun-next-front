@@ -10,7 +10,7 @@ export const CarouselItem = ({ name, desc, stat, src }: Props) => {
             <p className='alice-carousel__stage-r-desc'>{desc}</p>
             <p className='alice-carousel__stage-r-stat'>{stat}</p>
             <div className='alice-carousel__stage-imageDiv'>
-                <Image src={src} alt='test' width={50}/>
+                <Image src={src} alt='test' width={50} height={50}/>
             </div>
         </div>
     );

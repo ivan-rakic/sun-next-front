@@ -3,9 +3,13 @@ import 'react-awesome-slider/dist/styles.css';
 import React, { useEffect, useRef } from 'react';
 import { RiPlayCircleLine, RiPauseCircleLine, RiVolumeUpLine, RiVolumeMuteLine } from "react-icons/ri";
 
-export default function Player() {
-  const trackInfoRef = useRef(null);
+interface CustomWindow extends Window {
+  rjq: any;
+}
 
+declare const window: CustomWindow;
+
+export default function Player() {
   useEffect(() => {
     const initializePlayer = () => {
       const rjq = window.rjq;
@@ -19,7 +23,7 @@ export default function Player() {
       });
 
       rjq('#rjp-radiojar-player').off('rj-track-load-event');
-      rjq('#rjp-radiojar-player').on('rj-track-load-event', function (event, data) {
+      rjq('#rjp-radiojar-player').on('rj-track-load-event', function (event: any, data: any) {
         updateInfo(data);
         if (data.title || data.artist) {
           rjq('.rjp-trackinfo-container').show();
@@ -29,7 +33,7 @@ export default function Player() {
         }
       });
 
-      function updateInfo(data) {
+      function updateInfo(data: any) {
         if (data.thumb) {
           rjq('#rj-cover').html(`<a href="#"><img src="${data.thumb}" alt="" title="" /></a>`);
         } else {
@@ -48,12 +52,24 @@ export default function Player() {
     }
   }, []);
 
+  // TODO
+  // Track info is not updating when new track is playing
+
+  const trackInfoRef = useRef<any>(null);
+
+  let trackInfo, artist, title;
+
+  if (trackInfoRef.current?.textContent) {
+    trackInfo = trackInfoRef.current.textContent.split(' - ');
+    artist = trackInfo[0]?.trim();
+    title = trackInfo[1]?.trim();
+  }
 
   useEffect(() => {
     const observer = new MutationObserver((mutationsList) => {
       for (let mutation of mutationsList) {
         if (mutation.type === 'childList') {
-          // Handle new content
+          // console.log('New content:', trackInfoRef.current?.textContent);
         }
       }
     });
@@ -65,32 +81,27 @@ export default function Player() {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [trackInfoRef]);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && 'mediaSession' in navigator) {
-      const trackInfo = trackInfoRef.current?.textContent?.split(' - ');
-      const artist = trackInfo?.[0]?.trim();
-      const title = trackInfo?.[1]?.trim();
+  if (typeof window !== 'undefined' && 'mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: title,
+      artist: artist,
+      album: "",
+      artwork: [
+        { src: 'track-icon-96x96.png', sizes: '96x96', type: 'image/png' },
+        { src: 'track-icon-128x128.png', sizes: '128x128', type: 'image/png' },
+        { src: 'track-icon-192x192.png', sizes: '192x192', type: 'image/png' },
+        { src: 'track-icon-256x256.png', sizes: '256x256', type: 'image/png' },
+        { src: 'track-icon-384x384.png', sizes: '384x384', type: 'image/png' },
+        { src: 'track-icon-512x512.png', sizes: '512x512', type: 'image/png' },
+      ]
+    });
 
-      navigator.mediaSession.metadata = new MediaMetadata({
-        title: title || '',
-        artist: artist || '',
-        album: '',
-        artwork: [
-          { src: 'track-icon-96x96.png', sizes: '96x96', type: 'image/png' },
-          { src: 'track-icon-128x128.png', sizes: '128x128', type: 'image/png' },
-          { src: 'track-icon-192x192.png', sizes: '192x192', type: 'image/png' },
-          { src: 'track-icon-256x256.png', sizes: '256x256', type: 'image/png' },
-          { src: 'track-icon-384x384.png', sizes: '384x384', type: 'image/png' },
-          { src: 'track-icon-512x512.png', sizes: '512x512', type: 'image/png' },
-        ]
-      });
-
-      navigator.mediaSession.setActionHandler('play', function () { /* Code to handle play action */ });
-      navigator.mediaSession.setActionHandler('pause', function () { /* Code to handle pause action */ });
-    }
-  }, [trackInfoRef.current?.textContent]);
+    navigator.mediaSession.setActionHandler('play', function () { /* Code to handle play action */ });
+    navigator.mediaSession.setActionHandler('pause', function () { /* Code to handle pause action */ });
+    // Add other action handlers as needed
+  };
 
   return (
       <main>

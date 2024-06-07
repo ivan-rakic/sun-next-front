@@ -16,7 +16,7 @@ export default function Podcast() {
             <time dateTime="2022-03-01">March 1, 2022</time>
             <p>Tags: <span>Show</span>, <span>Mix</span>, <span>Talkshow</span></p>
           </header>
-          <iframe width="100%" height="60" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2Fde%C4%8Dije-igre-emisija-4-sunradiors%2F" frameborder="0" ></iframe>
+          <iframe width="100%" height="60" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2Fde%C4%8Dije-igre-emisija-4-sunradiors%2F" frameBorder="0" ></iframe>
         </article>
 
 

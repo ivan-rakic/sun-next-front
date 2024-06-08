@@ -1,8 +1,9 @@
 import styles from "@/styles/header.module.scss";
 import { PodcastLink } from "@/components/podcast-link";
-import { LinksList } from "@/components/links-list";
-import { NavLinks } from "@/components/nav-links";
+import { NavLinks } from "@/components/header/nav-links";
 import { LogoLink } from "@/components/logo-link";
+import {MobileNav} from "@/components/header/mobile-nav";
+import {LinksList} from "@/components/header/links-list";
 
 interface HeaderProps {
   data?: any;
@@ -20,8 +21,8 @@ export default function Header({ data }: HeaderProps) {
   ));
 
   return (
-    <header className="h-12 w-full flex justify-center box-border relative z-50">
-      <div className="w-full h-full flex flex-row justify-center items-start text-center relative">
+    <header className="h-12 w-full flex lg:justify-center box-border relative z-50">
+      <div className="hidden w-full h-full lg:flex flex-row justify-center items-start text-center relative">
         <nav className={styles.header_main__navigation}>
           {menu ? menu : <LinksList />}
         </nav>
@@ -30,6 +31,7 @@ export default function Header({ data }: HeaderProps) {
           {socialLinks ? socialLinks : <NavLinks />}
         </div>
       </div>
+      <MobileNav/>
     </header>
   );
 }

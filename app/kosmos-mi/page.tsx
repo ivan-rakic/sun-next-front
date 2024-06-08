@@ -1,10 +1,7 @@
 import Image from "next/image";
 import styles from "@/styles/about.module.scss";
 
-import {
-  SiFacebook,
-  SiInstagram,
-} from "react-icons/si";
+import { SiFacebook, SiInstagram } from "react-icons/si";
 
 import img1 from "../../public/images/astronaut.jpg";
 

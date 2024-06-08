@@ -7,6 +7,7 @@ import {
   RiVolumeUpLine,
   RiVolumeMuteLine,
 } from "react-icons/ri";
+import {PlayerButton} from "@/components/player-button";
 
 interface CustomWindow extends Window {
   rjq: any;
@@ -125,17 +126,12 @@ export default function Player() {
     <main>
       <div id="stickPlayer">
         <div className="stickPlayer__controls">
-          <a href="javascript:;" className="jp-play" title="Play">
+          <PlayerButton title="Play" isHidden={false} className="jp-play">
             <RiPlayCircleLine />
-          </a>
-          <a
-            href="javascript:;"
-            style={{ display: "none" }}
-            className="jp-pause"
-            title="Pause"
-          >
+          </PlayerButton>
+          <PlayerButton title="Pause" isHidden={true} className="jp-pause">
             <RiPauseCircleLine />
-          </a>
+          </PlayerButton>
         </div>
         <div id="rj-player">
           <div className="rj-info">
@@ -150,22 +146,20 @@ export default function Player() {
               <div id="rj-player-controls" className="rj-player-controls">
                 <div>
                   <div className="jp-controls">
-                    <a
-                      href="javascript:;"
-                      style={{ display: "block" }}
-                      className="jp-mute"
+                    <PlayerButton
+                      className="jp-mute block"
                       title="Mute"
+                      isHidden={false}
                     >
                       <RiVolumeUpLine />
-                    </a>
-                    <a
-                      href="javascript:;"
-                      style={{ display: "none" }}
-                      className="jp-unmute"
+                    </PlayerButton>
+                    <PlayerButton
+                      className="jp-unmute block"
                       title="Unmute"
+                      isHidden={false}
                     >
                       <RiVolumeMuteLine />
-                    </a>
+                    </PlayerButton>
                     <div className="jp-volume-bar-wrapper">
                       <div className="jp-volume-bar">
                         <div className="jp-volume-bar-value"></div>

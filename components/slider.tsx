@@ -20,9 +20,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import {
-  Autoplay,
-} from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 export default function Slider() {
   const [featuredContent, setFeaturedContent] = useState<any>([]);
   const [checkOutBox, setCheckOutBox] = useState<any>([]);

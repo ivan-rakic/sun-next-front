@@ -3,16 +3,8 @@
 }
 
 .hero {
-  position: relative;
-  height: 500px;
-  display: flex;
   background: radial-gradient(rgb(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)),
     url("/images/fake-brick.png");
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  overflow: hidden; // To contain the pseudo-element
-
   &::before {
     content: "";
     position: absolute;
@@ -29,6 +21,8 @@
     animation: slide 220s infinite alternate; // Increase the duration to make it slower
     animation-play-state: running;
   }
+
+
 
   &::after {
     content: "";
@@ -48,14 +42,14 @@
   @keyframes slide {
     0% {
       background-position:
-        0% 50%,
+        0 50%,
         100% 50%;
     }
 
     100% {
       background-position:
         100% 50%,
-        0% 50%;
+        0 50%;
     }
   }
 
@@ -77,7 +71,6 @@
     background-repeat: no-repeat;
     background-position: 55% 36%;
     background-size: 65%;
-    padding-left: 5%;
   }
 
   &__slider {
@@ -88,7 +81,6 @@
     background-repeat: no-repeat;
     background-position: 40% 36%;
     background-size: 65%;
-    padding-right: 5%;
   }
 }
 

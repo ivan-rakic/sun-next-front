@@ -1,18 +1,17 @@
+import React from "react";
+
 import styles from "@/styles/index.module.scss";
 import stylesRes from "@/styles/reusable.module.scss";
 
-
-import { Features } from "@/app/(root)/_components/features";
+import { Featured } from "@/app/(root)/_components/featured";
 import { Podcasts } from "@/app/(root)/_components/podcasts";
 import { Carousel } from "@/app/(root)/_components/carousel";
-import React from "react";
-import {articles, slides} from "@/constants";
-import {DonateContainer} from "@/app/(root)/_components/donate-container";
-import {Article} from "@/app/(root)/_components/article";
+import { DonateContainer } from "@/app/(root)/_components/donate-container";
+import { Article } from "@/app/(root)/_components/article";
+
+import { articles, slides } from "@/constants";
 
 export default function Home() {
-
-
   return (
     <main className={styles.content}>
       <section
@@ -22,7 +21,7 @@ export default function Home() {
           <h2>Featured</h2>
           <h5>Checkout the ltest featured selection, we picked for you</h5>
         </div>
-        <Features />
+        <Featured />
       </section>
       <section
         className={`${stylesRes.content_container} ${styles.content__podcastBox}`}
@@ -50,7 +49,7 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <DonateContainer/>
+      <DonateContainer />
       <section
         className={`${stylesRes.content_container} ${styles.content__residentsBox}`}
       >

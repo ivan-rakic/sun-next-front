@@ -70,6 +70,7 @@ export const featureData = [
     author: "ivander",
     timeToRead: "5 min",
     roundedImage: true,
+    isPrimary: true,
   },
   {
     key: "nije-zivot-jedna-tegla-ajvara",
@@ -79,6 +80,7 @@ export const featureData = [
     author: "ivander",
     timeToRead: "3 min",
     roundedImage: true,
+    isPrimary: false,
   },
   {
     key: "mali-korak-za-muziku-veliki-za-domacu-bluz-scenu",
@@ -89,6 +91,7 @@ export const featureData = [
     author: "ivander",
     timeToRead: "4 min",
     roundedImage: true,
+    isPrimary: false,
   },
 ];
 
@@ -187,47 +190,59 @@ export const articles = [
     imageSrc: "/images/mountains.jpg",
     imageAlt: "test",
     category: "nesto",
-    title: "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
-    description: "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca"
+    title:
+      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
+    description:
+      "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
   },
   {
     href: "/podcast/1",
     imageSrc: "/images/beach.jpg",
     imageAlt: "test",
     category: "nesto",
-    title: "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
-    description: "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca"
+    title:
+      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
+    description:
+      "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
   },
   {
     href: "/podcast/2",
     imageSrc: "/images/ocean.jpg",
     imageAlt: "test",
     category: "nesto",
-    title: "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
-    description: "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca"
+    title:
+      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
+    description:
+      "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
   },
   {
     href: "/podcast/3",
     imageSrc: "/images/ocean.jpg",
     imageAlt: "test",
     category: "nesto",
-    title: "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
-    description: "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca"
+    title:
+      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
+    description:
+      "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
   },
   {
     href: "/podcast/4",
     imageSrc: "/images/ocean.jpg",
     imageAlt: "test",
     category: "nesto",
-    title: "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
-    description: "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca"
+    title:
+      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
+    description:
+      "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
   },
   {
     href: "/podcast/5",
     imageSrc: "/images/ocean.jpg",
     imageAlt: "test",
     category: "nesto",
-    title: "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
-    description: "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca"
-  }
+    title:
+      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
+    description:
+      "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
+  },
 ];

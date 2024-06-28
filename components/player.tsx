@@ -7,7 +7,7 @@ import {
   RiVolumeUpLine,
   RiVolumeMuteLine,
 } from "react-icons/ri";
-import {PlayerButton} from "@/components/player-button";
+import { PlayerButton } from "@/components/player-button";
 
 interface CustomWindow extends Window {
   rjq: any;

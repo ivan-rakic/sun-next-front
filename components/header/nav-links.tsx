@@ -8,7 +8,7 @@ export const NavLinks = () => {
         const IconComponent = link.icon;
         return (
           <Link
-              className='sm:w-full sm:h-full'
+            className="sm:w-full sm:h-full"
             key={link.href}
             href={link.href}
             title={link.title}

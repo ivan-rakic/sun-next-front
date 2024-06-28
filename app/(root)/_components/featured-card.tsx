@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { LucideMoveUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -10,41 +8,37 @@ type Props = {
   title: string;
   date?: string;
   author: string;
-  timeToRead?: string;
+  category?: string;
   imageSrc: string;
+  isPrimary: boolean;
   roundedImage?: boolean;
 };
-export const BlogCard = ({
+export const FeaturedCard = ({
   title,
   date,
   author,
-  timeToRead,
+  category,
   imageSrc,
   roundedImage = false,
+  isPrimary,
   slug,
 }: Props) => {
   return (
-    <Link href={`/blog/${slug}`} className="w-full">
+    <Link href={`/blog/${slug}`} className="kobas">
       <div
         className={cn(
-          "mb-5 relative w-full aspect-video  overflow-hidden",
+          "mb-5 relative w-full aspect-video overflow-hidden",
           roundedImage && "rounded-2xl",
         )}
       >
         <Image fill className="object-cover" alt={title} src={imageSrc} />
       </div>
       <div className="flex justify-between mb-3 gap-4">
-        <span className="font-medium text-xl  max-w-md">{title}</span>
-        {/* <Button
-          className="rounded-full p-2 flex items-center justify-center"
-          variant="outline"
-        >
-          <LucideMoveUpRight className="text-xs text-muted-foreground" />
-        </Button> */}
+        <span className="font-medium text-xl max-w-md">{title}</span>
       </div>
       <Separator className="mb-3" />
       <span className="text-md text-muted-foreground">
-        {author}. {timeToRead}.
+        {author}. {category}.
       </span>
     </Link>
   );

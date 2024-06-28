@@ -1,22 +1,23 @@
 import * as React from "react";
 import { Container } from "@/components/container";
-import { BlogCard } from "@/app/(root)/_components/blog-card";
+import { FeaturedCard } from "./featured-card";
 import { featureData } from "@/constants";
 
-export const Features = () => {
+export const Featured = () => {
   return (
     <div>
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-2">
           {featureData.map((card) => (
-            <BlogCard
+            <FeaturedCard
               key={card.slug}
               imageSrc={card.imageSrc}
               title={card.title}
               slug={card.slug}
               author={card.author}
-              timeToRead={card.timeToRead}
+              category={undefined}
               roundedImage={true}
+              isPrimary={card.isPrimary}
             />
           ))}
         </div>

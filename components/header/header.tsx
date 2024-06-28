@@ -2,8 +2,8 @@ import styles from "@/styles/header.module.scss";
 import { PodcastLink } from "@/components/podcast-link";
 import { NavLinks } from "@/components/header/nav-links";
 import { LogoLink } from "@/components/logo-link";
-import {MobileNav} from "@/components/header/mobile-nav";
-import {LinksList} from "@/components/header/links-list";
+import { MobileNav } from "@/components/header/mobile-nav";
+import { LinksList } from "@/components/header/links-list";
 
 interface HeaderProps {
   data?: any;
@@ -31,7 +31,7 @@ export default function Header({ data }: HeaderProps) {
           {socialLinks ? socialLinks : <NavLinks />}
         </div>
       </div>
-      <MobileNav/>
+      <MobileNav />
     </header>
   );
 }

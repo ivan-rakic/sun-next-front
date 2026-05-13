@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { Dispatch, PropsWithChildren, SetStateAction } from "react";
 
 interface MobileLinkProps extends PropsWithChildren {
@@ -15,9 +14,6 @@ export default function MobileLink({
   return (
     <Link
       href={href}
-      className={cn(
-        "text-foreground/70 transition-colors hover:text-foreground pl-2",
-      )}
       onClick={() => setIsOpen(false)}
     >
       {children}

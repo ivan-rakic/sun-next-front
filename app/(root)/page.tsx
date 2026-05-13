@@ -13,7 +13,7 @@ import { articles, slides } from "@/constants";
 
 export default function Home() {
   return (
-    <main className={styles.content}>
+    <main>
       <section
         className={`${stylesRes.content_container} ${styles.content__featuredBox}`}
       >
@@ -36,7 +36,7 @@ export default function Home() {
           <h5>Pregledajte selekciju odabranih tekstova redakcije</h5>
         </div>
         <div className={styles.content__podcastBox_articles}>
-          {articles.map((article, index) => (
+          {articles?.map((article, index) => (
             <Article
               key={index}
               href={article.href}

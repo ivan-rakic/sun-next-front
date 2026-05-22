@@ -27,33 +27,6 @@ export default function Slider() {
 
   const slides = [pic1, pic2, pic3, pic2, pic1, pic3]; // Add more images as needed
 
-  const SLIDES = gql`
-    {
-      slides {
-        data {
-          attributes {
-            slideBox {
-              title
-              isFeatured
-              cover {
-                data {
-                  attributes {
-                    name
-                  }
-                }
-              }
-              isFeatured
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  // const { loading, error, data } = useQuery(SLIDES)
-
-  // console.log(data);
-
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
@@ -79,7 +52,6 @@ export default function Slider() {
     setCheckOutBox(checkOutBox);
   }, [featuredContent]);
 
-  const featuredContentBox = "test";
 
   // const featuredContentBox = data?.slides?.data[0]?.attributes.slideBox.map((el: any) => {
   //   console.log(el);
@@ -93,61 +65,89 @@ export default function Slider() {
   // });
 
   return (
-    <main className={styles.slider}>
+    <div className={styles.slider}>
       <div className={styles.slider_content}>
+
         <Swiper
-          effect={"slide"}
+          effect="slide"
           autoplay={{ delay: 12000 }}
-          speed={2600}
+          speed={1600}
           allowTouchMove
-          // navigation
           modules={[Autoplay]}
-          className="mySwiper"
           slidesPerView={1}
+          spaceBetween={22}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 24,
+            },
+            1200: {
+              slidesPerView: 3,
+              spaceBetween: 28,
+            },
+          }}
         >
           <SwiperSlide>
-            <Image src={pic2} alt="test" />
-            <Link
-              className={styles.slider_content__info}
-              href="http://freepik.com"
-            >
-              <div>
-                <h2>123Ponesi Sunce sa Sobom - Novi serijal emisija</h2>
-                <p>
-                  {" "}
-                  123 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju!{" "}
-                </p>
+            <article className={styles.slider_card}>
+              <div className={styles.slider_card__image}>
+                <Image src={pic2} alt="test" />
               </div>
-            </Link>
+
+              <Link className={styles.slider_content__info} href="http://freepik.com">
+                <h2>123 Ponesi Sunce sa Sobom - Novi serijal emisija</h2>
+                <p>123 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju!</p>
+              </Link>
+            </article>
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={pic3} alt="test" />
-            <Link
-              className={styles.slider_content__info}
-              href="http://freepik.com"
-            >
-              <div>
-                <h2>333 Ponesi Sunce sa Sobom</h2>
-                <p>
-                  333 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju!{" "}
-                </p>
+            <article className={styles.slider_card}>
+              <div className={styles.slider_card__image}>
+                <Image src={pic1} alt="test" />
               </div>
-            </Link>
+
+              <Link className={styles.slider_content__info} href="http://freepik.com">
+                <h2>123 Ponesi Sunce sa Sobom - Novi serijal emisija</h2>
+                <p>123 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju!</p>
+              </Link>
+            </article>
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={pic1} alt="test" />
-            <Link
-              className={styles.slider_content__info}
-              href="http://freepik.com"
-            >
-              <div>
-                <h2>444 Ponesi Sunce sa Sobom</h2>
-                <p>
-                  444 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju!{" "}
-                </p>
+            <article className={styles.slider_card}>
+              <div className={styles.slider_card__image}>
+                <Image src={pic3} alt="test" />
               </div>
-            </Link>
+
+              <Link className={styles.slider_content__info} href="http://freepik.com">
+                <h2>123 Ponesi Sunce sa Sobom - Novi serijal emisija</h2>
+                <p>123 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju!</p>
+              </Link>
+            </article>
           </SwiperSlide>
+          <SwiperSlide>
+            <article className={styles.slider_card}>
+              <div className={styles.slider_card__image}>
+                <Image src={pic1} alt="test" />
+              </div>
+
+              <Link className={styles.slider_content__info} href="http://freepik.com">
+                <h2>123 Ponesi Sunce sa Sobom - Novi serijal emisija</h2>
+                <p>123 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju!</p>
+              </Link>
+            </article>
+          </SwiperSlide>
+          <SwiperSlide>
+            <article className={styles.slider_card}>
+              <div className={styles.slider_card__image}>
+                <Image src={pic1} alt="test" />
+              </div>
+
+              <Link className={styles.slider_content__info} href="http://freepik.com">
+                <h2>123 Ponesi Sunce sa Sobom - Novi serijal emisija</h2>
+                <p>123 Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju!</p>
+              </Link>
+            </article>
+          </SwiperSlide>
+
         </Swiper>
         {/* {slides.map((slide, index) => (
             <div className='alice-carousel__stage-hero' key={index}>
@@ -159,6 +159,6 @@ export default function Slider() {
             </div>
           ))} */}
       </div>
-    </main>
+    </div>
   );
 }

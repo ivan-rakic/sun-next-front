@@ -1,22 +1,27 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
   title: string;
   isHidden: boolean;
   className?: string;
+  onClick?: () => void;
 };
+
 export const PlayerButton = ({
   children,
   title,
   isHidden,
   className,
-}: Props) => {
+  onClick,
+}: Props): React.ReactElement => {
   return (
     <button
+      type="button"
       title={title}
-      style={{ display: isHidden ? "none" : "block" }}
+      hidden={isHidden}
       className={className}
+      onClick={onClick}
     >
       {children}
     </button>

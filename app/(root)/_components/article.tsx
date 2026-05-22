@@ -1,6 +1,7 @@
-import styles from "@/styles/index.module.scss";
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
+
+import styles from '@/styles/index.module.scss';
 
 type ArticleProps = {
   href: string;
@@ -9,6 +10,7 @@ type ArticleProps = {
   category: string;
   title: string;
   description: string;
+  featured?: boolean;
 };
 
 export const Article = ({
@@ -18,19 +20,25 @@ export const Article = ({
   category,
   title,
   description,
-}: ArticleProps) => {
+  featured,
+}: ArticleProps): React.ReactElement => {
   return (
-    <Link href={href} className={styles.content__podcastBox_articles_link}>
-      <Image width={50} height={50} src={imageSrc} alt={imageAlt} />
-      <span
-        className={styles.content__podcastBox_articles_link_category}
-        style={{ backgroundColor: "purple" }}
-      >
-        {category}
-      </span>
-      <div className={styles.content__podcastBox_articles_link_titles}>
-        <h5>{title}</h5>
+    <Link href={href} className={styles.articleCard}>
+
+      <div className={styles.articleCard__image}>
+        <span>{category}</span>
+        <Image fill src={imageSrc} alt={imageAlt} />
+      </div>
+
+      <div className={styles.articleCard__content}>
+
+        <small>MAY 12, 2024</small>
+
+        <h3>{title}</h3>
+
         <p>{description}</p>
+
+        <strong>READ MORE →</strong>
       </div>
     </Link>
   );

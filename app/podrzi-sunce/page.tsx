@@ -1,69 +1,81 @@
-import Image from "next/image";
-import styles from "@/styles/donate.module.scss";
-import stylesRes from "@/styles/reusable.module.scss";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import img2 from "../../public/images/beach.jpg";
+import styles from '@/styles/donate.module.scss';
 
-export default function Donate() {
+import img2 from '../../public/images/beach.jpg';
+
+export default function Donate(): React.ReactElement {
   return (
-    <main className={stylesRes.content}>
-      <div className={`${stylesRes.content_container} ${styles.donate}`}>
-        <section
-          className={`${styles.donate_main} ${stylesRes.content_container_main}`}
-        >
-          <article>
-            <header>
-              <Image src={img2} alt="test" />
-              <div>
-                <h2>Zašto da podržite Sunce?</h2>
-                <span>
-                  Sun Radio je slobodna internet radio stanica čija je misija
-                  stvaranje otvorenih formi umetničke, obrazovne i radosne
-                  prirode.
-                </span>
-                <span>
-                  Sun Radio je slobodna internet radio stanica čija je misija
-                  stvaranje otvorenih formi umetničke, obrazovne i radosne
-                  prirode.
-                </span>
-                <span>
-                  Sun Radio je slobodna internet radio stanica čija je misija
-                  stvaranje otvorenih formi umetničke, obrazovne i radosne
-                  prirode.
-                </span>
-                <span>
-                  Sun Radio je slobodna internet radio stanica čija je misija
-                  stvaranje otvorenih formi umetničke, obrazovne i radosne
-                  prirode.
-                </span>
-              </div>
-            </header>
-            <br />
+    <main className={styles.donatePage}>
+      <section className={styles.donateHero}>
+        <div className={styles.donateHero__image}>
+          <Image src={img2} alt="Podržite Sunce" fill priority />
+        </div>
+
+        <div className={styles.donateHero__content}>
+          <span>Support SunRadio</span>
+
+          <h1>Zašto da podržite Sunce?</h1>
+
+          <p>
+            Sun Radio je slobodna internet radio stanica čija je misija
+            stvaranje otvorenih formi umetničke, obrazovne i radosne prirode.
+          </p>
+
+          <div className={styles.donateHero__actions}>
+            <Link href="https://www.paypal.com/paypalme/sunradiors" target="_blank">
+              PayPal
+            </Link>
+
+            <Link href="https://www.patreon.com/sunradio" target="_blank">
+              Patreon
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.donateContent}>
+        <article className={styles.donateContent__main}>
+          <h2>Sunce opstaje zahvaljujući zajednici</h2>
+
+          <p>
             Godinama istrajavamo u izgradnji slobodnog i nezavisnog medija koji
             neguje kulturu za koju nema mesta u popularnim i komercijalnim
-            sredstvima dezinformisanja. Naš radio ne emituje reklame. Nemamo
-            sponzore niti finansijere. Ni od koga i ni od čega ne zavisimo. Sve
-            što stvaramo je plod volonterskog rada članova naše slobodne
-            redakcije.
-            <h3>Zašto da podržite Sunce?</h3>
-            <div className={styles.donate_main_ctaDiv}>
-              <button className={stylesRes.standard_button}>
-                Podrži Sunce
-              </button>
-              <button className={stylesRes.standard_button}>
-                Podrži Sunce 2
-              </button>
+            sredstvima dezinformisanja.
+          </p>
+
+          <p>
+            Naš radio ne emituje reklame. Nemamo sponzore niti finansijere. Ni
+            od koga i ni od čega ne zavisimo. Sve što stvaramo je plod
+            volonterskog rada članova naše slobodne redakcije.
+          </p>
+
+          <h3>Direktna donacija</h3>
+
+          <div className={styles.donateContent__accounts}>
+            <div>
+              <span>Dinarski račun</span>
+              <strong>000-0000000000000-00</strong>
             </div>
-            <h4>Direktna Donacija - dinarski racun</h4>
-            <h4>Direktna Donacija - devizni racun</h4>
-          </article>
-        </section>
-        <section
-          className={`${stylesRes.content_container_promo} ${styles.donate_promo}`}
-        >
-          dsdsdddddddd
-        </section>
-      </div>
+
+            <div>
+              <span>Devizni račun</span>
+              <strong>RS00 0000 0000 0000 0000 00</strong>
+            </div>
+          </div>
+        </article>
+
+        <aside className={styles.donateContent__side}>
+          <h3>Kako vaša podrška pomaže?</h3>
+
+          <ul>
+            <li>Održavanje streaminga i servera</li>
+            <li>Razvoj emisija, podcasta i tekstova</li>
+            <li>Podrška nezavisnoj internet radio kulturi</li>
+          </ul>
+        </aside>
+      </section>
     </main>
   );
 }

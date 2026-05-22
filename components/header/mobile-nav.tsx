@@ -1,42 +1,40 @@
-"use client";
+'use client';
 
-import { Fragment, useState } from "react";
+import { useState } from 'react';
 
-import { links } from "@/constants";
-import MobileLink from "@/components/header/mobile-link";
-import { NavLinks } from "@/components/header/nav-links";
-import styles from "@/styles/header.module.scss";
+import { RiCloseLine, RiMenuLine } from 'react-icons/ri';
 
-export const MobileNav = () => {
+import { LinksList } from '@/components/header/links-list';
+import { NavLinks } from '@/components/header/nav-links';
+
+import styles from '@/styles/mobile-nav.module.scss';
+
+export const MobileNav = (): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="lg:hidden pl-5 pt-1">
-      {/* <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetTrigger asChild>
-          <Button
-            size="icon"
-            variant="outline"
-          >
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="pt-2 flex flex-col pb-3">
-          <SheetHeader className="">
-            <SheetTitle>Sun Radio</SheetTitle>
-          </SheetHeader>
-          <div className="my-4 flex flex-col gap-4 pb-10 pl-1 pr-4">
-            {links.map((item) => (
-              <Fragment key={item.href}>
-                <MobileLink href={item.href} setIsOpen={setIsOpen}>
-                  {item.label}
-                </MobileLink>
-              </Fragment>
-            ))}
-            <div className={styles.header_main__mobile__socials}>
-              {<NavLinks />}
-            </div>
-          </div>
-        </SheetContent>
-      </Sheet> */}
-    </div>
+    <>
+      <button
+        type="button"
+        className={styles.mobileNav__toggle}
+        onClick={() => setIsOpen((prev) => !prev)}
+        aria-label="Toggle navigation"
+      >
+        {isOpen ? <RiCloseLine /> : <RiMenuLine />}
+      </button>
+
+      <div
+        className={`${styles.mobileNav} ${isOpen ? styles.mobileNavVisible : ''
+          }`}
+      >
+        <nav className={styles.mobileNav__links}>
+          <LinksList />
+        </nav>
+
+        <div className={styles.mobileNav__socials}>
+          <NavLinks />
+        </div>
+      </div>
+    </>
   );
 };

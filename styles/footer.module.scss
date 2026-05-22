@@ -1,17 +1,166 @@
 .footer {
-  &_title_about {
-    border-bottom: 6px ridge #2591de;
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  min-height: 300px;
+
+  margin-top: 120px;
+
+  background:
+    url("/images/stars.png"), rgba(0, 0, 0, 0.2);
+
+  background-size: cover;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+  &__bannerLeft,
+  &__bannerRight {
+    position: absolute;
+    top: 0;
+
+    width: 60%;
+    height: 100%;
+
+    background-image: url("/images/banner-back.png");
+    background-repeat: no-repeat;
+    background-size: auto 110%;
+    background-position: center;
+    filter: brightness(0.7);
+
+    opacity: 0.6;
+
+    z-index: 0;
+
+    will-change: transform;
   }
 
-  &_title_contact {
-    border-bottom: 6px ridge #199729;
+  &__bannerLeft {
+    left: 0;
+    animation: footerBannerLeftDrift 60s linear infinite alternate;
   }
 
-  &_title_tunein {
-    border-bottom: 6px ridge #950ea8;
+  &__bannerRight {
+    right: 0;
+    animation: footerBannerRightDrift 60s linear infinite alternate;
   }
 
-  &_title_networks {
-    border-bottom: 6px ridge #dc287f;
+  &__backDrop {
+    position: absolute;
+    inset: 0;
+
+    background:
+      radial-gradient(circle at center,
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0.42) 58%,
+        rgba(0, 0, 0, 0.52) 100%),
+      linear-gradient(rgba(0, 0, 0, 0.42),
+        rgba(0, 0, 0, 0.82)),
+      url("/images/fake-brick.png");
+
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+    padding: 70px 40px 30px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+
+  section {
+    h4 {
+      display: inline-block;
+
+      padding-bottom: 10px;
+
+      color: #fff;
+
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+
+      text-transform: uppercase;
+    }
+
+    p {
+      margin-top: 18px;
+
+      color: rgba(255, 255, 255, 0.801);
+
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+  }
+
+  &__about h4 {
+    border-bottom: 2px solid #2591de;
+  }
+
+  &__contact h4 {
+    border-bottom: 2px solid #199729;
+  }
+
+  &__tunein h4 {
+    border-bottom: 2px solid #950ea8;
+  }
+
+  &__networks h4 {
+    border-bottom: 2px solid #dc287f;
+  }
+
+  &__bottom {
+    margin-top: 60px;
+
+    padding-top: 24px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    text-align: center;
+
+    p {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+    }
+  }
+}
+
+@keyframes footerBannerLeftDrift {
+  from {
+    transform: scaleX(-1) translate3d(-1%, 0, 0);
+  }
+
+  to {
+    transform: scaleX(-1) translate3d(16%, 0, 0);
+  }
+}
+
+@keyframes footerBannerRightDrift {
+  from {
+    transform: scaleX(-1) translate3d(3%, 0, 0);
+  }
+
+  to {
+    transform: scaleX(-1) translate3d(-6%, 0, 0);
   }
 }

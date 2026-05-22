@@ -1,121 +1,284 @@
-.donate {
+.donatePage {
+  width: 100%;
+  max-width: var(--content-max-width);
+
+  margin: 30px auto 0;
+  padding: 0 var(--content-padding);
+}
+
+.donateHero {
+  position: relative;
+
+  min-height: 460px;
+
   display: flex;
+  align-items: flex-end;
 
-  &_main {
+  overflow: hidden;
+
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  background: rgba(255, 255, 255, 0.02);
+
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.42),
+    inset 0 0 35px rgba(255, 166, 0, 0.04);
+
+  &__image {
+    position: absolute;
+    inset: 0;
+
+    img {
+      object-fit: cover;
+      filter: saturate(0.9) contrast(1.08) brightness(0.48);
+    }
+  }
+
+  &__content {
     position: relative;
+    z-index: 1;
 
-    article {
-      header {
-        min-height: 420px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-        margin-bottom: 40px;
+    max-width: 760px;
 
-        div {
-          margin-bottom: -40px;
-          width: 100%;
-          background: linear-gradient(
-              to top,
-              rgba(0, 0, 0, 0.9),
-              rgba(85, 60, 1, 0.8)
-            ),
-            url("https://www.transparenttextures.com/patterns/black-lozenge.png");
-          border: 2px solid rgba(211, 162, 1, 0.719);
-          border-radius: 6px;
-          padding: 20px;
+    padding: 60px;
 
-          h2 {
-            font-size: 2.5rem;
-            color: white;
-            text-shadow: 0 0 6px black;
-            line-height: 1;
-            margin-bottom: 30px;
-          }
+    span {
+      color: orange;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
 
-          time {
-            border-top: 2px solid white;
-            font-size: 14px;
-          }
-        }
+    h1 {
+      margin-top: 14px;
+
+      color: #fff;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 0.95;
+      font-weight: 500;
+    }
+
+    p {
+      margin-top: 22px;
+
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 12px;
+
+    margin-top: 30px;
+
+    a {
+      min-width: 120px;
+      padding: 10px 18px;
+
+      border-radius: 999px;
+      border: 1px solid rgba(255, 166, 0, 0.38);
+
+      background: rgba(255, 255, 255, 0.06);
+
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+
+      transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 166, 0, 0.8);
+        background: rgba(255, 166, 0, 0.16);
       }
+    }
+  }
+}
 
-      img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 420px;
-        width: 100%;
-        object-fit: cover;
-        border-radius: 4px;
-        opacity: 0.9;
-        z-index: -1;
+.donateHero {
+  min-height: 360px;
+
+  &__content {
+    max-width: 640px;
+
+    padding: 42px;
+
+    h1 {
+      margin-top: 12px;
+
+      font-size: clamp(2rem, 4vw, 3.6rem);
+    }
+
+    p {
+      margin-top: 18px;
+
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+  }
+}
+
+.donateContent {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 28px;
+
+  margin-top: 28px;
+
+  &__main,
+  &__side {
+    background-color: rgba(0, 0, 0, 0.52);
+    
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+      0 24px 70px rgba(0, 0, 0, 0.52),
+      inset 0 0 30px rgba(255, 166, 0, 0.03);
+
+  }
+
+  &__main {
+    padding: 40px;
+
+    h2,
+    h3 {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    h2 {
+      font-size: 2rem;
+      line-height: 1.1;
+    }
+
+    h3 {
+      margin-top: 34px;
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin-top: 18px;
+
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+  }
+
+  &__side {
+    ul {
+      color: rgba(255, 255, 255, 0.92);
+    }
+  }
+
+
+  &__accounts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+
+    margin-top: 20px;
+
+    div {
+      padding: 18px;
+
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+
+      border: 1px solid rgba(255, 166, 0, 0.12);
+    }
+
+    span {
+      display: block;
+
+      color: orange;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    strong {
+      display: block;
+
+      margin-top: 10px;
+
+      color: rgba(255, 255, 255, 0.96);
+      font-size: 1rem;
+      word-break: break-word;
+    }
+  }
+
+  &__side {
+    padding: 34px;
+
+    h3 {
+      color: #fff;
+      font-size: 1.5rem;
+      line-height: 1.1;
+      font-weight: 500;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      margin-top: 24px;
+      padding-left: 18px;
+
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.5;
+    }
+
+    li::marker {
+      color: orange;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .donateContent {
+    grid-template-columns: 1fr;
+  }
+
+  .donateHero__content {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .donatePage {
+    margin-top: 50px;
+  }
+
+  .donateHero {
+    min-height: 440px;
+
+    &__content {
+      padding: 38px;
+    }
+
+    &__actions {
+      flex-wrap: wrap;
+
+      a {
+        flex: 1;
       }
     }
   }
 
-  &_promo {
-    background-color: blue;
-    margin: 0 20px;
+  .donateContent__main,
+  .donateContent__side {
+    padding: 26px;
+  }
+
+  .donateContent__accounts {
+    grid-template-columns: 1fr;
   }
 }
-
-// .container {
-//     max-width: 1240px;
-//     margin: 0 auto;
-// }
-
-// .content {
-//     width: 100%;
-//     display: flex;
-//     flex-direction: column;
-//     flex-wrap: wrap;
-//     align-items: flex-start;
-//     height: 100%;
-
-//     &__redactionBox {
-//         width: 100%;
-//         display: flex;
-//         flex-direction: row;
-//         flex-wrap: wrap;
-//         margin-top: 40px;
-
-//         h2 {
-//             text-align: center;
-//             display: block;
-//             width: 100%;
-//             border-bottom: 5px groove paleturquoise;
-//             margin-bottom: 20px;
-//         }
-
-//         &_redactionContainer {
-//             width: 100%;
-//             display: flex;
-//             flex-direction: row;
-//             flex-wrap: wrap;
-//             justify-content: space-between;
-//         }
-
-//         &_entity {
-//             display: flex;
-//             flex-direction: row;
-//             flex: 0 0 32%;
-//             margin-bottom: 40px;
-
-//             img {
-//                 height: 200px;
-//                 width: 160px;
-//                 object-fit: cover;
-//                 object-position: center;
-//                 display: inline-block;
-//             }
-
-//             h2 {
-//                 text-decoration: none;
-//             }
-//         }
-
-//     }
-// }

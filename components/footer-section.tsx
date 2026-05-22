@@ -3,10 +3,15 @@ type Props = {
   content: string;
   style?: string;
 };
-export const FooterSection = ({ title, content, style }: Props) => {
+
+export const FooterSection = ({
+  title,
+  content,
+  style,
+}: Props): React.ReactElement => {
   return (
-    <section>
-      <h4 className={style}>{title}</h4>
+    <section className={style}>
+      <h4>{title}</h4>
       <p>{content}</p>
     </section>
   );

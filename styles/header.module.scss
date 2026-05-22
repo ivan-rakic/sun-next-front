@@ -1,145 +1,215 @@
-//corlor variables
-$color-primary: #f9f9f9;
-
 .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 120px;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 0 32px;
+
+  z-index: 200;
+
   &_main {
-    &__navigation {
-      width: 45%;
-      height: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      padding-left: 20px;
+    width: 100%;
+    max-width: 1600px;
 
-      a {
-        display: inline-block;
-        text-decoration: none;
-        border: none;
-        font-size: 1.2rem;
-        margin-right: 25px;
-        text-shadow: 0 0 3px black;
-        color: white;
-        transition: all 0.3s ease-in-out;
-      }
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
 
-      a:hover {
+    position: relative;
+  }
+
+  &_main__navigation,
+  &_main__socials {
+    flex: 1;
+    height: 120px;
+
+    display: flex;
+    align-items: flex-start;
+
+    padding-top: 4px;
+  }
+
+  &_main__navigation {
+    justify-content: flex-start;
+
+    a {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      color: #fff;
+      text-shadow: 0 0 3px #000;
+      transition: color 0.3s ease;
+      margin-right: 14px;
+
+      &:hover {
         color: orange;
       }
-
-      a:last-child {
-        margin-right: 0;
-      }
     }
+  }
 
-    &__logo {
+  &_main__logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 190px;
+
+    display: flex;
+    justify-content: center;
+
+    z-index: 20;
+
+    a {
       position: relative;
-      display: flex;
-      justify-content: center; // Horizontally center the child elements
-      align-items: center;
-      width: 12%;
+      margin-top: -5px;
 
-      a {
-        display: flex;
+      display: flex;
+      width: 170px;
+      height: 115px;
+
+      background-image: url("/images/white-dwarf-star-logo.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+
+      &::after {
+        content: "";
+
+        position: absolute;
+        top: -95px;
+        left: -20px;
+
         width: 210px;
-        height: 140px;
-        position: relative;
-        background-image: url("/images/white-dwarf-star-logo.png");
-        background-position: top center;
+        height: 210px;
+
+        border-radius: 50%;
+
+        background-image:
+          radial-gradient(ellipse at center,
+            rgba(227, 208, 41, 0.25) 0%,
+            rgba(0, 0, 0, 0.01) 100%),
+          url("/images/roto-star.png");
+
+        background-blend-mode: color-dodge;
+        background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
 
-        &::after {
-          content: "";
-          position: absolute;
-          top: -125px;
-          left: -35px;
-          width: 270px;
-          height: 270px;
-          border-radius: 50%;
-          // background is a radial gradient with image combined
-          background-image: radial-gradient(
-              ellipse at center,
-              rgba(227, 208, 41, 0.25) 0%,
-              rgba(0, 0, 0, 0.01) 100%
-            ),
-            url("/images/roto-star.png");
-          background-blend-mode: color-dodge;
-          background-position: center;
-          background-size: contain;
-          background-repeat: no-repeat;
-          border: 5px solid rgba(255, 166, 0, 0.133);
-          opacity: 0.8;
-          // border: 10px dotted rgba(255, 166, 0, 0.333);
-          z-index: -1;
-        }
+        opacity: 0.4;
+        z-index: -1;
       }
     }
+  }
 
-    &__socials {
-      width: 45%;
-      height: 100%;
-      padding-right: 20px;
+  &_main__socials {
+    justify-content: flex-end;
+
+    nav {
       display: flex;
-      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    a {
+      width: 38px;
+      height: 38px;
+
+      display: flex;
+      justify-content: center;
       align-items: center;
-      box-sizing: border-box;
 
-      nav {
-        border: 1px solid transparent;
-        display: flex;
-        border-radius: 3px;
-        transition: all 0.3s ease-in-out;
+      border-radius: 50%;
+
+      transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-2px);
       }
 
-      a {
-        text-decoration: none;
-        margin: 0 4px;
-        border-radius: 5px;
-        height: 34px;
-        padding: 3px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      svg {
+        width: 22px;
+        height: 22px;
 
-        svg {
-          width: 31px;
-          height: 20px;
-          object-fit: cover;
-          fill: white;
-          filter: drop-shadow(0 0 3px black);
-        }
+        fill: #fff;
+        filter: drop-shadow(0 0 3px #000);
       }
     }
+  }
+}
 
-    &__mobile__socials {
-      width: 45%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      nav {
-        border: 1px solid transparent;
-        display: flex;
-        border-radius: 3px;
-        transition: all 0.3s ease-in-out;
+@media (max-width: 1024px) {
+  .header_main__navigation {
+    width: 40%;
+
+    a {
+      font-size: 1rem;
+      margin-right: 12px;
+    }
+  }
+
+  .header_main__socials {
+    width: 40%;
+  }
+
+  .header_main__logo {
+    width: 180px;
+
+    a {
+      width: 160px;
+      height: 110px;
+
+      &::after {
+        width: 220px;
+        height: 220px;
+
+        top: -100px;
+        left: -28px;
       }
+    }
+  }
+}
 
-      a {
-        text-decoration: none;
-        margin: 0 4px;
-        border-radius: 5px;
-        height: 34px;
-        padding: 3px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+@media (max-width: 768px) {
 
-        svg {
-          width: 31px;
-          height: 20px;
-          object-fit: cover;
-          fill: white;
-          filter: drop-shadow(0 0 3px black);
-        }
+  .header_main__navigation,
+  .header_main__socials {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .header_main__logo {
+    position: absolute;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    margin: 0;
+
+    width: 140px;
+
+    display: flex;
+    justify-content: center;
+
+    z-index: 20;
+
+    a {
+      width: 140px;
+      height: 90px;
+
+      &::after {
+        width: 180px;
+        height: 180px;
+
+        top: -82px;
+        left: -20px;
       }
     }
   }

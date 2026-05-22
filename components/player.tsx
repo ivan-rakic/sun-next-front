@@ -1,6 +1,6 @@
 "use client";
 import "react-awesome-slider/dist/styles.css";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   RiPlayCircleLine,
   RiPauseCircleLine,
@@ -8,6 +8,7 @@ import {
   RiVolumeMuteLine,
 } from "react-icons/ri";
 import { PlayerButton } from "@/components/player-button";
+import styles from '../styles/player.module.scss';
 
 interface CustomWindow extends Window {
   rjq: any;
@@ -16,6 +17,9 @@ interface CustomWindow extends Window {
 declare const window: CustomWindow;
 
 export default function Player() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+
   useEffect(() => {
     const initializePlayer = () => {
       const rjq = window.rjq;
@@ -123,13 +127,39 @@ export default function Player() {
   }
 
   return (
-    <main>
-      <div id="stickPlayer">
-        <div className="stickPlayer__controls">
-          <PlayerButton title="Play" isHidden={false} className="jp-play">
+    <section>
+      <div className={styles.player}>
+        <div className={styles.controls}>
+          {/* <div className={styles.equalizer}>
+            {Array.from({ length: 48 }).map((_, index) => (
+              <span
+                key={index}
+                className={styles.bar}
+                style={
+                  {
+                    '--i': index,
+                    '--d': `${Math.random() * 1.2}s`,
+                    '--h': `${18 + Math.random() * 35}px`,
+                  } as React.CSSProperties
+                }
+              />
+            ))}
+          </div> */}
+          <PlayerButton
+            title="Play"
+            isHidden={false}
+            className="jp-play"
+            onClick={() => setIsPlaying(true)}
+          >
             <RiPlayCircleLine />
           </PlayerButton>
-          <PlayerButton title="Pause" isHidden={true} className="jp-pause">
+
+          <PlayerButton
+            title="Pause"
+            isHidden={true}
+            className="jp-pause"
+            onClick={() => setIsPlaying(false)}
+          >
             <RiPauseCircleLine />
           </PlayerButton>
         </div>
@@ -172,6 +202,6 @@ export default function Player() {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 }

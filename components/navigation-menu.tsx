@@ -5,7 +5,7 @@ type Props = {
   slug: string;
   label: string;
 };
-export const PodcastLink = ({ slug, label }: Props) => {
+export const NavigationMenu = ({ slug, label }: Props) => {
   return (
     <Link key={slug} id={slug} className="podcast" href={slug}>
       {label}

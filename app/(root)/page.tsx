@@ -1,44 +1,45 @@
-import React from "react";
+import { Article } from '@/app/(root)/_components/article';
+import { DonateContainer } from '@/app/(root)/_components/donate-container';
+import { Podcasts } from '@/app/(root)/_components/podcasts';
 
-import styles from "@/styles/index.module.scss";
-import stylesRes from "@/styles/reusable.module.scss";
+import { articles, slides } from '@/constants';
 
-import { Featured } from "@/app/(root)/_components/featured";
-import { Podcasts } from "@/app/(root)/_components/podcasts";
-import { Carousel } from "@/app/(root)/_components/carousel";
-import { DonateContainer } from "@/app/(root)/_components/donate-container";
-import { Article } from "@/app/(root)/_components/article";
+import styles from '@/styles/index.module.scss';
 
-import { articles, slides } from "@/constants";
-
-export default function Home() {
+export default function Home(): React.ReactElement {
   return (
-    <main>
-      <section
-        className={`${stylesRes.content_container} ${styles.content__featuredBox}`}
-      >
-        <div className={styles.content__featuredBox_header}>
-          <h2>Featured</h2>
-          <h5>Checkout the ltest featured selection, we picked for you</h5>
+    <main className={styles.page}>
+      <section className={styles.contentRail}>
+        <div className={styles.contentRail__header}>
+          <div>
+            <h2>Podcasts</h2>
+
+            <p>
+              Checkout the latest featured podcasts, we picked for you
+            </p>
+          </div>
+
+          <button>VIEW ALL PODCASTS →</button>
         </div>
-        <Featured />
-      </section>
-      <section
-        className={`${stylesRes.content_container} ${styles.content__podcastBox}`}
-      >
-        <div className={styles.content__podcastBox_header}>
-          <h2 className={styles.content__podcastBox_header_title}>Podcasts</h2>
-          <h5>Pregledajte selekciju najnovijih podcasta</h5>
-        </div>
+
         <Podcasts />
-        <div className={styles.content__podcastBox_header}>
-          <h2 className={styles.content__podcastBox_header_title}>Articles</h2>
-          <h5>Pregledajte selekciju odabranih tekstova redakcije</h5>
+      </section>
+      <section className={styles.contentRail}>
+        <div className={styles.contentRail__header}>
+          <div>
+            <h2>Articles</h2>
+            <p>
+              Checkout the latest articles, we picked for you
+            </p>
+          </div>
+
+          <button>VIEW ALL ARTICLES →</button>
         </div>
-        <div className={styles.content__podcastBox_articles}>
-          {articles?.map((article, index) => (
+
+        <div className={styles.articleRail}>
+          {articles.map((article) => (
             <Article
-              key={index}
+              key={article.href}
               href={article.href}
               imageSrc={article.imageSrc}
               imageAlt={article.imageAlt}
@@ -49,12 +50,14 @@ export default function Home() {
           ))}
         </div>
       </section>
+
       <DonateContainer />
-      <section
-        className={`${stylesRes.content_container} ${styles.content__residentsBox}`}
-      >
-        <h2>Popular Residents</h2>
-        <Carousel slides={slides} />
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h2>Popular Residents</h2>
+        </div>
+
       </section>
     </main>
   );

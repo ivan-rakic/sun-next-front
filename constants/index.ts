@@ -224,25 +224,5 @@ export const articles = [
       "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
     description:
       "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
-  },
-  {
-    href: "/podcast/4",
-    imageSrc: "/images/ocean.jpg",
-    imageAlt: "test",
-    category: "nesto",
-    title:
-      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
-    description:
-      "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
-  },
-  {
-    href: "/podcast/5",
-    imageSrc: "/images/ocean.jpg",
-    imageAlt: "test",
-    category: "nesto",
-    title:
-      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
-    description:
-      "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
-  },
+  }
 ];

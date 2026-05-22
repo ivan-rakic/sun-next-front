@@ -4,18 +4,14 @@
 }
 
 .content_container {
+  width: 100%;
   max-width: 1240px;
-  margin: 0 auto;
-  margin-top: 40px;
 
+  margin:
+    40px auto 0;
 
-  &_main {
-    width: 70%;
-  }
-
-  &_promo {
-    width: 30%;
-  }
+  padding:
+    0 24px;
 }
 
 .standard_button {
@@ -85,8 +81,7 @@
     border-radius: 6px;
   }
 
-  p {
-  }
+  p {}
 }
 
 // ------------------------------------------------------

@@ -1,0 +1,30 @@
+// HERO SLIDER STYLES ---------------------------------------------
+// HERO CONTAINER AND SLIDER STYLES FOR HERO
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  margin-top: -10px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 60px;
+  box-shadow:
+    0 0 3px 6px #fff,
+    0 0 0 14px orange;
+}

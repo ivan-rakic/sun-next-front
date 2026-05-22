@@ -1,37 +1,34 @@
-import styles from "@/styles/index.module.scss";
-import Link from "next/link";
+import Link from 'next/link';
 
-export const DonateContainer = () => {
+import styles from '@/styles/index.module.scss';
+
+export const DonateContainer = (): React.ReactElement => {
   return (
-    <section className={styles.content__donateContainer}>
-      <div className={styles.content__donateContainer_content}>
-        <h3>PODRŽITE SUNCE - DA NASTAVI DA SIJA</h3>
-        <p>
-          Pozivamo Sunca zrake da podrže opstanak i rast našeg radija. Nemamo
-          sponzore niti finansijere. Jedini od kojih hoćemo da zavisimo ste vi.
-        </p>
-        <Link
-          href="/podrzi-sunce"
-          className={styles.content__donateContainer_content_learnMoreButton}
-        >
-          Saznaj Više
-        </Link>
-        <Link
-          href="https://www.paypal.com/paypalme/sunradiors"
-          target="_blank"
-          className={styles.content__donateContainer_content_ppButton}
-        >
-          PayPal
-        </Link>
-        <Link
-          href="https://www.patreon.com/sunradio"
-          target="_blank"
-          className={styles.content__donateContainer_content_ptButton}
-        >
-          Patreon
-        </Link>
+    <section className={styles.donateBanner}>
+      <div className={styles.donateBanner__content}>
+        <div>
+          <span>Support SunRadio</span>
+
+          <h3>PODRŽITE SUNCE — DA NASTAVI DA SIJA</h3>
+
+          <p>
+            Pozivamo Sunca zrake da podrže opstanak i rast našeg radija. Nemamo
+            sponzore niti finansijere. Jedini od kojih hoćemo da zavisimo ste vi.
+          </p>
+        </div>
+
+        <div className={styles.donateBanner__actions}>
+          <Link href="/podrzi-sunce">Saznaj Više</Link>
+
+          <Link href="https://www.paypal.com/paypalme/sunradiors" target="_blank">
+            PayPal
+          </Link>
+
+          <Link href="https://www.patreon.com/sunradio" target="_blank">
+            Patreon
+          </Link>
+        </div>
       </div>
-      <div className={styles.content__donateContainer_ctaContainer}></div>
     </section>
   );
 };

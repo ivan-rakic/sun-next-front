@@ -1,20 +1,19 @@
-import styles from "../styles/hero.module.scss";
-import Slider from "./slider";
-import Player from "./player";
+import styles from '../styles/hero.module.scss';
 
-export default function Hero() {
+import Slider from './slider';
+
+export default function Hero(): React.ReactElement {
   return (
-    <div className={styles.hero__container}>
-      <span className={styles.span_subMenu}>Podcast / Articles / Featured</span>
-      <section>
-        <div className={styles.hero__player}>
-          <Player />
+    <section className={styles.hero__container}>
+      <div className={styles.hero}>
+        <div className={styles.hero__header}>
+          <h2>Featured</h2>
+          <h5>Checkout the latest featured selection, we picked for you</h5>
         </div>
         <div className={styles.hero__slider}>
           <Slider />
         </div>
-      </section>
-      <span className={styles.span_highlight}></span>
-    </div>
+      </div>
+    </section>
   );
 }

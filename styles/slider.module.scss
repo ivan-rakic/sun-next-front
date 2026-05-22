@@ -1,50 +1,67 @@
+// -------------------------------------------------------------------------------
+// THIS IS CAROUSEL STYLES --------------------------------------------
+// ---- Need to be global styles, used on index page for residents slideshow
+//--------------------------------------------------------------------------------
+
+
 .slider {
-  height: 100%;
   width: 100%;
-  position: relative;
+  height: auto;
 
   &_content {
-    height: 100%;
     width: 100%;
+  }
 
-    // &::before {
-    //     content: '';
-    //     position: absolute;
-    //     top: 0;
-    //     right: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     background-image: url("/images/star-slide.png");
-    //     background-repeat: no-repeat;
-    //     background-position: center;
-    //     background-size: 80%;
-    //     z-index: 1;
-    //     opacity: 0.7;
-    // }
+  :global(.swiper-slide) {
+    height: auto;
+  }
 
-    &__info {
-      position: absolute;
-      bottom: 80px;
-      text-decoration: none;
-      text-align: center;
+  &_card {
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
 
-      & h2 {
-        color: white;
-        // background-color: rgba(0, 0, 0, 0.6);
-        text-shadow: 0 0 3px black;
-        border-radius: 6px;
-        // box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 1);
-        padding: 10px 20px 0 20px;
-        font-size: 24px;
-        line-height: 1;
-      }
+  &_card__image {
+    position: relative;
+    overflow: hidden;
 
-      & p {
-        color: orange;
-        font-size: 16px;
-        text-shadow: 0 0 3px black;
-        border-radius: 6px;
-      }
+    width: 100%;
+    aspect-ratio: 16 / 8;
+
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      filter: saturate(0.95) contrast(1.05) brightness(0.82);
+    }
+  }
+
+  &_content__info {
+    display: block;
+
+    margin-top: 16px;
+
+    text-decoration: none;
+    text-align: center;
+
+    h2 {
+      color: #fff;
+      font-size: 1.35rem;
+      line-height: 1.15;
+      font-weight: 500;
+    }
+
+    p {
+      margin-top: 8px;
+
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 0.95rem;
+      line-height: 1.35;
     }
   }
 }

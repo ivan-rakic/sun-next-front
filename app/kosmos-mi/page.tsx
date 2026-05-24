@@ -1,164 +1,69 @@
-import Image from "next/image";
-import styles from "@/styles/about.module.scss";
+import Image, { StaticImageData } from 'next/image';
+import { SiFacebook, SiInstagram } from 'react-icons/si';
 
-import { SiFacebook, SiInstagram } from "react-icons/si";
+import styles from '@/styles/about.module.scss';
 
-import img1 from "../../public/images/astronaut.jpg";
+import img1 from '../../public/images/astronaut.jpg';
+import img2 from '../../public/images/mountains.jpg';
 
-export default function About() {
+type RedactionMember = {
+  name: string;
+  role: string;
+  image: StaticImageData;
+};
+
+const members: RedactionMember[] = [
+  { name: 'FirstName Lastname', role: 'Radio Editor', image: img1 },
+  { name: 'FirstName Lastname', role: 'Podcast Host', image: img2 },
+  { name: 'Vojislav Killo Killo Malešev', role: 'Social Media Manager', image: img1 },
+  { name: 'FirstName Lastname', role: 'Podcast Host', image: img1 },
+  { name: 'FirstName Lastname', role: 'Podcast Host', image: img2 },
+  { name: 'FirstName Lastname', role: 'Podcast Host', image: img1 },
+];
+
+export default function About(): React.ReactElement {
   return (
-    <main className={styles.content}>
-      {/* ---- REDAKCIJA --------- */}
-      <section
-        className={`${styles.container} ${styles.content__redactionBox}`}
-      >
-        <h2>redAkcija</h2>
-        <div className={styles.content__redactionBox_redactionContainer}>
-          <div
-            className={styles.content__redactionBox_redactionContainer_entity}
-            itemScope
-            itemType="http://schema.org/Person"
-          >
-            <Image src={img1} alt="test" itemProp="image" />
-            <div>
-              <h4 itemProp="name">Bojan Vucicevic</h4>
-              <p itemProp="jobTitle">Podcast Host</p>
-              <div
-                itemProp="sameAs"
-                itemScope
-                itemType="http://schema.org/WebPage"
-              >
-                <a itemProp="url" href="http://www.facebook.com/person">
-                  <SiFacebook />
-                </a>
-                <a itemProp="url" href="http://www.twitter.com/person">
-                  <SiInstagram />
-                </a>
+    <main className={styles.aboutPage}>
+      <section className={styles.aboutSection}>
+        <div className={styles.aboutSection__header}>
+          <h1>Redakcija</h1>
+          <p>Ljudi koji stvaraju i održavaju SunRadio zajednicu.</p>
+        </div>
+
+        <div className={styles.redactionGrid}>
+          {members.map((member) => (
+            <article
+              key={`${member.name}-${member.role}`}
+              className={styles.redactionCard}
+              itemScope
+              itemType="http://schema.org/Person"
+            >
+              <div className={styles.redactionCard__image}>
+                <Image src={member.image} alt={member.name} itemProp="image" fill />
               </div>
-            </div>
-          </div>
-          <div
-            className={styles.content__redactionBox_redactionContainer_entity}
-            itemScope
-            itemType="http://schema.org/Person"
-          >
-            <Image src={img1} alt="test" itemProp="image" />
-            <div>
-              <h4 itemProp="name">Bojan Vucicevic</h4>
-              <p itemProp="jobTitle">Podcast Host</p>
-              <div
-                itemProp="sameAs"
-                itemScope
-                itemType="http://schema.org/WebPage"
-              >
-                <a itemProp="url" href="http://www.facebook.com/person">
-                  <SiFacebook />
-                </a>
-                <a itemProp="url" href="http://www.twitter.com/person">
-                  <SiInstagram />
-                </a>
+
+              <div className={styles.redactionCard__content}>
+                <h2 itemProp="name">{member.name}</h2>
+                <p itemProp="jobTitle">{member.role}</p>
+
+                <div className={styles.redactionCard__socials}>
+                  <a itemProp="url" href="http://www.facebook.com/person">
+                    <SiFacebook />
+                  </a>
+                  <a itemProp="url" href="http://www.instagram.com/person">
+                    <SiInstagram />
+                  </a>
+                </div>
               </div>
-            </div>
-          </div>
-          <div
-            className={styles.content__redactionBox_redactionContainer_entity}
-            itemScope
-            itemType="http://schema.org/Person"
-          >
-            <Image src={img1} alt="test" itemProp="image" />
-            <div>
-              <h4 itemProp="name">Vojislav Killo Killo Malešev</h4>
-              <p itemProp="jobTitle">Podcast Host</p>
-              <div
-                itemProp="sameAs"
-                itemScope
-                itemType="http://schema.org/WebPage"
-              >
-                <a itemProp="url" href="http://www.facebook.com/person">
-                  <SiFacebook />
-                </a>
-                <a itemProp="url" href="http://www.twitter.com/person">
-                  <SiInstagram />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            className={styles.content__redactionBox_redactionContainer_entity}
-            itemScope
-            itemType="http://schema.org/Person"
-          >
-            <Image src={img1} alt="test" itemProp="image" />
-            <div>
-              <h4 itemProp="name">Bojan Vucicevic</h4>
-              <p itemProp="jobTitle">Podcast Host</p>
-              <div
-                itemProp="sameAs"
-                itemScope
-                itemType="http://schema.org/WebPage"
-              >
-                <a itemProp="url" href="http://www.facebook.com/person">
-                  <SiFacebook />
-                </a>
-                <a itemProp="url" href="http://www.twitter.com/person">
-                  <SiInstagram />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            className={styles.content__redactionBox_redactionContainer_entity}
-            itemScope
-            itemType="http://schema.org/Person"
-          >
-            <Image src={img1} alt="test" itemProp="image" />
-            <div>
-              <h4 itemProp="name">Bojan Vucicevic</h4>
-              <p itemProp="jobTitle">Podcast Host</p>
-              <div
-                itemProp="sameAs"
-                itemScope
-                itemType="http://schema.org/WebPage"
-              >
-                <a itemProp="url" href="http://www.facebook.com/person">
-                  <SiFacebook />
-                </a>
-                <a itemProp="url" href="http://www.twitter.com/person">
-                  <SiInstagram />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            className={styles.content__redactionBox_redactionContainer_entity}
-            itemScope
-            itemType="http://schema.org/Person"
-          >
-            <Image src={img1} alt="test" itemProp="image" />
-            <div>
-              <h4 itemProp="name">Bojan Vucicevic</h4>
-              <p itemProp="jobTitle">Podcast Host</p>
-              <div
-                itemProp="sameAs"
-                itemScope
-                itemType="http://schema.org/WebPage"
-              >
-                <a itemProp="url" href="http://www.facebook.com/person">
-                  <SiFacebook />
-                </a>
-                <a itemProp="url" href="http://www.twitter.com/person">
-                  <SiInstagram />
-                </a>
-              </div>
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
       </section>
-      {/* ---- REDAKCIJA --------- */}
-      <section
-        className={`${styles.container} ${styles.content__redactionBox}`}
-      >
-        <h2>Na Suncu svoje autorske sadržaje redovno emituju još:</h2>
+
+      <section className={styles.aboutSection}>
+        <div className={styles.aboutSection__header}>
+          <h2>Na Suncu svoje autorske sadržaje redovno emituju još</h2>
+        </div>
       </section>
     </main>
   );

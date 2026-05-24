@@ -9,6 +9,7 @@ import Player from '@/components/player';
 
 import '@/styles/globals.scss';
 import styles from '@/styles/layout.module.scss';
+import { StickyPlayer } from '@/components/sticky-player';
 
 const changa = Changa({
   subsets: ['latin'],
@@ -24,7 +25,8 @@ export default function RootLayout({
 }: RootLayoutProps): React.ReactElement {
   return (
     <html lang="en" className={changa.variable}>
-      <body>
+      <body suppressHydrationWarning>
+
         <Header />
 
         <section className={styles.topVisual}>

@@ -76,6 +76,73 @@ export default function Donate(): React.ReactElement {
           </ul>
         </aside>
       </section>
+      <section className={styles.donationInfo}>
+        <h2>Direktnom donacijom</h2>
+
+        <div className={styles.donationCards}>
+          <div className={styles.donationCard}>
+            <h3>Dinarski račun (RSD)</h3>
+
+            <p>
+              <strong>Broj računa:</strong>
+              <br />
+              xxx - xxxxxx xxxxxx - xxxxxx
+            </p>
+
+            <p>
+              <strong>Svrha uplate:</strong>
+              <br />
+              Donacija za Sunradio.rs
+            </p>
+
+            <p>
+              <strong>Primalac:</strong>
+              <br />
+              Udruženje građana Slobodna Akcija
+              <br />
+              Street address, city
+            </p>
+          </div>
+
+          <div className={styles.donationCard}>
+            <h3>Devizni račun (EUR)</h3>
+
+            <p>
+              <strong>Broj računa:</strong>
+              <br />
+              xxx - xxxxxx xxxxxx - xxxxxx
+            </p>
+
+            <p>
+              <strong>SWIFT CODE:</strong>
+              <br />
+              OTPVRS22
+            </p>
+
+            <p>
+              <strong>IBAN / ACCOUNT NUMBER:</strong>
+              <br />
+              RS xxxx xxx x xx xx xxxxxx x x
+            </p>
+
+            <p>
+              <strong>56A: Intermediary</strong>
+              <br />
+              COMMERZBANK AG, FRANKFURT AM MAIN
+              <br />
+              SWIFT CODE: xxxxxx
+            </p>
+
+            <p>
+              <strong>57A: Account with institution</strong>
+              <br />
+              OTP BANKA SRBIJA A.D.
+              <br />
+              SWIFT CODE: xxxxxx
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

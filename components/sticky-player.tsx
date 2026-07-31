@@ -8,14 +8,34 @@ import {
   RiVolumeUpLine,
 } from 'react-icons/ri';
 
-import styles from '@/styles/sticky-player.module.scss';
+import styles from '@/styles/player/sticky-player.module.scss';
+import Image from 'next/image';
 
 export const StickyPlayer = (): React.ReactElement => {
+  const FALLBACK_ARTWORK = '/images/speakers-back.png';
   const [isVisible, setIsVisible] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [trackInfo, setTrackInfo] = useState('Artist - Song');
+  const [trackInfo, setTrackInfo] = useState('SunRadio Live');
   const [volume, setVolume] = useState(70);
+
+  const [currentArtwork, setCurrentArtwork] = useState(FALLBACK_ARTWORK);
+
+  const [artist, songName] = trackInfo.includes(' - ')
+    ? trackInfo.split(' - ', 2).map((item) => item.trim())
+    : ['', trackInfo.trim()];
+
+  const formatTrackInfo = (value: string): string => {
+    return value
+      .trim()
+      .replace(/^Unknown\s*-\s*/i, '')
+      .replace(/\.mp3"?$/i, '"')
+      .replace(/^\d+[_\-\s.]*/, '')
+      .replace(/_/g, ' ')
+      .trim();
+  };
+
+  // TODO: check the "" in the file name, as last one is removed
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -31,6 +51,47 @@ export const StickyPlayer = (): React.ReactElement => {
   }, []);
 
   useEffect(() => {
+    if (!artist || !songName) {
+      setCurrentArtwork(FALLBACK_ARTWORK);
+      return;
+    }
+
+    const controller = new AbortController();
+
+    const fetchArtwork = async (): Promise<void> => {
+      try {
+        const query = encodeURIComponent(`${artist} ${songName}`);
+
+        const response = await fetch(
+          `https://itunes.apple.com/search?term=${query}&media=music&entity=song&limit=1`,
+          { signal: controller.signal },
+        );
+
+        const data = await response.json();
+
+        const artworkUrl = data.results?.[0]?.artworkUrl100;
+
+        if (!artworkUrl) {
+          setCurrentArtwork(FALLBACK_ARTWORK);
+          return;
+        }
+
+        setCurrentArtwork(artworkUrl.replace('100x100bb', '600x600bb'));
+      } catch {
+        if (!controller.signal.aborted) {
+          setCurrentArtwork(FALLBACK_ARTWORK);
+        }
+      }
+    };
+
+    fetchArtwork();
+
+    return () => {
+      controller.abort();
+    };
+  }, [artist, songName]);
+
+  useEffect(() => {
     const trackInfoElement = document.querySelector('#trackInfo');
 
     if (!trackInfoElement) return;
@@ -39,7 +100,7 @@ export const StickyPlayer = (): React.ReactElement => {
       const nextTrackInfo = trackInfoElement.textContent?.trim();
 
       if (nextTrackInfo) {
-        setTrackInfo(nextTrackInfo);
+        setTrackInfo(formatTrackInfo(nextTrackInfo));
       }
     };
 
@@ -57,6 +118,46 @@ export const StickyPlayer = (): React.ReactElement => {
       observer.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    if (!('mediaSession' in navigator)) return;
+
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: songName || trackInfo,
+      artist: artist || 'SunRadio',
+      album: 'SunRadio Live',
+      artwork: [
+        {
+          src: currentArtwork,
+          sizes: '512x512',
+          type: 'image/png',
+        },
+      ],
+    });
+  }, [artist, songName, trackInfo, currentArtwork]);
+
+  useEffect(() => {
+    if (!('mediaSession' in navigator)) return;
+
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: songName || trackInfo,
+      artist: artist || 'SunRadio',
+      album: 'SunRadio Live',
+      artwork: [
+        {
+          src: currentArtwork,
+          sizes: '512x512',
+          type: 'image/png',
+        },
+      ],
+    });
+
+    navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
+
+    navigator.mediaSession.setActionHandler('play', handlePlay);
+    navigator.mediaSession.setActionHandler('pause', handlePause);
+  }, [artist, songName, trackInfo, currentArtwork, isPlaying]);
+
 
   const handlePlay = (): void => {
     document.querySelector<HTMLButtonElement>('.jp-play')?.click();
@@ -123,6 +224,16 @@ export const StickyPlayer = (): React.ReactElement => {
           >
             {isPlaying ? <RiPauseCircleLine /> : <RiPlayCircleLine />}
           </button>
+        </div>
+
+        <div className={styles.stickyPlayer__artwork}>
+          <Image
+            src={currentArtwork}
+            alt="Now playing"
+            width={52}
+            height={52}
+            unoptimized
+          />
         </div>
 
         <div className={styles.stickyPlayer__track}>

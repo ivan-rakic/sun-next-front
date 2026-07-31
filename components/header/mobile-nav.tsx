@@ -7,7 +7,7 @@ import { RiCloseLine, RiMenuLine } from 'react-icons/ri';
 import { LinksList } from '@/components/header/links-list';
 import { NavLinks } from '@/components/header/nav-links';
 
-import styles from '@/styles/mobile-nav.module.scss';
+import styles from '@/styles/navigation/mobile-nav.module.scss';
 
 export const MobileNav = (): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);

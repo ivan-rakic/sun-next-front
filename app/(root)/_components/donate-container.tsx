@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import styles from '@/styles/index.module.scss';
+import styles from '@/styles/index/donate-banner.module.scss';
 
 export const DonateContainer = (): React.ReactElement => {
   return (

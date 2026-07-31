@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import styles from '@/styles/index.module.scss';
+import styles from '@/styles/index/podcasts-articles.module.scss';
 
 type ArticleProps = {
   href: string;
@@ -13,7 +13,7 @@ type ArticleProps = {
   featured?: boolean;
 };
 
-export const Article = ({
+export const ArticleCard = ({
   href,
   imageSrc,
   imageAlt,

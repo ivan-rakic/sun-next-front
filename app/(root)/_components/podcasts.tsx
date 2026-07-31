@@ -1,4 +1,4 @@
-import styles from '@/styles/index.module.scss';
+import styles from '@/styles/index/podcasts-articles.module.scss';
 
 const podcasts = [
   {

@@ -4,12 +4,13 @@ import { Changa } from 'next/font/google';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header/header';
-import Hero from '@/components/hero';
+import Hero from '@/app/(root)/_components/hero';
 import Player from '@/components/player';
 
 import '@/styles/globals.scss';
 import styles from '@/styles/layout.module.scss';
 import { StickyPlayer } from '@/components/sticky-player';
+
 
 const changa = Changa({
   subsets: ['latin'],
@@ -56,9 +57,6 @@ export default function RootLayout({
             </div>
           </div>
         </section>
-
-        <Hero />
-
         <main>{children}</main>
 
         <StickyPlayer />

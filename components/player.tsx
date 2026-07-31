@@ -1,5 +1,4 @@
 "use client";
-import "react-awesome-slider/dist/styles.css";
 import React, { useEffect, useRef, useState } from "react";
 import {
   RiPlayCircleLine,
@@ -8,7 +7,7 @@ import {
   RiVolumeMuteLine,
 } from "react-icons/ri";
 import { PlayerButton } from "@/components/player-button";
-import styles from '../styles/player.module.scss';
+import styles from '../styles/player/player.module.scss';
 
 interface CustomWindow extends Window {
   rjq: any;
@@ -18,36 +17,33 @@ declare const window: CustomWindow;
 
 export default function Player() {
   const [isPlaying, setIsPlaying] = useState(false);
-
+  const [trackInfo, setTrackInfo] = useState("Artist - Song");
 
   useEffect(() => {
-    const initializePlayer = () => {
+    const initializePlayer = (): void => {
       const rjq = window.rjq;
       if (!rjq) return;
 
-      rjq("#rjp-radiojar-player").radiojar("player", {
-        streamName: "4qawu2xta2zuv",
-        enableUpdates: true,
-        defaultImage:
-          "//www.radiojar.com/img/sample_images/Radio_Stations_Avatar_BLUE.png",
-        autoplay: false,
-      });
+      const player = rjq("#rjp-radiojar-player");
 
-      rjq("#rjp-radiojar-player").off("rj-track-load-event");
-      rjq("#rjp-radiojar-player").on(
-        "rj-track-load-event",
-        function (event: any, data: any) {
-          updateInfo(data);
-          if (data.title || data.artist) {
-            rjq(".rjp-trackinfo-container").show();
-            rjq("#trackInfo").html(`${data.artist} - "${data.title}"`);
-          } else {
-            rjq(".rjp-trackinfo-container").hide();
-          }
-        },
-      );
+      const handleTrackLoad = (
+        event: unknown,
+        data: { artist?: string; title?: string; thumb?: string },
+      ): void => {
+        updateInfo(data);
 
-      function updateInfo(data: any) {
+        const nextTrackInfo =
+          data.title || data.artist
+            ? `${data.artist ?? "Unknown"} - "${data.title ?? ""}"`
+            : "SunRadio Live";
+
+        setTrackInfo(nextTrackInfo);
+
+        rjq(".rjp-trackinfo-container").show();
+        rjq("#trackInfo").html(nextTrackInfo);
+      };
+
+      const updateInfo = (data: { thumb?: string }): void => {
         if (data.thumb) {
           rjq("#rj-cover").html(
             `<a href="#"><img src="${data.thumb}" alt="" title="" /></a>`,
@@ -55,7 +51,18 @@ export default function Player() {
         } else {
           rjq("#rj-cover").html("");
         }
-      }
+      };
+
+      player.off("rj-track-load-event");
+      player.on("rj-track-load-event", handleTrackLoad);
+
+      player.radiojar("player", {
+        streamName: "4qawu2xta2zuv",
+        enableUpdates: true,
+        defaultImage:
+          "//www.radiojar.com/img/sample_images/Radio_Stations_Avatar_BLUE.png",
+        autoplay: false,
+      });
     };
 
     if (window.rjq) {
@@ -71,80 +78,12 @@ export default function Player() {
   // TODO
   // Track info is not updating when new track is playing
 
-  const trackInfoRef = useRef<any>(null);
-
-  let trackInfo, artist, title;
-
-  if (trackInfoRef.current?.textContent) {
-    trackInfo = trackInfoRef.current.textContent.split(" - ");
-    artist = trackInfo[0]?.trim();
-    title = trackInfo[1]?.trim();
-  }
-
-  useEffect(() => {
-    const observer = new MutationObserver((mutationsList) => {
-      for (let mutation of mutationsList) {
-        if (mutation.type === "childList") {
-          // console.log('New content:', trackInfoRef.current?.textContent);
-        }
-      }
-    });
-
-    if (trackInfoRef.current) {
-      observer.observe(trackInfoRef.current, {
-        childList: true,
-        subtree: true,
-      });
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [trackInfoRef]);
-
-  if (typeof window !== "undefined" && "mediaSession" in navigator) {
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: title,
-      artist: artist,
-      album: "",
-      artwork: [
-        { src: "track-icon-96x96.png", sizes: "96x96", type: "image/png" },
-        { src: "track-icon-128x128.png", sizes: "128x128", type: "image/png" },
-        { src: "track-icon-192x192.png", sizes: "192x192", type: "image/png" },
-        { src: "track-icon-256x256.png", sizes: "256x256", type: "image/png" },
-        { src: "track-icon-384x384.png", sizes: "384x384", type: "image/png" },
-        { src: "track-icon-512x512.png", sizes: "512x512", type: "image/png" },
-      ],
-    });
-
-    navigator.mediaSession.setActionHandler("play", function () {
-      /* Code to handle play action */
-    });
-    navigator.mediaSession.setActionHandler("pause", function () {
-      /* Code to handle pause action */
-    });
-    // Add other action handlers as needed
-  }
+  const trackInfoRef = useRef<HTMLParagraphElement | null>(null);
 
   return (
     <section>
       <div className={styles.player}>
         <div className={styles.controls}>
-          {/* <div className={styles.equalizer}>
-            {Array.from({ length: 48 }).map((_, index) => (
-              <span
-                key={index}
-                className={styles.bar}
-                style={
-                  {
-                    '--i': index,
-                    '--d': `${Math.random() * 1.2}s`,
-                    '--h': `${18 + Math.random() * 35}px`,
-                  } as React.CSSProperties
-                }
-              />
-            ))}
-          </div> */}
           <PlayerButton
             title="Play"
             isHidden={false}
@@ -168,7 +107,7 @@ export default function Player() {
             <div className="rjp-trackinfo-container">
               <h4 className="rjp-label">Now playing:</h4>
               <p ref={trackInfoRef} id="trackInfo" className="rjp-info">
-                Artist - Song
+                {trackInfo}
               </p>
             </div>
             <div className="rjp-player-container">

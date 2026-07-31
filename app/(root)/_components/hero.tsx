@@ -1,4 +1,4 @@
-import styles from '../styles/hero.module.scss';
+import styles from '@/styles/ui/hero.module.scss';
 
 import Slider from './slider';
 

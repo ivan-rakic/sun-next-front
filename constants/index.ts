@@ -1,4 +1,4 @@
-import {
+﻿import {
   SiFacebook,
   SiMixcloud,
   SiInstagram,
@@ -478,8 +478,7 @@ export const featureData = [
   {
     key: "protraceni-zivoti-irski",
     imageSrc: "/images/astronaut.jpg",
-    title:
-      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
+    title: "Protraceni zivoti irski: Tema za do 264 funte Sterlinga",
     slug: "protraceni-zivoti-irski",
     author: "ivander",
     timeToRead: "5 min",
@@ -489,7 +488,7 @@ export const featureData = [
   {
     key: "nije-zivot-jedna-tegla-ajvara",
     imageSrc: "/images/beach.jpg",
-    title: "Nije život jedna tegla ajvara",
+    title: "Nije zivot jedna tegla ajvara",
     slug: "nije-zivot-jedna-tegla-ajvara",
     author: "ivander",
     timeToRead: "3 min",
@@ -497,11 +496,10 @@ export const featureData = [
     isPrimary: false,
   },
   {
-    key: "mali-korak-za-muziku-veliki-za-domacu-bluz-scenu",
+    key: "mali-korak-za-muziku",
     imageSrc: "/images/ocean.jpg",
-    title:
-      "Mali korak za muziku, veliki za domaću bluz scenu - pesma “Locked Down”",
-    slug: "mali-korak-za-muziku-veliki-za-domacu-bluz-scenu",
+    title: "Mali korak za muziku, veliki za domacu bluz scenu",
+    slug: "mali-korak-za-muziku",
     author: "ivander",
     timeToRead: "4 min",
     roundedImage: true,
@@ -509,68 +507,81 @@ export const featureData = [
   },
 ];
 
-export const podcastsData = [
+export type PodcastItem = {
+  id: number;
+  slug: string;
+  title: string;
+  date: string;
+  displayDate: string;
+  category: string;
+  duration: string;
+  image: string;
+  description: string;
+  mixcloudUrl: string;
+};
+
+export const PODCASTS: PodcastItem[] = [
   {
-    key: "protraceni-zivoti-irski",
-    imageSrc: "/images/astronaut.jpg",
-    title:
-      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
-    slug: "protraceni-zivoti-irski",
-    author: "ivander",
-    timeToRead: "5 min",
-    roundedImage: true,
+    id: 1,
+    slug: "decije-igre",
+    title: "Decije igre",
+    date: "2022-03-01",
+    displayDate: "March 1, 2022",
+    category: "Show",
+    duration: "62 min",
+    image: "/images/mountains.jpg",
+    description: "Radio emisija iz SunRadio arhive. Muzika, razgovor i slobodna akcija u kosmickom ritmu.",
+    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2Fde%C4%8Dije-igre-emisija-4-sunradiors%2F",
   },
   {
-    key: "nije-zivot-jedna-tegla-ajvara",
-    imageSrc: "/images/beach.jpg",
-    title: "Nije život jedna tegla ajvara",
-    slug: "nije-zivot-jedna-tegla-ajvara",
-    author: "ivander",
-    timeToRead: "3 min",
-    roundedImage: true,
+    id: 2,
+    slug: "solar-sessions-vol-18",
+    title: "Solar Sessions Vol. 18",
+    date: "2024-04-12",
+    displayDate: "April 12, 2024",
+    category: "Mix",
+    duration: "60 min",
+    image: "/images/flowers.jpg",
+    description: "Melodican izbor za lagano putovanje kroz suncane frekvencije.",
+    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2F",
   },
   {
-    key: "mali-korak-za-muziku-veliki-za-domacu-bluz-scenu",
-    imageSrc: "/images/ocean.jpg",
-    title:
-      "Mali korak za muziku, veliki za domaću bluz scenu - pesma “Locked Down”",
-    slug: "mali-korak-za-muziku-veliki-za-domacu-bluz-scenu",
-    author: "ivander",
-    timeToRead: "4 min",
-    roundedImage: true,
+    id: 3,
+    slug: "orbit-sounds-episode-09",
+    title: "Orbit Sounds Episode 09",
+    date: "2024-05-03",
+    displayDate: "May 3, 2024",
+    category: "Podcast",
+    duration: "66 min",
+    image: "/images/astronaut.jpg",
+    description: "Zvukovi orbite, razgovori i selekcija za nocno slusanje.",
+    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2F",
   },
   {
-    key: "mali-korak-za-muziku-veliki-za-domacu-bluz-scenu",
-    imageSrc: "/images/ocean.jpg",
-    title:
-      "Mali korak za muziku, veliki za domaću bluz scenu - pesma “Locked Down”",
-    slug: "mali-korak-za-muziku-veliki-za-domacu-bluz-scenu",
-    author: "ivander",
-    timeToRead: "4 min",
-    roundedImage: true,
+    id: 4,
+    slug: "stellar-vibrations-episode-42",
+    title: "Stellar Vibrations Episode 42",
+    date: "2024-06-10",
+    displayDate: "June 10, 2024",
+    category: "Deep",
+    duration: "68 min",
+    image: "/images/trees.jpg",
+    description: "Melodican deep journey kroz frekvencije kosmosa.",
+    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2F",
   },
   {
-    key: "mali-korak-za-muziku-veliki-za-domacu-bluz-scenu",
-    imageSrc: "/images/ocean.jpg",
-    title:
-      "Mali korak za muziku, veliki za domaću bluz scenu - pesma “Locked Down”",
-    slug: "mali-korak-za-muziku-veliki-za-domacu-bluz-scenu",
-    author: "ivander",
-    timeToRead: "4 min",
-    roundedImage: true,
-  },
-  {
-    key: "mali-korak-za-muziku-veliki-za-domacu-bluz-scenu",
-    imageSrc: "/images/ocean.jpg",
-    title:
-      "Mali korak za muziku, veliki za domaću bluz scenu - pesma “Locked Down”",
-    slug: "mali-korak-za-muziku-veliki-za-domacu-bluz-scenu",
-    author: "ivander",
-    timeToRead: "4 min",
-    roundedImage: true,
+    id: 5,
+    slug: "galactic-grooves-with-aria",
+    title: "Galactic Grooves With Aria",
+    date: "2024-07-21",
+    displayDate: "July 21, 2024",
+    category: "Afro House",
+    duration: "70 min",
+    image: "/images/ocean.jpg",
+    description: "Afro house putovanje kroz galaksiju zvukova sa Ariom.",
+    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2F",
   },
 ];
-
 export const slides = [
   {
     src: "/images/astronaut.jpg",
@@ -598,45 +609,140 @@ export const slides = [
   },
 ];
 
-export const articles = [
+export type ArticleItem = {
+  slug: string;
+  href: string;
+  imageSrc: string;
+  imageAlt: string;
+  category: string;
+  title: string;
+  description: string;
+  date: string;
+  displayDate: string;
+  content: string;
+};
+
+export const articles: ArticleItem[] = [
   {
-    href: "/podcast",
+    slug: "protraceni-zivoti-irski",
+    href: "/articles/protraceni-zivoti-irski",
     imageSrc: "/images/mountains.jpg",
-    imageAlt: "test",
-    category: "nesto",
+    imageAlt: "Mountains",
+    category: "Kultura",
     title:
       "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
     description:
       "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
+    date: "2024-04-15",
+    displayDate: "April 15, 2024",
+    content:
+      "Kompletan tekst članka o irskom životu i podeljenom gradu Belfastu koji dolazi iz Strapi CMS-a.",
   },
   {
-    href: "/podcast/1",
+    slug: "nije-zivot-jedna-tegla-ajvara",
+    href: "/articles/nije-zivot-jedna-tegla-ajvara",
     imageSrc: "/images/beach.jpg",
-    imageAlt: "test",
-    category: "nesto",
-    title:
-      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
-    description:
-      "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
+    imageAlt: "Beach",
+    category: "Životni stil",
+    title: "Nije život jedna tegla ajvara",
+    description: "O hrani, nostalgiji i onome što nas veže za prošlost.",
+    date: "2024-05-02",
+    displayDate: "May 2, 2024",
+    content:
+      "Kompletan tekst o ajvaru i životu koji dolazi iz Strapi CMS-a.",
   },
   {
-    href: "/podcast/2",
+    slug: "mali-korak-za-muziku",
+    href: "/articles/mali-korak-za-muziku",
     imageSrc: "/images/ocean.jpg",
-    imageAlt: "test",
-    category: "nesto",
+    imageAlt: "Ocean",
+    category: "Muzika",
     title:
-      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
+      'Mali korak za muziku, veliki za domaću bluz scenu - pesma "Locked Down"',
     description:
-      "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
+      "Kako jedna pesma može promeniti tok domaće muzičke scene.",
+    date: "2024-05-20",
+    displayDate: "May 20, 2024",
+    content:
+      "Kompletan tekst o bluz sceni koji dolazi iz Strapi CMS-a.",
   },
   {
-    href: "/podcast/3",
-    imageSrc: "/images/ocean.jpg",
-    imageAlt: "test",
-    category: "nesto",
-    title:
-      "Protraćeni životi irski: Tema za do 264 funte Sterlinga (300 evra po današnjem kursu)?",
+    slug: "kosmicka-putovanja",
+    href: "/articles/kosmicka-putovanja",
+    imageSrc: "/images/galaxy.jpg",
+    imageAlt: "Galaxy",
+    category: "Nauka",
+    title: "Kosmička putovanja: Šta znamo o svemiru",
+    description: "Nauka i muzika se susreću u neočekivanom mestu.",
+    date: "2024-06-01",
+    displayDate: "June 1, 2024",
+    content:
+      "Kompletan tekst o kosmičkim putovanjima koji dolazi iz Strapi CMS-a.",
+  },
+];
+
+export type NewsItem = {
+  slug: string;
+  href: string;
+  imageSrc: string;
+  imageAlt: string;
+  category: string;
+  title: string;
+  description: string;
+  date: string;
+  displayDate: string;
+  content: string;
+};
+
+export const news: NewsItem[] = [
+  {
+    slug: "novi-projekat-sunradio",
+    href: "/news/novi-projekat-sunradio",
+    imageSrc: "/images/astronaut.jpg",
+    imageAlt: "Astronaut",
+    category: "Novosti",
+    title: "SunRadio pokreće novi projekat",
     description:
-      "Elita vs Radništvo - Podeljeni grad Belfast i nacionalizam u Iraca",
-  }
+      "Saznajte više o uzbudljivom novom projektu koji je u pripremi.",
+    date: "2024-07-01",
+    displayDate: "July 1, 2024",
+    content: "Detalji o novom projektu koji dolaze iz Strapi CMS-a.",
+  },
+  {
+    slug: "festival-leto-2024",
+    href: "/news/festival-leto-2024",
+    imageSrc: "/images/beach.jpg",
+    imageAlt: "Beach festival",
+    category: "Događaji",
+    title: "SunRadio na festivalu - Leto 2024",
+    description:
+      "SunRadio će biti prisutan na ovogodišnjem letnjim festivalu.",
+    date: "2024-07-15",
+    displayDate: "July 15, 2024",
+    content: "Detalji o festivalu koji dolaze iz Strapi CMS-a.",
+  },
+  {
+    slug: "nova-oprema-studio",
+    href: "/news/nova-oprema-studio",
+    imageSrc: "/images/mountains.jpg",
+    imageAlt: "Studio",
+    category: "Studio",
+    title: "Nova oprema u SunRadio studiju",
+    description: "Nadogradili smo naš studio novom audio opremom.",
+    date: "2024-08-05",
+    displayDate: "August 5, 2024",
+    content: "Detalji o novoj opremi koji dolaze iz Strapi CMS-a.",
+  },
+  {
+    slug: "gostovanje-radio-festivali",
+    href: "/news/gostovanje-radio-festivali",
+    imageSrc: "/images/ocean.jpg",
+    imageAlt: "Ocean",
+    category: "Gostovanje",
+    title: "Gostovanje na regionalnim radio festivalima",
+    description: "SunRadio predstavlja se na festivalima u regiji.",
+    date: "2024-08-20",
+    displayDate: "August 20, 2024",
+    content: "Detalji o gostovanjima koji dolaze iz Strapi CMS-a.",
+  },
 ];

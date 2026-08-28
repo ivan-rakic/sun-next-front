@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { ArticleCard } from '@/app/(root)/_components/article-card';
 import { DonateContainer } from '@/app/(root)/_components/donate-container';
 import { Podcasts } from '@/app/(root)/_components/podcasts';
@@ -21,7 +23,7 @@ export default function Home(): React.ReactElement {
             <p>Checkout the latest featured podcasts, we picked for you</p>
           </div>
 
-          <button>VIEW ALL PODCASTS →</button>
+          <Link href="/podcasts">VIEW ALL PODCASTS →</Link>
         </div>
 
         <Podcasts />
@@ -34,7 +36,7 @@ export default function Home(): React.ReactElement {
             <p>Checkout the latest articles, we picked for you</p>
           </div>
 
-          <button>VIEW ALL ARTICLES →</button>
+          <Link href="/articles">VIEW ALL ARTICLES →</Link>
         </div>
 
         <div className={cardStyles.articleRail}>

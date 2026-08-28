@@ -1,14 +1,49 @@
-import styles from "@/styles/index.module.scss";
+import Link from 'next/link';
+import Image from 'next/image';
 
-export default function Program() {
+import { articles } from '@/constants';
+import styles from '@/styles/podcasts.module.scss';
+import stylesRes from '@/styles/reusable.module.scss';
+
+export default function ArticlesPage() {
   return (
-    <main className={styles.content}>
-      <section className={undefined}>
-        PORTAL
-        {/* 3 featured divs */}
-        <div className={undefined}>12</div>
-        <div className={undefined}>34</div>
-        <div className={undefined}>56</div>
+    <main className={`${stylesRes.content_container} ${styles.podcastPage}`}>
+      <section className={styles.podcastHero}>
+        <div>
+          <span>SunRadio portal</span>
+          <h1>Articles</h1>
+          <p>Tekstovi, kolumne i priče iz SunRadio redakcije.</p>
+        </div>
+      </section>
+
+      <section className={styles.podcastListSection}>
+        <div className={styles.podcastListSection__header}>
+          <h2>Najnoviji tekstovi</h2>
+          <p>Odabrani članci iz SunRadio arhive.</p>
+        </div>
+
+        <div className={styles.podcastGrid}>
+          {articles.map((article) => (
+            <Link
+              key={article.slug}
+              href={article.href}
+              className={styles.podcastCard}
+            >
+              <div
+                className={styles.podcastCard__image}
+                style={{ backgroundImage: `url(${article.imageSrc})` }}
+              >
+                <span>{article.category}</span>
+              </div>
+
+              <div className={styles.podcastCard__content}>
+                <time dateTime={article.date}>{article.displayDate}</time>
+                <h3>{article.title}</h3>
+                <p>{article.description}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
     </main>
   );

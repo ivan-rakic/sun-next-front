@@ -1,44 +1,15 @@
-import styles from '@/styles/index/podcasts-articles.module.scss';
+import Link from 'next/link';
 
-const podcasts = [
-  {
-    title: 'Stellar Vibrations Episode 42',
-    genre: 'Deep',
-    duration: '68 min',
-    image: '/images/astronaut.jpg',
-  },
-  {
-    title: 'Cosmic Flow Mixed by Lunar',
-    genre: 'Progressive',
-    duration: '72 min',
-    image: '/images/flowers.jpg',
-  },
-  {
-    title: 'Solar Sessions Vol. 18',
-    genre: 'Melodic House',
-    duration: '60 min',
-    image: '/images/trees.jpg',
-  },
-  {
-    title: 'Orbit Sounds Episode 09',
-    genre: 'Techno',
-    duration: '66 min',
-    image: '/images/astronaut.jpg',
-  },
-  {
-    title: 'Galactic Grooves With Aria',
-    genre: 'Afro House',
-    duration: '70 min',
-    image: '/images/flowers.jpg',
-  },
-];
+import { PODCASTS } from '@/constants';
+import styles from '@/styles/index/podcasts-articles.module.scss';
 
 export const Podcasts = (): React.ReactElement => {
   return (
     <div className={styles.podcastRail}>
-      {podcasts.map((podcast) => (
-        <article
-          key={podcast.title}
+      {PODCASTS.map((podcast) => (
+        <Link
+          key={podcast.slug}
+          href={`/podcasts/${podcast.slug}`}
           className={styles.podcastCard}
         >
           <div
@@ -50,14 +21,14 @@ export const Podcasts = (): React.ReactElement => {
             <button>▶</button>
           </div>
 
-          <span>PODCAST</span>
+          <span>{podcast.category}</span>
 
           <h3>{podcast.title}</h3>
 
           <p>
-            {podcast.genre} • {podcast.duration}
+            {podcast.category} • {podcast.duration}
           </p>
-        </article>
+        </Link>
       ))}
     </div>
   );

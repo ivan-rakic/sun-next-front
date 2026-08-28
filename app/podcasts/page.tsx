@@ -1,51 +1,10 @@
 import Link from "next/link";
 import styles from "@/styles/podcasts.module.scss";
 import stylesRes from "@/styles/reusable.module.scss";
-
-const podcasts = [
-  {
-    id: 1,
-    title: "Dečije igre",
-    date: "2022-03-01",
-    displayDate: "March 1, 2022",
-    category: "Show",
-    duration: "62 min",
-    image: "/images/mountains.jpg",
-    description:
-      "Radio emisija iz SunRadio arhive. Muzika, razgovor i slobodna akcija u kosmičkom ritmu.",
-    mixcloudUrl:
-      "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2Fde%C4%8Dije-igre-emisija-4-sunradiors%2F",
-  },
-  {
-    id: 2,
-    title: "Solar Sessions Vol. 18",
-    date: "2024-04-12",
-    displayDate: "April 12, 2024",
-    category: "Mix",
-    duration: "60 min",
-    image: "/images/flowers.jpg",
-    description:
-      "Melodičan izbor za lagano putovanje kroz sunčane frekvencije.",
-    mixcloudUrl:
-      "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2F",
-  },
-  {
-    id: 3,
-    title: "Orbit Sounds Episode 09",
-    date: "2024-05-03",
-    displayDate: "May 3, 2024",
-    category: "Podcast",
-    duration: "66 min",
-    image: "/images/fake-brick.png",
-    description:
-      "Zvukovi orbite, razgovori i selekcija za noćno slušanje.",
-    mixcloudUrl:
-      "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2F",
-  },
-];
+import { PODCASTS } from "@/constants";
 
 export default function PodcastPage() {
-  const featuredPodcast = podcasts[0];
+  const featuredPodcast = PODCASTS[0];
 
   return (
     <main className={`${stylesRes.content_container} ${styles.podcastPage}`}>
@@ -104,8 +63,8 @@ export default function PodcastPage() {
         </div>
 
         <div className={styles.podcastGrid}>
-          {podcasts.map((podcast) => (
-            <article key={podcast.id} className={styles.podcastCard}>
+          {PODCASTS.map((podcast) => (
+            <Link key={podcast.id} href={`/podcasts/${podcast.slug}`} className={styles.podcastCard}>
               <div
                 className={styles.podcastCard__image}
                 style={{ backgroundImage: `url(${podcast.image})` }}
@@ -130,7 +89,7 @@ export default function PodcastPage() {
                   allow="autoplay"
                 />
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>

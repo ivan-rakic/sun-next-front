@@ -9,7 +9,20 @@ const nextConfig = {
   },
 
   images: {
-    remotePatterns: [],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.imgur.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'is1-ssl.mzstatic.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.mzstatic.com',
+      },
+    ],
   },
 };
 

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import styles from '@/styles/donate.module.scss';
+import styles from '@/styles/pages/donate.module.scss';
 
 import img2 from '../../public/images/beach.jpg';
 

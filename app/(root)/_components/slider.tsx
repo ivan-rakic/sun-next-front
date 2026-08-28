@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import pic1 from "@/public/images/astronaut.jpg";
 import pic2 from "@/public/images/flowers.jpg";
 import pic3 from "@/public/images/trees.jpg";
-import styles from "@/styles/ui/slider.module.scss";
+import styles from "@/styles/components/slider.module.scss";
 
 import "swiper/css";
 import { useEffect, useState } from "react";

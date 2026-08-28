@@ -1,20 +1,18 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 import { articles } from '@/constants';
-import styles from '@/styles/podcasts.module.scss';
+import { PageHeader } from '@/components/page-header';
+import styles from '@/styles/pages/podcasts.module.scss';
 import stylesRes from '@/styles/reusable.module.scss';
 
 export default function ArticlesPage() {
   return (
     <main className={`${stylesRes.content_container} ${styles.podcastPage}`}>
-      <section className={styles.podcastHero}>
-        <div>
-          <span>SunRadio portal</span>
-          <h1>Articles</h1>
-          <p>Tekstovi, kolumne i priče iz SunRadio redakcije.</p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="SunRadio portal"
+        title="Articles"
+        description="Tekstovi, kolumne i priče iz SunRadio redakcije."
+      />
 
       <section className={styles.podcastListSection}>
         <div className={styles.podcastListSection__header}>

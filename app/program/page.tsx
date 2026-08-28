@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import styles from "@/styles/program.module.scss";
+import { PageHeader } from "@/components/page-header";
+import styles from "@/styles/pages/program.module.scss";
 import { programDays } from "@/constants";
 
 const weekDayMap = [
@@ -61,10 +62,11 @@ export default function Program() {
 
   return (
     <main className={styles.programPage}>
-      <section className={styles.programHeader}>
-        <span>Program</span>
-        <h1>Raspored emitovanja</h1>
-      </section>
+      <PageHeader
+        eyebrow="Program"
+        title="Raspored emitovanja"
+        description="Dnevni i nedeljni raspored emisija, rezidenata i specijalnih programa."
+      />
 
       <section className={styles.programTabs}>
         {programDays.map((programDay, index) => (

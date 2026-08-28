@@ -1,3 +1,4 @@
+﻿@use '../responsive/breakpoints' as *;
 /* -------------------------------------------------------------------------- */
 /* ------------------------------- PLAYER ------------------------------  */
 /* -------------------------------------------------------------------------- */
@@ -15,12 +16,16 @@
 
     padding: 40px 20px;
 
-    @media (max-width: 1024px) {
+    @include tablet {
         padding: 40px 20px;
     }
 
-    @media (max-width: 768px) {
+    @include mobile {
         padding: 40px 12px 30px;
+    }
+
+    @include xs {
+        padding: 30px 8px 20px;
     }
 }
 
@@ -29,23 +34,38 @@
 //-----------------------------------------------
 
 .controls {
-    @media (max-width: 768px) {
+    @include mobile {
         width: 180px;
         height: 180px;
+    }
+
+    @include xs {
+        width: 160px;
+        height: 160px;
     }
 }
 
 .controls::before {
-    @media (max-width: 768px) {
+    @include mobile {
         width: 210px;
         height: 210px;
+    }
+
+    @include xs {
+        width: 188px;
+        height: 188px;
     }
 }
 
 .controls::after {
-    @media (max-width: 768px) {
+    @include mobile {
         width: 240px;
         height: 240px;
+    }
+
+    @include xs {
+        width: 216px;
+        height: 216px;
     }
 }
 
@@ -178,14 +198,14 @@
     }
 
     :global(.rjp-label) {
-        font-size: 0.9rem;
+        font-size: var(--t-base);
         font-weight: 400;
         padding: 0 10px;
         color: orange;
     }
 
     :global(.rjp-info) {
-        font-size: 1.1rem;
+        font-size: var(--t-lg);
         line-height: 1.2;
         font-weight: 400;
         padding: 0 10px;
@@ -245,10 +265,6 @@
         transition:
             opacity 0.3s ease,
             transform 0.3s ease;
-    }
-
-    :global(.jp-unmute) {
-        display: none;
     }
 
     :global(.jp-mute[hidden]),
@@ -359,5 +375,15 @@
 
         box-shadow:
             0 0 12px rgba(255, 255, 255, 0.9);
+    }
+
+    :global(.jp-duration) {
+        min-width: 42px;
+
+        color: rgba(255, 255, 255, 0.68);
+        font-size: var(--t-sm);
+        line-height: 1;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
     }
 }

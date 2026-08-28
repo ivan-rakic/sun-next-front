@@ -1,3 +1,4 @@
+﻿@use '../responsive/breakpoints' as *;
 .aboutPage {
   width: 100%;
   max-width: var(--content-max-width);
@@ -19,7 +20,7 @@
     h1,
     h2 {
       color: #fff;
-      font-size: 1.8rem;
+      font-size: var(--t-3xl);
       font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -28,7 +29,7 @@
     p {
       margin-top: 8px;
       color: rgba(255, 255, 255, 0.7);
-      font-size: 0.95rem;
+      font-size: var(--t-base);
     }
   }
 }
@@ -73,14 +74,14 @@
 
   h2 {
     color: #fff;
-    font-size: 1.05rem;
+    font-size: var(--t-lg);
     line-height: 1.15;
   }
 
   p {
     margin-top: 4px;
     color: rgba(255, 255, 255, 0.62);
-    font-size: 0.88rem;
+    font-size: var(--t-sm);
   }
 }
 
@@ -98,13 +99,13 @@
   }
 }
 
-@media (max-width: 1024px) {
+@include tablet {
   .redactionGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 768px) {
+@include mobile {
   .aboutSection {
     margin-top: 50px;
   }

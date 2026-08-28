@@ -1,5 +1,6 @@
 import Link from "next/link";
-import styles from "@/styles/podcasts.module.scss";
+import { PageHeader } from "@/components/page-header";
+import styles from "@/styles/pages/podcasts.module.scss";
 import stylesRes from "@/styles/reusable.module.scss";
 import { PODCASTS } from "@/constants";
 
@@ -8,24 +9,16 @@ export default function PodcastPage() {
 
   return (
     <main className={`${stylesRes.content_container} ${styles.podcastPage}`}>
-      <section className={styles.podcastHero}>
-        <div>
-          <span>SunRadio archive</span>
-          <h1>Podcasts</h1>
-          <p>
-            Emisije, miksevi i specijalni audio zapisi iz SunRadio kosmosa.
-            Slušaj direktno ovde ili otvori kompletnu arhivu na Mixcloudu.
-          </p>
-        </div>
-
-        <Link
-          href="https://www.mixcloud.com/sunradiosan/uploads/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Mixcloud archive →
-        </Link>
-      </section>
+      <PageHeader
+        eyebrow="SunRadio archive"
+        title="Podcasts"
+        description="Emisije, miksevi i specijalni audio zapisi iz SunRadio kosmosa. Slušaj direktno ovde ili otvori kompletnu arhivu na Mixcloudu."
+        action={{
+          href: "https://www.mixcloud.com/sunradiosan/uploads/",
+          label: "Mixcloud archive",
+          external: true,
+        }}
+      />
 
       <section className={styles.featuredPodcast}>
         <article>

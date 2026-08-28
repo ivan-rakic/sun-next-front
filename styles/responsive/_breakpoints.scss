@@ -1,0 +1,84 @@
+// =============================================================================
+// Breakpoints
+// =============================================================================
+// Usage (in any SCSS file):
+//   @use 'responsive/breakpoints' as *;
+//
+// Then:
+//   @include mobile  { ... }   // ≤ 768px  — phones
+//   @include tablet  { ... }   // ≤ 1024px — tablets / small laptops
+//   @include laptop  { ... }   // ≤ 1200px — laptops
+//
+// Less-common (use sparingly):
+//   @include xs        { ... } // ≤ 480px  — small phones
+//   @include tablet-sm { ... } // ≤ 900px  — mid-tablets (donate banner, program grid)
+// =============================================================================
+
+// Breakpoint values — change here, takes effect everywhere
+$bp-xs:        480px;
+$bp-mobile:    768px;
+$bp-tablet-sm: 900px;
+$bp-tablet:    1024px;
+$bp-laptop:    1200px;
+
+// -----------------------------------------------------------------------------
+// Mixins (all max-width / desktop-first)
+// -----------------------------------------------------------------------------
+
+/// Small phones — use sparingly, only for critical layout fixes
+@mixin xs {
+  @media (max-width: #{$bp-xs}) {
+    @content;
+  }
+}
+
+/// Phones and portrait tablets
+@mixin mobile {
+  @media (max-width: #{$bp-mobile}) {
+    @content;
+  }
+}
+
+/// Mid-tablets — used for layouts that break between mobile and tablet
+@mixin tablet-sm {
+  @media (max-width: #{$bp-tablet-sm}) {
+    @content;
+  }
+}
+
+/// Landscape tablets and small laptops
+@mixin tablet {
+  @media (max-width: #{$bp-tablet}) {
+    @content;
+  }
+}
+
+/// Laptops and small desktops
+@mixin laptop {
+  @media (max-width: #{$bp-laptop}) {
+    @content;
+  }
+}
+
+// =============================================================================
+// Mobile-first (min-width) counterparts
+// Use these when you need to apply styles ABOVE a breakpoint
+// =============================================================================
+
+@mixin above-mobile {
+  @media (min-width: #{$bp-mobile + 1}) {
+    @content;
+  }
+}
+
+@mixin above-tablet {
+  @media (min-width: #{$bp-tablet + 1}) {
+    @content;
+  }
+}
+
+@mixin above-laptop {
+  @media (min-width: #{$bp-laptop + 1}) {
+    @content;
+  }
+}

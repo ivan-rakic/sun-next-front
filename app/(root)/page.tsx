@@ -8,8 +8,8 @@ import { articles } from '@/constants';
 
 import Hero from './_components/hero';
 
-import styles from '@/styles/index.module.scss';
-import cardStyles from '@/styles/index/podcasts-articles.module.scss';
+import styles from '@/styles/pages/home.module.scss';
+import cardStyles from '@/styles/components/podcasts-articles.module.scss';
 
 export default function Home(): React.ReactElement {
   return (

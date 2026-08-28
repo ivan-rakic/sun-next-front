@@ -1,3 +1,4 @@
+﻿@use './responsive/breakpoints' as *;
 * {
   box-sizing: border-box;
   padding: 0;
@@ -42,15 +43,39 @@ body {
     0 0 0 1px rgba(255, 166, 0, 0.12),
     0 18px 45px rgba(0, 0, 0, 0.36),
     inset 0 0 24px rgba(255, 166, 0, 0.04);
+
+  // -------------------------------------------------------------------------
+  // Type scale
+  // xs   12px  – badges, tags, ticker, fine print (accessibility minimum)
+  // sm   14px  – meta, dates, captions, secondary labels
+  // base 16px  – primary body text
+  // lg   18px  – nav links, prominent UI elements
+  // xl   20px  – card titles
+  // 2xl  24px  – component / sub-section headings
+  // card fluid 18-22px - card titles
+  // 3xl  fluid 26-32px - section headings
+  // 4xl  fluid 32-48px - detail headings
+  // hero fluid 40-64px - page display headings
+  // -------------------------------------------------------------------------
+  --t-xs:   0.75rem;
+  --t-sm:   0.875rem;
+  --t-base: 1rem;
+  --t-lg:   1.125rem;
+  --t-xl:   1.25rem;
+  --t-2xl:  1.5rem;
+  --t-card: clamp(1.125rem, 1.25vw, 1.375rem);
+  --t-3xl:  clamp(1.625rem, 2.25vw, 2rem);
+  --t-4xl:  clamp(2rem, 3vw, 3rem);
+  --t-hero: clamp(2.5rem, 4.75vw, 4rem);
 }
 
-@media (max-width: 1024px) {
+@include tablet {
   :root {
     --content-padding: 28px;
   }
 }
 
-@media (max-width: 768px) {
+@include mobile {
   :root {
     --content-padding: 18px;
   }
@@ -67,7 +92,7 @@ body {
 .section-title {
   color: #fff;
 
-  font-size: 1.8rem;
+  font-size: var(--t-3xl);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -76,7 +101,7 @@ body {
 .section-subtitle {
   color: var(--color-text-muted);
 
-  font-size: 0.95rem;
+  font-size: var(--t-base);
   line-height: 1.5;
 }
 

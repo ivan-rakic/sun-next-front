@@ -1,3 +1,4 @@
+﻿@use '../responsive/breakpoints' as *;
 .page {
   width: 100%;
 }
@@ -17,7 +18,7 @@
   h2 {
     display: inline-block;
     color: #fff;
-    font-size: 2rem;
+    font-size: var(--t-3xl);
     font-weight: 500;
     line-height: 1;
     text-transform: uppercase;
@@ -29,7 +30,7 @@
   h5 {
     margin-top: 14px;
     color: rgba(255, 255, 255, 0.68);
-    font-size: 1rem;
+    font-size: var(--t-base);
     font-weight: 400;
   }
 }
@@ -50,7 +51,7 @@
 
     h2 {
       color: #fff;
-      font-size: 1.8rem;
+      font-size: var(--t-3xl);
       font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -59,22 +60,25 @@
     p {
 
       color: rgba(255, 255, 255, 0.7);
-      font-size: 0.95rem;
+      font-size: var(--t-base);
     }
 
-    button {
+    button,
+    a {
       border: 0;
       background: transparent;
 
       color: orange;
 
-      font-size: 0.82rem;
+      font-size: var(--t-sm);
       letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
 
       cursor: pointer;
     }
 
-    @media (max-width: 768px) {
+    @include mobile {
       align-items: flex-start;
       flex-direction: column;
       gap: 12px;

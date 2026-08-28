@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { articles } from '@/constants';
-import styles from '@/styles/podcasts.module.scss';
+import styles from '@/styles/pages/podcasts.module.scss';
 import stylesRes from '@/styles/reusable.module.scss';
 
 type Props = {

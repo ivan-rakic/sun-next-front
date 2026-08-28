@@ -1,3 +1,4 @@
+﻿@use '../responsive/breakpoints' as *;
 .stickyPlayer {
     position: fixed;
     bottom: 6px;
@@ -16,8 +17,13 @@
         transform 0.35s ease,
         opacity 0.35s ease;
 
-    @media (max-width: 768px) {
+    @include mobile {
         bottom: 10px;
+    }
+
+    @include xs {
+        bottom: 4px;
+        padding: 0 8px;
     }
 }
 
@@ -90,9 +96,15 @@
         z-index: 1;
     }
 
-    @media (max-width: 768px) {
+    @include mobile {
         height: 54px;
         padding: 0 12px;
+    }
+
+    @include xs {
+        height: 50px;
+        padding: 0 8px;
+        border-radius: 10px;
     }
 }
 
@@ -209,11 +221,18 @@
         object-fit: cover;
     }
 
-    @media (max-width: 768px) {
+    @include mobile {
         width: 40px;
         height: 40px;
         flex-basis: 40px;
         margin-left: 4px;
+    }
+
+    @include xs {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+        margin-left: 2px;
     }
 }
 
@@ -227,7 +246,7 @@
         display: block;
 
         color: orange;
-        font-size: 0.5rem;
+        font-size: var(--t-xs);
         letter-spacing: 0.16em;
         text-decoration: underline;
         text-underline-offset: 6px;
@@ -240,7 +259,7 @@
         overflow: hidden;
 
         color: #ffffff;
-        font-size: 0.94rem;
+        font-size: var(--t-base);
 
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -248,7 +267,7 @@
 
     }
 
-    @media (max-width: 768px) {
+    @include mobile {
         margin-left: 10px;
 
         span {
@@ -257,7 +276,15 @@
 
         p {
             margin-top: 0;
-            font-size: 0.85rem;
+            font-size: var(--t-sm);
+        }
+    }
+
+    @include xs {
+        margin-left: 6px;
+
+        p {
+            font-size: var(--t-sm);
         }
     }
 }
@@ -271,7 +298,7 @@
 
     color: #fff;
 
-    @media (max-width: 768px) {
+    @include mobile {
         display: none;
     }
 }
@@ -351,7 +378,7 @@
     background: rgba(255, 255, 255, 0.18);
     color: #fff;
 
-    font-size: 0.7rem;
+    font-size: var(--t-xs);
     font-weight: 800;
     letter-spacing: 0.12em;
 

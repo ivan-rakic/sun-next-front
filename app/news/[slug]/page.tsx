@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
 import { news } from '@/constants';
-import styles from '@/styles/podcasts.module.scss';
+import styles from '@/styles/pages/podcasts.module.scss';
 import stylesRes from '@/styles/reusable.module.scss';
 
 type Props = {

@@ -1,3 +1,4 @@
+﻿@use '../responsive/breakpoints' as *;
 .topVisual {
   position: relative;
 
@@ -23,16 +24,14 @@
     position: absolute;
     top: 0;
 
-    width: 60%;
+    left: -10%;
+    width: 120%;
     height: 100%;
 
     background-image: url("/images/banner-back.png");
     filter: brightness(0.3);
     background-repeat: repeat-x;
     background-size: auto 100%;
-    background-position: center;
-
-    opacity: 0.75;
 
     z-index: 0;
 
@@ -50,12 +49,17 @@
 
   .topVisual__bannerLeft {
     left: 0;
-    animation: bannerLeftDrift 40s linear infinite alternate;
+    background-position: left center;
+    opacity: 0.75;
+    animation: bannerLeftDrift 40s ease-in-out infinite alternate;
   }
 
   .topVisual__bannerRight {
-    right: 0;
-    animation: bannerRightDrift 40s linear infinite alternate;
+    background-color: #000;       // fills transparent PNG areas — blocks bannerLeft beneath
+    background-position: right center;
+    filter: brightness(0.18);     // compensates for raised opacity (0.18 × 0.75 ≈ 0.3 × 0.45)
+    opacity: 0.75;                // higher opacity = stronger block of layer behind
+    animation: bannerRightDrift 40s ease-in-out infinite alternate;
   }
 
   &::after {
@@ -78,15 +82,36 @@
     z-index: 4;
   }
 
-  @media (max-width: 1024px) {
+  @include tablet {
     min-height: 430px;
     padding-top: 70px;
+
+    .topVisual__bannerLeft {
+      background-size: auto 85%;
+      opacity: 0.6;
+    }
+
+    .topVisual__bannerRight {
+      background-size: auto 85%;
+      opacity: 0.35;
+    }
   }
 
-  @media (max-width: 768px) {
-    min-height: 82vh;
+  @include mobile {
+    min-height: 100vh;
+    height: 100dvh;
     padding-top: 70px;
     align-items: center;
+
+    .topVisual__bannerLeft {
+      background-size: auto 60%;
+      opacity: 0.45;
+    }
+
+    .topVisual__bannerRight {
+      background-size: auto 60%;
+      opacity: 0.25;
+    }
   }
 }
 
@@ -161,7 +186,7 @@
 
     color: rgba(241, 239, 233, 0.95);
 
-    font-size: 0.62rem;
+    font-size: var(--t-xs);
     letter-spacing: 0.18em;
     text-transform: uppercase;
 
@@ -192,21 +217,15 @@
 }
 
 @keyframes bannerLeftDrift {
-  from {
-    transform: translate3d(-8%, 0, 0) scale(1.02);
-  }
-
-  to {
-    transform: translate3d(4%, 0, 0) scale(1.02);
-  }
+  0%   { transform: translate3d(-7%, 0, 0) scale(1.02); }
+  40%  { transform: translate3d(0%, 0, 0) scale(1.02); }  // arrive at overlap
+  60%  { transform: translate3d(0%, 0, 0) scale(1.02); }  // hold — ~8s pause
+  100% { transform: translate3d(7%, 0, 0) scale(1.02); }
 }
 
 @keyframes bannerRightDrift {
-  from {
-    transform: translate3d(15%, 0, 0) scale(1.02);
-  }
-
-  to {
-    transform: translate3d(-4%, 0, 0) scale(1.02);
-  }
+  0%   { transform: translate3d(7%, 0, 0) scale(1.02); }
+  40%  { transform: translate3d(0%, 0, 0) scale(1.02); }  // arrive at overlap
+  60%  { transform: translate3d(0%, 0, 0) scale(1.02); }  // hold — ~8s pause
+  100% { transform: translate3d(-7%, 0, 0) scale(1.02); }
 }

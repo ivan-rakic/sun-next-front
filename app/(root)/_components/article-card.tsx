@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import styles from '@/styles/index/podcasts-articles.module.scss';
+import styles from '@/styles/components/podcasts-articles.module.scss';
 
 type ArticleProps = {
   href: string;

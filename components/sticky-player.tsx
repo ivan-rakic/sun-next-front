@@ -11,6 +11,15 @@ import {
 import styles from '@/styles/player/sticky-player.module.scss';
 import Image from 'next/image';
 
+type PlayerStateEvent = CustomEvent<{
+  isPlaying?: boolean;
+  isMuted?: boolean;
+  artwork?: string;
+  duration?: string;
+  trackInfo?: string;
+  volume?: number;
+}>;
+
 export const StickyPlayer = (): React.ReactElement => {
   const FALLBACK_ARTWORK = '/images/speakers-back.png';
   const [isVisible, setIsVisible] = useState(false);
@@ -18,6 +27,7 @@ export const StickyPlayer = (): React.ReactElement => {
   const [isMuted, setIsMuted] = useState(false);
   const [trackInfo, setTrackInfo] = useState('SunRadio Live');
   const [volume, setVolume] = useState(70);
+  const [radiojarArtwork, setRadiojarArtwork] = useState<string | null>(null);
 
   const [currentArtwork, setCurrentArtwork] = useState(FALLBACK_ARTWORK);
 
@@ -51,6 +61,29 @@ export const StickyPlayer = (): React.ReactElement => {
   }, []);
 
   useEffect(() => {
+    const handlePlayerState = (event: Event): void => {
+      const { artwork, isPlaying, isMuted, trackInfo, volume } = (event as PlayerStateEvent).detail;
+
+      if (typeof artwork === 'string') setRadiojarArtwork(artwork || null);
+      if (typeof isPlaying === 'boolean') setIsPlaying(isPlaying);
+      if (typeof isMuted === 'boolean') setIsMuted(isMuted);
+      if (typeof trackInfo === 'string') setTrackInfo(formatTrackInfo(trackInfo));
+      if (typeof volume === 'number') setVolume(volume);
+    };
+
+    window.addEventListener('sunradio-player-state', handlePlayerState);
+
+    return () => {
+      window.removeEventListener('sunradio-player-state', handlePlayerState);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (radiojarArtwork) {
+      setCurrentArtwork(radiojarArtwork);
+      return;
+    }
+
     if (!artist || !songName) {
       setCurrentArtwork(FALLBACK_ARTWORK);
       return;
@@ -89,7 +122,7 @@ export const StickyPlayer = (): React.ReactElement => {
     return () => {
       controller.abort();
     };
-  }, [artist, songName]);
+  }, [artist, songName, radiojarArtwork]);
 
   useEffect(() => {
     const trackInfoElement = document.querySelector('#trackInfo');

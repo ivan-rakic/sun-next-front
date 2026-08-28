@@ -1,3 +1,4 @@
+﻿@use '../responsive/breakpoints' as *;
 .footer {
   position: relative;
 
@@ -77,11 +78,11 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 40px;
 
-    @media (max-width: 1024px) {
+    @include tablet {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 768px) {
+    @include mobile {
       grid-template-columns: 1fr;
       gap: 28px;
     }
@@ -95,7 +96,7 @@
 
       color: #fff;
 
-      font-size: 0.92rem;
+      font-size: var(--t-sm);
       font-weight: 500;
       letter-spacing: 0.18em;
 
@@ -107,7 +108,7 @@
 
       color: rgba(255, 255, 255, 0.801);
 
-      font-size: 0.95rem;
+      font-size: var(--t-base);
       line-height: 1.7;
     }
   }
@@ -139,7 +140,7 @@
 
     p {
       color: rgba(255, 255, 255, 0.4);
-      font-size: 0.82rem;
+      font-size: var(--t-sm);
       letter-spacing: 0.08em;
     }
   }

@@ -1,16 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 import { RiCloseLine, RiMenuLine } from 'react-icons/ri';
 
-import { LinksList } from '@/components/header/links-list';
 import { NavLinks } from '@/components/header/nav-links';
+import { mainLinks, portalLinks } from '@/constants';
 
 import styles from '@/styles/navigation/mobile-nav.module.scss';
 
 export const MobileNav = (): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  const closeNav = (): void => {
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -19,6 +32,7 @@ export const MobileNav = (): React.ReactElement => {
         className={styles.mobileNav__toggle}
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label="Toggle navigation"
+        aria-expanded={isOpen}
       >
         {isOpen ? <RiCloseLine /> : <RiMenuLine />}
       </button>
@@ -28,7 +42,22 @@ export const MobileNav = (): React.ReactElement => {
           }`}
       >
         <nav className={styles.mobileNav__links}>
-          <LinksList />
+          <div className={styles.mobileNav__group}>
+            <span>Portal</span>
+            {portalLinks.map((link) => (
+              <Link key={link.href} href={link.href} onClick={closeNav}>
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className={styles.mobileNav__group}>
+            {mainLinks.map((link) => (
+              <Link key={link.href} href={link.href} onClick={closeNav}>
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </nav>
 
         <div className={styles.mobileNav__socials}>

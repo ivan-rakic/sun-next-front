@@ -1,3 +1,4 @@
+﻿@use '../responsive/breakpoints' as *;
 // DONATE BANNER
 .donateBanner {
     width: 100%;
@@ -42,7 +43,7 @@
 
         span {
             color: orange;
-            font-size: 0.78rem;
+            font-size: var(--t-sm);
             letter-spacing: 0.16em;
             text-transform: uppercase;
         }
@@ -51,7 +52,7 @@
             margin-top: 10px;
 
             color: #fff;
-            font-size: 2rem;
+            font-size: var(--t-3xl);
             line-height: 1.05;
             letter-spacing: 0.08em;
         }
@@ -61,11 +62,11 @@
             margin-top: 12px;
 
             color: rgba(255, 255, 255, 0.72);
-            font-size: 1rem;
+            font-size: var(--t-base);
             line-height: 1.5;
         }
 
-        @media (max-width: 900px) {
+        @include tablet-sm {
             flex-direction: column;
             align-items: flex-start;
         }
@@ -102,7 +103,7 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @include mobile {
             width: 100%;
             flex-wrap: wrap;
 

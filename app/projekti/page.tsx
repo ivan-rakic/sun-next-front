@@ -1,15 +1,15 @@
-import styles from "@/styles/index.module.scss";
+import { PageHeader } from "@/components/page-header";
+import styles from "@/styles/pages/podcasts.module.scss";
+import stylesRes from "@/styles/reusable.module.scss";
 
 export default function Program() {
   return (
-    <main className={styles.content}>
-      <section className={undefined}>
-        PROJEKTI
-        {/* 3 featured divs */}
-        <div className={undefined}>12</div>
-        <div className={undefined}>34</div>
-        <div className={undefined}>56</div>
-      </section>
+    <main className={`${stylesRes.content_container} ${styles.podcastPage}`}>
+      <PageHeader
+        eyebrow="SunRadio projects"
+        title="Projekti"
+        description="Posebni projekti, saradnje i programske celine SunRadio zajednice."
+      />
     </main>
   );
 }

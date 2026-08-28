@@ -22,6 +22,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: '*.mzstatic.com',
       },
+      {
+        protocol: 'http',
+        hostname: 'radiojar-lib.appspot.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'radiojar-lib.appspot.com',
+      },
     ],
   },
 };

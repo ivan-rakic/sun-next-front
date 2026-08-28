@@ -1,3 +1,4 @@
+﻿@use '../responsive/breakpoints' as *;
 .slider {
   position: relative;
 
@@ -153,7 +154,7 @@
 
   color: #fff;
 
-  font-size: 0.68rem;
+  font-size: var(--t-xs);
   line-height: 1;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -174,7 +175,7 @@
   h2 {
     color: #fff;
 
-    font-size: clamp(1rem, 1.4vw, 1.28rem);
+    font-size: var(--t-card);
     line-height: 1.12;
     font-weight: 600;
 
@@ -189,7 +190,7 @@
 
     color: rgba(255, 255, 255, 0.82);
 
-    font-size: 0.88rem;
+    font-size: var(--t-sm);
     line-height: 1.35;
 
     -webkit-line-clamp: 2;
@@ -205,7 +206,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@include mobile {
   .sliderCard__image {
     aspect-ratio: 16 / 8.5;
   }

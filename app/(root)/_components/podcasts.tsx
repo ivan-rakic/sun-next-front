@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { PODCASTS } from '@/constants';
-import styles from '@/styles/index/podcasts-articles.module.scss';
+import styles from '@/styles/components/podcasts-articles.module.scss';
 
 export const Podcasts = (): React.ReactElement => {
   return (

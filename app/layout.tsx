@@ -6,9 +6,10 @@ import Footer from '@/components/footer';
 import Header from '@/components/header/header';
 import Hero from '@/app/(root)/_components/hero';
 import Player from '@/components/player';
+import { TopVisualTicker } from '@/components/top-visual-ticker';
 
 import '@/styles/globals.scss';
-import styles from '@/styles/layout.module.scss';
+import styles from '@/styles/pages/layout.module.scss';
 import { StickyPlayer } from '@/components/sticky-player';
 
 
@@ -41,20 +42,7 @@ export default function RootLayout({
           <Player />
 
           <div className={styles.topVisual__bottomShade}>
-            <div className={styles.topVisual__ticker}>
-              <div className={styles.topVisual__tickerTrack}>
-                <span>
-                  SUN RADIO • Deep House • Cosmic Sounds • Podcasts • Articles • Live
-                  Shows • Community • SUN RADIO • Deep House • Cosmic Sounds • Podcasts
-                  • Articles • Live Shows • Community
-                </span>
-                <span>
-                  SUN RADIO • Deep House • Cosmic Sounds • Podcasts • Articles • Live
-                  Shows • Community • SUN RADIO • Deep House • Cosmic Sounds • Podcasts
-                  • Articles • Live Shows • Community
-                </span>
-              </div>
-            </div>
+            <TopVisualTicker />
           </div>
         </section>
         <main>{children}</main>

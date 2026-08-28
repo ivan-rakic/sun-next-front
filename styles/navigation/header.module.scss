@@ -1,3 +1,4 @@
+﻿@use '../responsive/breakpoints' as *;
 .header {
   position: absolute;
   top: 0;
@@ -43,7 +44,7 @@
     button {
       text-decoration: none;
       text-transform: uppercase;
-      font-size: 1.1rem;
+      font-size: var(--t-lg);
       color: #fff;
       text-shadow: 0 0 3px #000;
       transition: color 0.3s ease;
@@ -127,7 +128,7 @@
   }
 }
 
-@media (max-width: 1024px) {
+@include tablet {
   .header_main__navigation {
     justify-content: flex-start;
     gap: 14px;
@@ -159,12 +160,11 @@
   }
 }
 
-@media (max-width: 768px) {
+@include mobile {
 
   .header_main__navigation,
   .header_main__socials {
-    visibility: hidden;
-    pointer-events: none;
+    display: none;
   }
 
   .header_main__logo {
@@ -173,9 +173,7 @@
     left: 50%;
     transform: translateX(-50%);
 
-    margin: 0;
-
-    width: 140px;
+    width: 244px;
 
     display: flex;
     justify-content: center;
@@ -183,15 +181,35 @@
     z-index: 20;
 
     a {
-      width: 140px;
-      height: 90px;
+      margin-top: 0;
+      width: 230px;
+      height: 145px;
 
       &::after {
-        width: 180px;
-        height: 180px;
+        width: 292px;
+        height: 292px;
 
-        top: -82px;
-        left: -20px;
+        top: -116px;
+        left: -31px;
+      }
+    }
+  }
+}
+
+@include xs {
+  .header_main__logo {
+    width: 244px;
+
+    a {
+      margin-top: 0;
+      width: 230px;
+      height: 145px;
+
+      &::after {
+        width: 292px;
+        height: 292px;
+        top: -116px;
+        left: -31px;
       }
     }
   }
@@ -248,7 +266,7 @@
 
   a {
     margin-right: 0;
-    font-size: 0.9rem;
+    font-size: var(--t-base);
     white-space: nowrap;
   }
 }
@@ -262,7 +280,7 @@
 
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 1.1rem;
+  font-size: var(--t-lg);
   color: #fff;
   text-shadow: 0 0 3px #000;
 
@@ -309,7 +327,7 @@
 
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: var(--t-sm);
     font-weight: 600;
     letter-spacing: 0.08em;
 
@@ -327,7 +345,7 @@
   background: rgba(255, 255, 255, 0.04);
 
   color: #fff;
-  font-size: 0.75rem;
+  font-size: var(--t-xs);
   font-weight: 600;
   letter-spacing: 0.08em;
 
@@ -350,7 +368,7 @@
       rgba(255, 199, 14, 1));
 
   color: #111;
-  font-size: 0.75rem;
+  font-size: var(--t-xs);
   font-weight: 700;
   letter-spacing: 0.08em;
 

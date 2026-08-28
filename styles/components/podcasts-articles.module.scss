@@ -1,17 +1,8 @@
+﻿@use '../responsive/breakpoints' as *;
 .podcastRail,
 .articleRail {
     display: grid;
     gap: 22px;
-
-    &::-webkit-scrollbar {
-        height: 6px;
-        background-color: rgba(255, 255, 255, 0.18);
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: rgba(255, 166, 0, 0.45);
-        border-radius: 999px;
-    }
 
     >* {
         min-width: 0;
@@ -23,7 +14,7 @@
     grid-template-columns: repeat(5, minmax(0, 245px));
     justify-content: space-between;
 
-    @media (max-width: 1200px) {
+    @include laptop {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -31,7 +22,7 @@
 .articleRail {
     grid-template-columns: repeat(4, 1fr);
 
-    @media (max-width: 1200px) {
+    @include laptop {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -178,7 +169,7 @@
 
         color: var(--color-orange);
 
-        font-size: 0.68rem;
+        font-size: var(--t-xs);
         line-height: 1;
         letter-spacing: 0.08em;
         text-transform: uppercase;
@@ -193,7 +184,7 @@
 
         color: rgba(255, 255, 255, 0.55);
 
-        font-size: 0.72rem;
+        font-size: var(--t-xs);
         letter-spacing: 0.12em;
         text-transform: uppercase;
     }
@@ -203,7 +194,7 @@
 
         color: #fff;
 
-        font-size: 1.2rem;
+        font-size: var(--t-card);
         line-height: 1.18;
         font-weight: 500;
     }
@@ -213,7 +204,7 @@
 
         color: rgba(255, 255, 255, 0.58);
 
-        font-size: 0.88rem;
+        font-size: var(--t-sm);
         line-height: 1.45;
     }
 }
@@ -234,7 +225,7 @@
 
         color: #fff;
 
-        font-size: 1.28rem;
+        font-size: var(--t-card);
         line-height: 1.16;
         font-weight: 500;
     }
@@ -244,7 +235,7 @@
 
         color: rgba(255, 255, 255, 0.65);
 
-        font-size: 0.9rem;
+        font-size: var(--t-base);
         line-height: 1.5;
     }
 
@@ -255,36 +246,55 @@
 
         color: var(--color-orange);
 
-        font-size: 0.78rem;
+        font-size: var(--t-sm);
         letter-spacing: 0.12em;
         text-transform: uppercase;
     }
 }
 
-@media (max-width: 768px) {
+@include mobile {
 
     .podcastRail,
     .articleRail {
         display: flex;
 
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
 
-        gap: 22px;
+        gap: 16px;
         padding-bottom: 14px;
 
         scroll-snap-type: x mandatory;
+        scroll-padding-left: var(--content-padding);
+
+        scrollbar-color: rgba(255, 166, 0, 0.65) rgba(255, 255, 255, 0.12);
+        scrollbar-width: thin;
+
+        &::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            border-radius: 999px;
+            background-color: rgba(255, 255, 255, 0.12);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 999px;
+            background: rgba(255, 166, 0, 0.65);
+        }
     }
 
-    .podcastRail>* {
+    .podcastRail > * {
+        width: 240px;
+        min-width: 240px;
+        flex: 0 0 240px;
+    }
+
+    .articleRail > * {
         width: 260px;
         min-width: 260px;
         flex: 0 0 260px;
-    }
-
-    .articleRail>* {
-        width: 280px;
-        min-width: 280px;
-        flex: 0 0 280px;
     }
 
     .podcastCard__image,
@@ -294,6 +304,21 @@
 
     .podcastCard h3,
     .articleCard__content h3 {
-        font-size: 1.15rem;
+        font-size: var(--t-card);
+    }
+}
+
+@include xs {
+
+    .podcastRail > * {
+        width: 210px;
+        min-width: 210px;
+        flex: 0 0 210px;
+    }
+
+    .articleRail > * {
+        width: 230px;
+        min-width: 230px;
+        flex: 0 0 230px;
     }
 }

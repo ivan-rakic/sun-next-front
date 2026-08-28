@@ -9,95 +9,162 @@ import {
 import { PlayerButton } from "@/components/player-button";
 import styles from '../styles/player/player.module.scss';
 
-interface CustomWindow extends Window {
-  rjq: any;
-}
+type NowPlayingResponse = {
+  artist?: string;
+  duration?: string;
+  thumb?: string;
+  title?: string;
+};
 
-declare const window: CustomWindow;
+const STREAM_URL = "https://stream.radiojar.com/4qawu2xta2zuv";
+const NOW_PLAYING_URL = "/api/now-playing";
+
+const dispatchPlayerState = (detail: {
+  isPlaying?: boolean;
+  isMuted?: boolean;
+  artwork?: string;
+  duration?: string;
+  trackInfo?: string;
+  volume?: number;
+}): void => {
+  window.dispatchEvent(new CustomEvent("sunradio-player-state", { detail }));
+};
+
+const formatDuration = (value?: string): string => {
+  const seconds = Number(value);
+
+  if (!Number.isFinite(seconds) || seconds <= 0) return "--:--";
+
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+
+  return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+};
 
 export default function Player() {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const trackInfoRef = useRef<HTMLParagraphElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [trackInfo, setTrackInfo] = useState("Artist - Song");
+  const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(70);
+  const [trackInfo, setTrackInfo] = useState("SunRadio Live");
+  const [duration, setDuration] = useState("--:--");
 
   useEffect(() => {
-    const initializePlayer = (): void => {
-      const rjq = window.rjq;
-      if (!rjq) return;
+    const audio = audioRef.current;
+    if (!audio) return;
 
-      const player = rjq("#rjp-radiojar-player");
+    audio.volume = volume / 100;
+  }, [volume]);
 
-      const handleTrackLoad = (
-        event: unknown,
-        data: { artist?: string; title?: string; thumb?: string },
-      ): void => {
-        updateInfo(data);
+  useEffect(() => {
+    const fetchTrackInfo = async (): Promise<void> => {
+      try {
+        const response = await fetch(NOW_PLAYING_URL, { cache: "no-store" });
+
+        if (!response.ok) return;
+
+        const data = (await response.json()) as NowPlayingResponse;
+        const artist = data.artist?.trim();
+        const title = data.title?.trim();
 
         const nextTrackInfo =
-          data.title || data.artist
-            ? `${data.artist ?? "Unknown"} - "${data.title ?? ""}"`
-            : "SunRadio Live";
+          artist || title ? `${artist || "SunRadio"} - "${title || "Live"}"` : "SunRadio Live";
+        const nextDuration = formatDuration(data.duration);
 
         setTrackInfo(nextTrackInfo);
-
-        rjq(".rjp-trackinfo-container").show();
-        rjq("#trackInfo").html(nextTrackInfo);
-      };
-
-      const updateInfo = (data: { thumb?: string }): void => {
-        if (data.thumb) {
-          rjq("#rj-cover").html(
-            `<a href="#"><img src="${data.thumb}" alt="" title="" /></a>`,
-          );
-        } else {
-          rjq("#rj-cover").html("");
-        }
-      };
-
-      player.off("rj-track-load-event");
-      player.on("rj-track-load-event", handleTrackLoad);
-
-      player.radiojar("player", {
-        streamName: "4qawu2xta2zuv",
-        enableUpdates: true,
-        defaultImage:
-          "//www.radiojar.com/img/sample_images/Radio_Stations_Avatar_BLUE.png",
-        autoplay: false,
-      });
+        setDuration(nextDuration);
+        dispatchPlayerState({
+          artwork: data.thumb,
+          duration: nextDuration,
+          trackInfo: nextTrackInfo,
+        });
+      } catch {
+        setTrackInfo("SunRadio Live");
+        setDuration("--:--");
+      }
     };
 
-    if (window.rjq) {
-      initializePlayer();
-    } else {
-      const script = document.createElement("script");
-      script.src = "//www.radiojar.com/wrappers/api-plugins/v1/radiojar-min.js";
-      script.onload = initializePlayer;
-      document.body.appendChild(script);
-    }
+    fetchTrackInfo();
+    const intervalId = window.setInterval(fetchTrackInfo, 20000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
   }, []);
 
-  // TODO
-  // Track info is not updating when new track is playing
+  const handlePlay = async (): Promise<void> => {
+    const audio = audioRef.current;
+    if (!audio) return;
 
-  const trackInfoRef = useRef<HTMLParagraphElement | null>(null);
+    try {
+      await audio.play();
+      setIsPlaying(true);
+      dispatchPlayerState({ isPlaying: true });
+    } catch {
+      setIsPlaying(false);
+      dispatchPlayerState({ isPlaying: false });
+    }
+  };
+
+  const handlePause = (): void => {
+    audioRef.current?.pause();
+    setIsPlaying(false);
+    dispatchPlayerState({ isPlaying: false });
+  };
+
+  const handleMute = (): void => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.muted = !audio.muted;
+    setIsMuted(audio.muted);
+    dispatchPlayerState({ isMuted: audio.muted });
+  };
+
+  const handleVolumeClick = (event: React.MouseEvent<HTMLDivElement>): void => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const nextVolume = Math.min(
+      Math.max((event.clientX - rect.left) / rect.width, 0),
+      1,
+    );
+
+    if (audioRef.current) {
+      audioRef.current.volume = nextVolume;
+      audioRef.current.muted = false;
+    }
+
+    setVolume(Math.round(nextVolume * 100));
+    setIsMuted(false);
+    dispatchPlayerState({ volume: Math.round(nextVolume * 100), isMuted: false });
+  };
 
   return (
     <section>
       <div className={styles.player}>
+        <audio
+          ref={audioRef}
+          src={STREAM_URL}
+          preload="none"
+          onPause={() => setIsPlaying(false)}
+          onPlay={() => setIsPlaying(true)}
+        />
+
         <div className={styles.controls}>
           <PlayerButton
             title="Play"
-            isHidden={false}
+            isHidden={isPlaying}
             className="jp-play"
-            onClick={() => setIsPlaying(true)}
+            onClick={handlePlay}
           >
             <RiPlayCircleLine />
           </PlayerButton>
 
           <PlayerButton
             title="Pause"
-            isHidden={true}
+            isHidden={!isPlaying}
             className="jp-pause"
-            onClick={() => setIsPlaying(false)}
+            onClick={handlePause}
           >
             <RiPauseCircleLine />
           </PlayerButton>
@@ -118,22 +185,28 @@ export default function Player() {
                     <PlayerButton
                       className="jp-mute block"
                       title="Mute"
-                      isHidden={false}
+                      isHidden={isMuted}
+                      onClick={handleMute}
                     >
                       <RiVolumeUpLine />
                     </PlayerButton>
                     <PlayerButton
                       className="jp-unmute block"
                       title="Unmute"
-                      isHidden={false}
+                      isHidden={!isMuted}
+                      onClick={handleMute}
                     >
                       <RiVolumeMuteLine />
                     </PlayerButton>
                     <div className="jp-volume-bar-wrapper">
-                      <div className="jp-volume-bar">
-                        <div className="jp-volume-bar-value"></div>
+                      <div className="jp-volume-bar" onClick={handleVolumeClick}>
+                        <div
+                          className="jp-volume-bar-value"
+                          style={{ width: `${volume}%` }}
+                        />
                       </div>
                     </div>
+                    <span className="jp-duration">{duration}</span>
                   </div>
                 </div>
               </div>

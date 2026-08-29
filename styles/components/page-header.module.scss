@@ -1,13 +1,40 @@
 @use '../responsive/breakpoints' as *;
 
 .pageHeader {
+  position: relative;
+
   max-width: var(--content-max-width);
-  margin: 0 auto 42px;
+  margin: 0 auto 64px;
+  padding-bottom: 28px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   gap: 32px;
+
+  // drips down from the center of the border line below
+  &::after {
+    content: "";
+
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 0;
+
+    width: 160px;
+    height: 80px;
+
+    background-image: url("/images/menu-shadow.png");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    opacity: 0.55;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
 
   span {
     color: orange;
@@ -55,5 +82,10 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 18px;
+
+    &::after {
+      width: 120px;
+      height: 60px;
+    }
   }
 }

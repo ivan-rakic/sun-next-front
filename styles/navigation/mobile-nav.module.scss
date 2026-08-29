@@ -32,6 +32,7 @@
     backdrop-filter: blur(6px);
 
     transition:
+        top 0.35s ease,
         border-color 0.25s ease,
         box-shadow 0.25s ease,
         transform 0.25s ease;
@@ -271,7 +272,7 @@
     }
 
     .mobileNav__toggle {
-        top: 110px;
+        top: 105px;
         width: 48px;
         height: 48px;
 
@@ -286,4 +287,9 @@
             height: 20px;
         }
     }
+}
+
+// overrides both breakpoint top values once scrolled; kept fixed while scrolling
+.mobileNav__toggleScrolled {
+    top: 20px;
 }

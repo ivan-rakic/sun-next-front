@@ -2,7 +2,7 @@
 
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import pic1 from "@/public/images/astronaut.jpg";
@@ -11,6 +11,7 @@ import pic3 from "@/public/images/trees.jpg";
 import styles from "@/styles/components/slider.module.scss";
 
 import "swiper/css";
+import "swiper/css/pagination";
 import { useEffect, useState } from "react";
 
 type SlideItem = {
@@ -86,7 +87,8 @@ export default function Slider() {
           autoplay={{ delay: 8000 }}
           speed={1400}
           allowTouchMove
-          modules={[Autoplay]}
+          modules={[Autoplay, Pagination]}
+          pagination={{ clickable: true }}
           slidesPerView={1}
           spaceBetween={16}
           breakpoints={{
@@ -95,7 +97,7 @@ export default function Slider() {
               spaceBetween: 18,
             },
             1200: {
-              slidesPerView: 2,
+              slidesPerView: 3,
               spaceBetween: 24,
             },
           }}

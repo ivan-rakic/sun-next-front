@@ -12,6 +12,7 @@ import styles from '@/styles/navigation/mobile-nav.module.scss';
 
 export const MobileNav = (): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -21,6 +22,19 @@ export const MobileNav = (): React.ReactElement => {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    const handleScroll = (): void => {
+      setIsScrolled(window.scrollY > 4);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const closeNav = (): void => {
     setIsOpen(false);
   };
@@ -29,7 +43,8 @@ export const MobileNav = (): React.ReactElement => {
     <>
       <button
         type="button"
-        className={styles.mobileNav__toggle}
+        className={`${styles.mobileNav__toggle} ${isScrolled ? styles.mobileNav__toggleScrolled : ''
+          }`}
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label="Toggle navigation"
         aria-expanded={isOpen}

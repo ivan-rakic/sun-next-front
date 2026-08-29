@@ -1,13 +1,14 @@
-import Link from 'next/link';
-
-import { news } from '@/constants';
 import { PageHeader } from '@/components/page-header';
+import { ContentCard } from '@/components/templates/content-card';
+import { getNews } from '@/lib/content';
 import styles from '@/styles/pages/podcasts.module.scss';
-import stylesRes from '@/styles/reusable.module.scss';
+import cardStyles from '@/styles/components/podcasts-articles.module.scss';
 
 export default function NewsPage() {
+  const news = getNews();
+
   return (
-    <main className={`${stylesRes.content_container} ${styles.podcastPage}`}>
+    <main className={styles.podcastPage}>
       <PageHeader
         eyebrow="SunRadio portal"
         title="News"
@@ -20,26 +21,18 @@ export default function NewsPage() {
           <p>Aktuelnosti iz SunRadio sveta.</p>
         </div>
 
-        <div className={styles.podcastGrid}>
+        <div className={cardStyles.articleRail}>
           {news.map((item) => (
-            <Link
+            <ContentCard
               key={item.slug}
               href={item.href}
-              className={styles.podcastCard}
-            >
-              <div
-                className={styles.podcastCard__image}
-                style={{ backgroundImage: `url(${item.imageSrc})` }}
-              >
-                <span>{item.category}</span>
-              </div>
-
-              <div className={styles.podcastCard__content}>
-                <time dateTime={item.date}>{item.displayDate}</time>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </div>
-            </Link>
+              imageSrc={item.imageSrc}
+              imageAlt={item.imageAlt}
+              category={item.category}
+              title={item.title}
+              description={item.description}
+              meta={item.displayDate}
+            />
           ))}
         </div>
       </section>

@@ -131,22 +131,13 @@
 }
 
 .articleCard {
+    display: block;
     overflow: hidden;
 
-    border-radius: var(--radius-card);
-    border: var(--border-soft);
+    color: inherit;
+    text-decoration: none;
 
-    background: rgba(255, 255, 255, 0.02);
-
-    transition:
-        border-color 0.3s ease,
-        background-color 0.3s ease,
-        transform 0.3s ease;
-
-    &:hover {
-        border-color: rgba(255, 166, 0, 0.35);
-        background: rgba(255, 255, 255, 0.035);
-    }
+    transition: transform 0.3s ease;
 }
 
 .articleCard__image {
@@ -210,7 +201,7 @@
 }
 
 .articleCard__content {
-    padding: 18px;
+    padding: 16px 2px 0;
 
     small {
         display: block;

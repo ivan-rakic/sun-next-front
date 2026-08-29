@@ -1,60 +1,46 @@
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 
-import { PODCASTS } from '@/constants';
+import { ContentDetail } from '@/components/templates/content-detail';
+import { getPodcastBySlug, getPodcasts } from '@/lib/content';
 import styles from '@/styles/pages/podcasts.module.scss';
-import stylesRes from '@/styles/reusable.module.scss';
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
-  return PODCASTS.map((podcast) => ({ slug: podcast.slug }));
+  return getPodcasts().map((podcast) => ({ slug: podcast.slug }));
 }
 
 export default async function PodcastDetailPage({ params }: Props) {
   const { slug } = await params;
-  const podcast = PODCASTS.find((p) => p.slug === slug);
+  const podcast = getPodcastBySlug(slug);
 
   if (!podcast) {
     notFound();
   }
 
   return (
-    <main className={`${stylesRes.content_container} ${styles.podcastPage}`}>
-      <nav>
-        <Link href="/podcasts">← Back to Podcasts</Link>
-      </nav>
-
-      <article className={styles.featuredPodcast}>
-        <div>
-          <div
-            className={styles.featuredPodcast__image}
-            style={{ backgroundImage: `url(${podcast.image})` }}
-          />
-
-          <div className={styles.featuredPodcast__content}>
-            <span>{podcast.category}</span>
-            <h1>{podcast.title}</h1>
-
-            <time dateTime={podcast.date}>
-              {podcast.displayDate} · {podcast.duration}
-            </time>
-
-            <p>{podcast.description}</p>
-
-            <iframe
-              title={podcast.title}
-              width="100%"
-              height="120"
-              src={podcast.mixcloudUrl}
-              frameBorder="0"
-              allow="autoplay"
-            />
-          </div>
-        </div>
-      </article>
+    <main className={styles.podcastPage}>
+      <ContentDetail
+        backHref="/podcasts"
+        backLabel="Back to Podcasts"
+        imageSrc={podcast.imageSrc}
+        category={podcast.category}
+        title={podcast.title}
+        date={podcast.date}
+        meta={`${podcast.displayDate} · ${podcast.duration}`}
+        description={podcast.description}
+      >
+        <iframe
+          title={podcast.title}
+          width="100%"
+          height="120"
+          src={podcast.mixcloudUrl}
+          frameBorder="0"
+          allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"
+        />
+      </ContentDetail>
     </main>
   );
 }

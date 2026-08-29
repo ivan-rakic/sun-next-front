@@ -207,7 +207,7 @@ export const StickyPlayer = (): React.ReactElement => {
       .querySelector<HTMLButtonElement>(isMuted ? '.jp-unmute' : '.jp-mute')
       ?.click();
 
-    setIsMuted((prev) => !prev);
+    // isMuted updates via the sunradio-player-state event dispatched by the click above
   };
 
   const handleVolumeClick = (
@@ -246,6 +246,12 @@ export const StickyPlayer = (): React.ReactElement => {
         }`}
     >
       <div className={styles.stickyPlayer__inner}>
+        <div className={styles.stickyPlayer__chevrons} aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+
         <div className={styles.stickyPlayer__controls}>
           <div className={styles.stickyPlayer__roto} />
 

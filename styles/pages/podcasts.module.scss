@@ -1,6 +1,9 @@
 ﻿@use '../responsive/breakpoints' as *;
 .podcastPage {
-  padding: 170px 40px 80px;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 30px var(--content-padding) 80px;
 }
 
 .featuredPodcast {
@@ -233,7 +236,8 @@
 
 @include mobile {
   .podcastPage {
-    padding: 130px 18px 70px;
+    padding-top: 50px;
+    padding-bottom: 70px;
   }
 
   .featuredPodcast__content {

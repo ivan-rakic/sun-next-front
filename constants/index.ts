@@ -531,7 +531,7 @@ export const PODCASTS: PodcastItem[] = [
     duration: "62 min",
     image: "/images/mountains.jpg",
     description: "Radio emisija iz SunRadio arhive. Muzika, razgovor i slobodna akcija u kosmickom ritmu.",
-    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2Fde%C4%8Dije-igre-emisija-4-sunradiors%2F",
+    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2Fde%C4%8Dije-igre-emisija-4-sunradiors%2F",
   },
   {
     id: 2,
@@ -543,7 +543,7 @@ export const PODCASTS: PodcastItem[] = [
     duration: "60 min",
     image: "/images/flowers.jpg",
     description: "Melodican izbor za lagano putovanje kroz suncane frekvencije.",
-    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2F",
+    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2F",
   },
   {
     id: 3,
@@ -555,7 +555,7 @@ export const PODCASTS: PodcastItem[] = [
     duration: "66 min",
     image: "/images/astronaut.jpg",
     description: "Zvukovi orbite, razgovori i selekcija za nocno slusanje.",
-    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2F",
+    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2F",
   },
   {
     id: 4,
@@ -567,7 +567,7 @@ export const PODCASTS: PodcastItem[] = [
     duration: "68 min",
     image: "/images/trees.jpg",
     description: "Melodican deep journey kroz frekvencije kosmosa.",
-    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2F",
+    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2F",
   },
   {
     id: 5,
@@ -579,7 +579,7 @@ export const PODCASTS: PodcastItem[] = [
     duration: "70 min",
     image: "/images/ocean.jpg",
     description: "Afro house putovanje kroz galaksiju zvukova sa Ariom.",
-    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsunradiosan%2F",
+    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2F",
   },
 ];
 export const slides = [

@@ -34,7 +34,7 @@
 }
 
 .stickyPlayer__inner {
-    height: 58px;
+    height: 74px;
 
     display: flex;
     align-items: center;
@@ -84,7 +84,7 @@
         inset: 0;
 
         background:
-            radial-gradient(circle at 30% 50%,
+            radial-gradient(circle at 80% 50%,
                 rgba(255, 166, 0, 0.18),
                 transparent 60%);
 
@@ -97,12 +97,12 @@
     }
 
     @include mobile {
-        height: 54px;
+        height: 64px;
         padding: 0 12px;
     }
 
     @include xs {
-        height: 50px;
+        height: 58px;
         padding: 0 8px;
         border-radius: 10px;
     }
@@ -119,16 +119,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
 
-    &::before {
-        content: "";
+// same chevron shape as the play button accent, repeated 3x: tapering width + fading opacity
+// absolutely positioned behind the play button and artwork/thumb, fits the bar's full vertical height
+.stickyPlayer__chevrons {
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    z-index: 0;
 
-        position: absolute;
-        top: 50%;
-        z-index: -1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-        width: 80px;
-        height: 60px;
+    transform: translateY(-50%) scaleX(-1);
+    pointer-events: none;
+
+    span {
+        flex-shrink: 0;
+        height: 74px;
 
         background: linear-gradient(to right,
                 rgba(234, 0, 58, 0.82) 0%,
@@ -142,18 +152,62 @@
                 25% 0%);
 
         filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.85));
-
-        transform: translateY(-50%);
-        pointer-events: none;
-        opacity: 0.6;
     }
 
-    &::before {
-        left: -20px;
-        transform: translateY(-50%) scaleX(-1);
+    span:nth-child(1) {
+        width: 46px;
+        opacity: 0.11;
     }
 
+    span:nth-child(2) {
+        width: 46px;
+        opacity: 0.2;
+    }
 
+    span:nth-child(3) {
+        width: 46px;
+        opacity: 0.4;
+    }
+
+    @include mobile {
+        left: -4px;
+
+        span {
+            height: 64px;
+        }
+
+        span:nth-child(1) {
+            width: 34px;
+        }
+
+        span:nth-child(2) {
+            width: 34px;
+        }
+
+        span:nth-child(3) {
+            width: 34px;
+        }
+    }
+
+    @include xs {
+        left: -12px;
+
+        span {
+            height: 58px;
+        }
+
+        span:nth-child(1) {
+            width: 24px;
+        }
+
+        span:nth-child(2) {
+            width: 24px;
+        }
+
+        span:nth-child(3) {
+            width: 24px;
+        }
+    }
 }
 
 .stickyPlayer__playButton,
@@ -299,7 +353,7 @@
     color: #fff;
 
     @include mobile {
-        display: none;
+        margin-right: 8px;
     }
 }
 
@@ -332,6 +386,10 @@
     background: rgba(255, 255, 255, 0.28);
 
     box-shadow: 0 2px 6px rgba(43, 16, 33, 0.28);
+
+    @include mobile {
+        display: none;
+    }
 }
 
 .stickyPlayer__volumeBarValue {
@@ -373,10 +431,10 @@
     margin-left: 6px;
 
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.52);
+    border: 1px solid rgba(255, 166, 0, 0.45);
 
-    background: rgba(255, 255, 255, 0.18);
-    color: #fff;
+    background: rgba(255, 166, 0, 0.1);
+    color: orange;
 
     font-size: var(--t-xs);
     font-weight: 800;
@@ -389,4 +447,23 @@
     box-shadow:
         0 3px 10px rgba(43, 16, 33, 0.22),
         inset 0 0 12px rgba(255, 255, 255, 0.08);
+
+    animation: stickyLivePulse 2s ease-in-out infinite;
+}
+
+@keyframes stickyLivePulse {
+    0%,
+    100% {
+        box-shadow:
+            0 3px 10px rgba(43, 16, 33, 0.22),
+            inset 0 0 12px rgba(255, 255, 255, 0.08),
+            0 0 0 rgba(255, 166, 0, 0);
+    }
+
+    50% {
+        box-shadow:
+            0 3px 10px rgba(43, 16, 33, 0.22),
+            inset 0 0 12px rgba(255, 255, 255, 0.08),
+            0 0 9px rgba(255, 166, 0, 0.55);
+    }
 }

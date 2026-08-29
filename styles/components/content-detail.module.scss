@@ -1,0 +1,133 @@
+@use '../responsive/breakpoints' as *;
+
+.contentDetail {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.contentDetail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-bottom: 28px;
+
+  color: rgba(255, 255, 255, 0.6);
+  font-size: var(--t-sm);
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: orange;
+  }
+}
+
+.contentDetail__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 48px;
+}
+
+.contentDetail__content {
+  display: flex;
+  flex-direction: column;
+
+  > iframe {
+    width: 100%;
+    margin-top: 22px;
+
+    border-radius: 12px;
+  }
+}
+
+.contentDetail__title {
+  color: #fff;
+  font-size: var(--t-4xl);
+  font-weight: 600;
+  line-height: 1.08;
+}
+
+.contentDetail__meta {
+  margin-top: 14px;
+
+  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--t-sm);
+  letter-spacing: 0.04em;
+}
+
+.contentDetail__description {
+  margin-top: 22px;
+
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--t-base);
+  line-height: 1.6;
+}
+
+.contentDetail__body {
+  margin-top: 16px;
+
+  color: rgba(255, 255, 255, 0.68);
+  font-size: var(--t-base);
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.contentDetail__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-top: 32px;
+  padding-top: 22px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contentDetail__tag {
+  padding: 6px 14px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(255, 166, 0, 0.4);
+
+  color: orange;
+  font-size: var(--t-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contentDetail__image {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 1 / 1.02;
+
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background-position: center;
+  background-size: cover;
+
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+
+  overflow: hidden;
+}
+
+@include tablet {
+  .contentDetail__grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .contentDetail__image {
+    aspect-ratio: 16 / 10;
+    order: -1;
+  }
+}
+
+@include mobile {
+  .contentDetail__title {
+    font-size: var(--t-3xl);
+  }
+}

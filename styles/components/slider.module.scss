@@ -52,6 +52,39 @@
   visibility: visible;
 }
 
+// pagination dots, styled to match the podcast/article rail scrollbar accent
+.sliderContent :global(.swiper-pagination) {
+  position: static;
+
+  margin-top: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.sliderContent :global(.swiper-pagination-bullet) {
+  width: 6px;
+  height: 6px;
+  margin: 0;
+
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+
+  opacity: 1;
+
+  transition:
+    width 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.sliderContent :global(.swiper-pagination-bullet-active) {
+  width: 22px;
+
+  background: rgba(255, 166, 0, 0.85);
+}
+
 .sliderCard,
 .sliderCard__link,
 .sliderCard__image {

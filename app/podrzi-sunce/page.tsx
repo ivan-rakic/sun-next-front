@@ -1,39 +1,26 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
+import { PageHeader } from '@/components/page-header';
 import styles from '@/styles/pages/donate.module.scss';
-
-import img2 from '../../public/images/beach.jpg';
 
 export default function Donate(): React.ReactElement {
   return (
     <main className={styles.donatePage}>
-      <section className={styles.donateHero}>
-        <div className={styles.donateHero__image}>
-          <Image src={img2} alt="Podržite Sunce" fill priority />
-        </div>
+      <PageHeader
+        eyebrow="Support SunRadio"
+        title="Zašto da podržite Sunce?"
+        description="Sun Radio je slobodna internet radio stanica čija je misija stvaranje otvorenih formi umetničke, obrazovne i radosne prirode."
+      />
 
-        <div className={styles.donateHero__content}>
-          <span>Support SunRadio</span>
+      <div className={styles.donateActions}>
+        <Link href="https://www.paypal.com/paypalme/sunradiors" target="_blank">
+          PayPal
+        </Link>
 
-          <h1>Zašto da podržite Sunce?</h1>
-
-          <p>
-            Sun Radio je slobodna internet radio stanica čija je misija
-            stvaranje otvorenih formi umetničke, obrazovne i radosne prirode.
-          </p>
-
-          <div className={styles.donateHero__actions}>
-            <Link href="https://www.paypal.com/paypalme/sunradiors" target="_blank">
-              PayPal
-            </Link>
-
-            <Link href="https://www.patreon.com/sunradio" target="_blank">
-              Patreon
-            </Link>
-          </div>
-        </div>
-      </section>
+        <Link href="https://www.patreon.com/sunradio" target="_blank">
+          Patreon
+        </Link>
+      </div>
 
       <section className={styles.donateContent}>
         <article className={styles.donateContent__main}>

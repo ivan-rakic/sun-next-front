@@ -7,12 +7,12 @@
   width: 100%;
   max-width: var(--content-max-width);
 
-  margin: 80px auto 0;
+  margin: 120px auto 0;
   padding: 0 var(--content-padding);
 }
 
 .sectionHeader {
-  margin-bottom: 32px;
+  margin-bottom: 48px;
   text-align: center;
 
   h2 {
@@ -39,7 +39,7 @@
   width: 100%;
   max-width: var(--content-max-width);
 
-  margin: 40px auto 0;
+  margin: 100px auto 0;
   padding: 0 var(--content-padding);
 
   &__header {
@@ -47,7 +47,7 @@
     justify-content: space-between;
     align-items: flex-end;
 
-    margin-bottom: 26px;
+    margin-bottom: 40px;
 
     h2 {
       color: #fff;

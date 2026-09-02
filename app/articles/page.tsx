@@ -1,10 +1,16 @@
-import { PageHeader } from '@/components/page-header';
-import { ContentCard } from '@/components/templates/content-card';
-import { getArticles } from '@/lib/content';
-import styles from '@/styles/pages/podcasts.module.scss';
-import cardStyles from '@/styles/components/podcasts-articles.module.scss';
+import { PageHeader } from "@/components/page-header";
+import { ContentCard } from "@/components/templates/content-card";
+import { getArticles } from "@/lib/content";
+import { formatDate } from "@/lib/i18n/date";
+import { getDictionary } from "@/lib/i18n/get-dictionary";
+import { getRequestLocale } from "@/lib/i18n/locale";
+import { localizedPath } from "@/lib/i18n/paths";
+import styles from "@/styles/pages/podcasts.module.scss";
+import cardStyles from "@/styles/components/podcasts-articles.module.scss";
 
-export default function ArticlesPage() {
+export default async function ArticlesPage() {
+  const locale = await getRequestLocale();
+  const dictionary = getDictionary(locale);
   const articles = getArticles();
 
   return (
@@ -25,13 +31,14 @@ export default function ArticlesPage() {
           {articles.map((article) => (
             <ContentCard
               key={article.slug}
-              href={article.href}
+              href={localizedPath(locale, article.href)}
               imageSrc={article.imageSrc}
               imageAlt={article.imageAlt}
               category={article.category}
               title={article.title}
               description={article.description}
-              meta={article.displayDate}
+              meta={formatDate(article.date, locale)}
+              readMoreLabel={dictionary.ui.readMore}
             />
           ))}
         </div>

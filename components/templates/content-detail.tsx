@@ -1,7 +1,10 @@
-import type { ReactNode } from 'react';
-import Link from 'next/link';
+import type { ReactNode } from "react";
+import Link from "next/link";
 
-import styles from '@/styles/components/content-detail.module.scss';
+import { ContentRenderer } from "@/components/content/content-renderer";
+import type { FrontendDictionary } from "@/lib/i18n/dictionaries";
+import styles from "@/styles/components/content-detail.module.scss";
+import type { ContentBlock } from "@/types/content-blocks";
 
 type ContentDetailProps = {
   backHref: string;
@@ -13,6 +16,8 @@ type ContentDetailProps = {
   meta: string;
   description: string;
   bodyContent?: string;
+  blocks?: ContentBlock[];
+  contentDictionary?: FrontendDictionary["content"];
   children?: ReactNode;
 };
 
@@ -26,6 +31,8 @@ export const ContentDetail = ({
   meta,
   description,
   bodyContent,
+  blocks,
+  contentDictionary,
   children,
 }: ContentDetailProps): React.ReactElement => {
   return (
@@ -46,7 +53,9 @@ export const ContentDetail = ({
 
           <p className={styles.contentDetail__description}>{description}</p>
 
-          {bodyContent ? (
+          {blocks && contentDictionary ? (
+            <ContentRenderer blocks={blocks} dictionary={contentDictionary} />
+          ) : bodyContent ? (
             <div className={styles.contentDetail__body}>{bodyContent}</div>
           ) : null}
 
@@ -63,4 +72,3 @@ export const ContentDetail = ({
     </div>
   );
 };
-

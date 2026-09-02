@@ -1,4 +1,4 @@
-﻿@use '../responsive/breakpoints' as *;
+﻿@use "../responsive/breakpoints" as *;
 .header {
   position: absolute;
   top: 0;
@@ -106,9 +106,11 @@
         border-radius: 50%;
 
         background-image:
-          radial-gradient(ellipse at center,
+          radial-gradient(
+            ellipse at center,
             rgba(227, 208, 41, 0.25) 0%,
-            rgba(0, 0, 0, 0.01) 100%),
+            rgba(0, 0, 0, 0.01) 100%
+          ),
           url("/images/roto-star.png");
 
         background-blend-mode: color-dodge;
@@ -161,7 +163,6 @@
 }
 
 @include mobile {
-
   .header_main__navigation,
   .header_main__socials {
     display: none;
@@ -336,7 +337,6 @@
 }
 
 .headerActions__player {
-
   padding: 0 8px;
 
   border-radius: 999px;
@@ -363,9 +363,11 @@
 
   border-radius: 999px;
 
-  background: linear-gradient(135deg,
-      rgba(255, 130, 12, 1),
-      rgba(255, 199, 14, 1));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 130, 12, 1),
+    rgba(255, 199, 14, 1)
+  );
 
   color: #111;
   font-size: var(--t-xs);
@@ -389,6 +391,24 @@
 .socialLinks__nav {
   display: flex;
   gap: 8px;
+}
+
+.languageSwitcher {
+  display: flex;
+  gap: 6px;
+  margin-left: 12px;
+
+  a {
+    color: #fff;
+    font-size: var(--t-xs);
+    font-weight: 600;
+    text-decoration: none;
+    text-shadow: 0 0 3px #000;
+
+    &[aria-current="true"] {
+      color: orange;
+    }
+  }
 }
 
 .socialLinks__link {

@@ -1,8 +1,12 @@
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
 
-import { ContentDetail } from '@/components/templates/content-detail';
-import { getPodcastBySlug, getPodcasts } from '@/lib/content';
-import styles from '@/styles/pages/podcasts.module.scss';
+import { ContentDetail } from "@/components/templates/content-detail";
+import { getPodcastBySlug, getPodcasts } from "@/lib/content";
+import { formatDate } from "@/lib/i18n/date";
+import { getDictionary } from "@/lib/i18n/get-dictionary";
+import { getRequestLocale } from "@/lib/i18n/locale";
+import { localizedPath } from "@/lib/i18n/paths";
+import styles from "@/styles/pages/podcasts.module.scss";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -14,6 +18,8 @@ export async function generateStaticParams() {
 
 export default async function PodcastDetailPage({ params }: Props) {
   const { slug } = await params;
+  const locale = await getRequestLocale();
+  const dictionary = getDictionary(locale);
   const podcast = getPodcastBySlug(slug);
 
   if (!podcast) {
@@ -23,13 +29,13 @@ export default async function PodcastDetailPage({ params }: Props) {
   return (
     <main className={styles.podcastPage}>
       <ContentDetail
-        backHref="/podcasts"
-        backLabel="Back to Podcasts"
+        backHref={localizedPath(locale, "/podcasts")}
+        backLabel={`${dictionary.ui.backTo} ${dictionary.navigation.podcasts}`}
         imageSrc={podcast.imageSrc}
         category={podcast.category}
         title={podcast.title}
         date={podcast.date}
-        meta={`${podcast.displayDate} · ${podcast.duration}`}
+        meta={`${formatDate(podcast.date, locale)} · ${podcast.duration}`}
         description={podcast.description}
       >
         <iframe

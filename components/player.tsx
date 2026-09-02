@@ -7,7 +7,8 @@ import {
   RiVolumeMuteLine,
 } from "react-icons/ri";
 import { PlayerButton } from "@/components/player-button";
-import styles from '../styles/player/player.module.scss';
+import styles from "../styles/player/player.module.scss";
+import type { FrontendDictionary } from "@/lib/i18n/dictionaries";
 
 type NowPlayingResponse = {
   artist?: string;
@@ -41,7 +42,9 @@ const formatDuration = (value?: string): string => {
   return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
 };
 
-export default function Player() {
+type PlayerProps = { dictionary: FrontendDictionary["player"] };
+
+export default function Player({ dictionary }: PlayerProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const trackInfoRef = useRef<HTMLParagraphElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -69,7 +72,9 @@ export default function Player() {
         const title = data.title?.trim();
 
         const nextTrackInfo =
-          artist || title ? `${artist || "SunRadio"} - "${title || "Live"}"` : "SunRadio Live";
+          artist || title
+            ? `${artist || "SunRadio"} - "${title || "Live"}"`
+            : "SunRadio Live";
         const nextDuration = formatDuration(data.duration);
 
         setTrackInfo(nextTrackInfo);
@@ -136,7 +141,10 @@ export default function Player() {
 
     setVolume(Math.round(nextVolume * 100));
     setIsMuted(false);
-    dispatchPlayerState({ volume: Math.round(nextVolume * 100), isMuted: false });
+    dispatchPlayerState({
+      volume: Math.round(nextVolume * 100),
+      isMuted: false,
+    });
   };
 
   return (
@@ -152,7 +160,7 @@ export default function Player() {
 
         <div className={styles.controls}>
           <PlayerButton
-            title="Play"
+            title={dictionary.play}
             isHidden={isPlaying}
             className="jp-play"
             onClick={handlePlay}
@@ -161,7 +169,7 @@ export default function Player() {
           </PlayerButton>
 
           <PlayerButton
-            title="Pause"
+            title={dictionary.pause}
             isHidden={!isPlaying}
             className="jp-pause"
             onClick={handlePause}
@@ -172,7 +180,7 @@ export default function Player() {
         <div id="rj-player">
           <div className="rj-info">
             <div className="rjp-trackinfo-container">
-              <h4 className="rjp-label">Now playing:</h4>
+              <h4 className="rjp-label">{dictionary.nowPlaying}:</h4>
               <p ref={trackInfoRef} id="trackInfo" className="rjp-info">
                 {trackInfo}
               </p>
@@ -184,7 +192,7 @@ export default function Player() {
                   <div className="jp-controls">
                     <PlayerButton
                       className="jp-mute block"
-                      title="Mute"
+                      title={dictionary.mute}
                       isHidden={isMuted}
                       onClick={handleMute}
                     >
@@ -192,14 +200,17 @@ export default function Player() {
                     </PlayerButton>
                     <PlayerButton
                       className="jp-unmute block"
-                      title="Unmute"
+                      title={dictionary.unmute}
                       isHidden={!isMuted}
                       onClick={handleMute}
                     >
                       <RiVolumeMuteLine />
                     </PlayerButton>
                     <div className="jp-volume-bar-wrapper">
-                      <div className="jp-volume-bar" onClick={handleVolumeClick}>
+                      <div
+                        className="jp-volume-bar"
+                        onClick={handleVolumeClick}
+                      >
                         <div
                           className="jp-volume-bar-value"
                           style={{ width: `${volume}%` }}

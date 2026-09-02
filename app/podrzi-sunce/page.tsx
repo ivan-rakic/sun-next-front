@@ -1,9 +1,20 @@
 import Link from 'next/link';
 
 import { PageHeader } from '@/components/page-header';
+import { ContentRenderer } from '@/components/content/content-renderer';
+import { getDictionary } from '@/lib/i18n/get-dictionary';
+import { getRequestLocale } from '@/lib/i18n/locale';
 import styles from '@/styles/pages/donate.module.scss';
+import type { ContentBlock } from '@/types/content-blocks';
 
-export default function Donate(): React.ReactElement {
+type DonateProps = {
+  blocks?: ContentBlock[];
+};
+
+export default async function Donate({ blocks }: DonateProps): Promise<React.ReactElement> {
+  const locale = await getRequestLocale();
+  const dictionary = getDictionary(locale);
+
   return (
     <main className={styles.donatePage}>
       <PageHeader
@@ -21,6 +32,8 @@ export default function Donate(): React.ReactElement {
           Patreon
         </Link>
       </div>
+
+      {blocks ? <ContentRenderer blocks={blocks} dictionary={dictionary.content} /> : null}
 
       <section className={styles.donateContent}>
         <article className={styles.donateContent__main}>

@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import styles from '@/styles/pages/layout.module.scss';
+import styles from "@/styles/pages/layout.module.scss";
+import type { FrontendDictionary } from "@/lib/i18n/dictionaries";
 
 type RecentTrack = {
   artist: string;
@@ -20,17 +21,11 @@ type LiveLocationsResponse = {
   locations: LiveLocation[];
 };
 
-const FALLBACK_ITEMS = [
-  'SUN RADIO',
-  'Deep House',
-  'Cosmic Sounds',
-  'Podcasts',
-  'Articles',
-  'Live Shows',
-  'Community',
-];
+type TopVisualTickerProps = { dictionary: FrontendDictionary["ticker"] };
 
-export const TopVisualTicker = (): React.ReactElement => {
+export const TopVisualTicker = ({
+  dictionary,
+}: TopVisualTickerProps): React.ReactElement => {
   const [recentTracks, setRecentTracks] = useState<string[]>([]);
   const [liveLocations, setLiveLocations] = useState<string[]>([]);
   const [totalListeners, setTotalListeners] = useState(0);
@@ -38,8 +33,8 @@ export const TopVisualTicker = (): React.ReactElement => {
   useEffect(() => {
     const fetchRecentTracks = async (): Promise<void> => {
       try {
-        const response = await fetch('/api/radio/recent-tracks', {
-          cache: 'no-store',
+        const response = await fetch("/api/radio/recent-tracks", {
+          cache: "no-store",
         });
 
         if (!response.ok) return;
@@ -65,8 +60,8 @@ export const TopVisualTicker = (): React.ReactElement => {
   useEffect(() => {
     const fetchLiveLocations = async (): Promise<void> => {
       try {
-        const response = await fetch('/api/radio/live-locations', {
-          cache: 'no-store',
+        const response = await fetch("/api/radio/live-locations", {
+          cache: "no-store",
         });
 
         if (!response.ok) return;
@@ -98,11 +93,11 @@ export const TopVisualTicker = (): React.ReactElement => {
   }, []);
 
   const recentTracksText = recentTracks.length
-    ? `Recently played • ${recentTracks.join(' • ')}`
-    : FALLBACK_ITEMS.join(' • ');
+    ? `${dictionary.recentlyPlayed} • ${recentTracks.join(" • ")}`
+    : dictionary.fallbackItems.join(" • ");
   const liveLocationsText = liveLocations.length
-    ? `Live locations • ${totalListeners} listeners • ${liveLocations.join(' • ')}`
-    : 'Live locations • waiting for listeners';
+    ? `${dictionary.liveLocations} • ${totalListeners} ${dictionary.listeners} • ${liveLocations.join(" • ")}`
+    : `${dictionary.liveLocations} • ${dictionary.waitingForListeners}`;
 
   return (
     <div className={styles.topVisual__ticker}>

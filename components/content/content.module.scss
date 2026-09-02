@@ -1,0 +1,220 @@
+@use "../../styles/responsive/breakpoints" as *;
+
+.richText,
+.image,
+.gallery,
+.quote,
+.lyrics,
+.embed,
+.ctaSection {
+  margin-top: 28px;
+}
+.richText {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--t-base);
+  line-height: 1.7;
+  > * + * {
+    margin-top: 18px;
+  }
+  h2,
+  h3,
+  h4 {
+    color: #fff;
+    line-height: 1.2;
+  }
+  a {
+    color: orange;
+    text-decoration: underline;
+  }
+  ul,
+  ol {
+    padding-left: 22px;
+  }
+  code {
+    padding: 2px 5px;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.9em;
+  }
+  pre {
+    overflow-x: auto;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.28);
+  }
+}
+.image {
+  margin-inline: 0;
+}
+.image img,
+.gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.image_default {
+  max-width: 760px;
+}
+.image_wide {
+  max-width: 1080px;
+}
+.image_full {
+  width: 100%;
+}
+.image figcaption,
+.gallery figcaption {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--t-sm);
+  line-height: 1.5;
+}
+.gallery {
+  margin-inline: 0;
+}
+.gallery_grid > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.gallery_masonry > div {
+  columns: 2;
+  column-gap: 14px;
+}
+.gallery_masonry > div > div {
+  break-inside: avoid;
+  margin-bottom: 14px;
+}
+.gallery :global(.swiper-slide) img {
+  aspect-ratio: 16 / 10;
+}
+.galleryControls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+.galleryControls button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+.galleryControls button:hover {
+  border-color: orange;
+  color: orange;
+}
+.quote {
+  margin-inline: 0;
+  padding: 20px 24px;
+  border-left: 3px solid orange;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+}
+.quote p {
+  font-size: var(--t-lg);
+  line-height: 1.5;
+}
+.quote footer {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: var(--t-sm);
+}
+.quote cite::before {
+  content: "- ";
+}
+.lyrics {
+  max-width: 760px;
+  color: rgba(255, 255, 255, 0.78);
+}
+.lyrics h2 {
+  color: #fff;
+  font-size: var(--t-xl);
+}
+.lyrics > div {
+  margin-top: 14px;
+  white-space: pre-wrap;
+  line-height: 1.75;
+}
+.lyricsTranslation {
+  color: rgba(255, 255, 255, 0.54);
+  font-style: italic;
+}
+.lyrics p {
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--t-sm);
+}
+.embed {
+  width: 100%;
+  overflow: hidden;
+  background: #111;
+}
+.embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.embed_audio {
+  aspect-ratio: 5 / 1;
+}
+.embed_16_9 {
+  aspect-ratio: 16 / 9;
+}
+.embed_1_1 {
+  aspect-ratio: 1;
+}
+.embed_4_3 {
+  aspect-ratio: 4 / 3;
+}
+.invalidEmbed {
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.46);
+  font-size: var(--t-sm);
+}
+.ctaSection h2 {
+  color: #fff;
+  font-size: var(--t-xl);
+}
+.ctaSection p {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.6;
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  margin-top: 16px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-size: var(--t-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.cta_primary {
+  background: linear-gradient(135deg, #ff820c, #ffc70e);
+  color: #111;
+}
+.cta_secondary {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+@include mobile {
+  .gallery_grid > div {
+    grid-template-columns: 1fr;
+  }
+  .gallery_masonry > div {
+    columns: 1;
+  }
+  .embed_audio {
+    aspect-ratio: 3 / 1;
+  }
+}

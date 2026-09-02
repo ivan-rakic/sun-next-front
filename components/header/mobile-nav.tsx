@@ -1,24 +1,44 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-import { RiCloseLine, RiMenuLine } from 'react-icons/ri';
+import { RiCloseLine, RiMenuLine } from "react-icons/ri";
 
-import { NavLinks } from '@/components/header/nav-links';
-import { mainLinks, portalLinks } from '@/constants';
+import { NavLinks } from "@/components/header/nav-links";
+import type { Locale } from "@/lib/i18n/config";
+import type { FrontendDictionary } from "@/lib/i18n/dictionaries";
+import { localizedPath } from "@/lib/i18n/paths";
 
-import styles from '@/styles/navigation/mobile-nav.module.scss';
+import styles from "@/styles/navigation/mobile-nav.module.scss";
 
-export const MobileNav = (): React.ReactElement => {
+type MobileNavProps = {
+  locale: Locale;
+  dictionary: FrontendDictionary["navigation"];
+};
+
+export const MobileNav = ({
+  locale,
+  dictionary,
+}: MobileNavProps): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const portalLinks = [
+    { id: "podcasts", href: "/podcasts", label: dictionary.podcasts },
+    { id: "articles", href: "/articles", label: dictionary.articles },
+    { id: "news", href: "/news", label: dictionary.news },
+  ];
+  const mainLinks = [
+    { id: "kosmos-mi", href: "/kosmos-mi", label: dictionary.kosmos },
+    { id: "program", href: "/program", label: dictionary.program },
+    { id: "podrzi-sunce", href: "/podrzi-sunce", label: dictionary.donate },
+  ];
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    document.body.style.overflow = isOpen ? "hidden" : "";
 
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 
@@ -28,10 +48,10 @@ export const MobileNav = (): React.ReactElement => {
     };
 
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -43,24 +63,30 @@ export const MobileNav = (): React.ReactElement => {
     <>
       <button
         type="button"
-        className={`${styles.mobileNav__toggle} ${isScrolled ? styles.mobileNav__toggleScrolled : ''
-          }`}
+        className={`${styles.mobileNav__toggle} ${
+          isScrolled ? styles.mobileNav__toggleScrolled : ""
+        }`}
         onClick={() => setIsOpen((prev) => !prev)}
-        aria-label="Toggle navigation"
+        aria-label={dictionary.toggle}
         aria-expanded={isOpen}
       >
         {isOpen ? <RiCloseLine /> : <RiMenuLine />}
       </button>
 
       <div
-        className={`${styles.mobileNav} ${isOpen ? styles.mobileNavVisible : ''
-          }`}
+        className={`${styles.mobileNav} ${
+          isOpen ? styles.mobileNavVisible : ""
+        }`}
       >
         <nav className={styles.mobileNav__links}>
           <div className={styles.mobileNav__group}>
-            <span>Portal</span>
+            <span>{dictionary.portal}</span>
             {portalLinks.map((link) => (
-              <Link key={link.href} href={link.href} onClick={closeNav}>
+              <Link
+                key={link.href}
+                href={localizedPath(locale, link.href)}
+                onClick={closeNav}
+              >
                 {link.label}
               </Link>
             ))}
@@ -68,7 +94,11 @@ export const MobileNav = (): React.ReactElement => {
 
           <div className={styles.mobileNav__group}>
             {mainLinks.map((link) => (
-              <Link key={link.href} href={link.href} onClick={closeNav}>
+              <Link
+                key={link.href}
+                href={localizedPath(locale, link.href)}
+                onClick={closeNav}
+              >
                 {link.label}
               </Link>
             ))}
@@ -76,7 +106,7 @@ export const MobileNav = (): React.ReactElement => {
         </nav>
 
         <div className={styles.mobileNav__socials}>
-          <NavLinks />
+          <NavLinks locale={locale} dictionary={dictionary} />
         </div>
       </div>
     </>

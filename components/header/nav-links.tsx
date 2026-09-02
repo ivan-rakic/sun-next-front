@@ -2,6 +2,10 @@ import Link from "next/link";
 import { navLinks } from "@/constants";
 import styles from "@/styles/navigation/header.module.scss";
 import { IconType } from "react-icons";
+import type { Locale } from "@/lib/i18n/config";
+import type { FrontendDictionary } from "@/lib/i18n/dictionaries";
+import { localizedPath } from "@/lib/i18n/paths";
+import { LanguageSwitcher } from "@/components/header/language-switcher";
 
 type NavLink = {
   href: string;
@@ -11,17 +15,28 @@ type NavLink = {
   target?: "_blank" | "_self";
 };
 
-export const NavLinks = () => {
+type NavLinksProps = {
+  locale: Locale;
+  dictionary: FrontendDictionary["navigation"];
+};
+
+export const NavLinks = ({ locale, dictionary }: NavLinksProps) => {
   const borderedIcons = ["Mixcloud", "Soundcloud"];
-  
+
   return (
     <div className={styles.socialLinks}>
-      <nav className={styles.socialLinks__nav} aria-label="Social links">
+      <nav
+        className={styles.socialLinks__nav}
+        aria-label={dictionary.socialLinks}
+      >
         {navLinks.map(({ href, title, icon: Icon, color, target }) => (
           <Link
             key={href}
-            className={`${styles.socialLinks__link} ${borderedIcons.includes(title) ? styles.socialLinks__linkBordered : ""
-              }`}
+            className={`${styles.socialLinks__link} ${
+              borderedIcons.includes(title)
+                ? styles.socialLinks__linkBordered
+                : ""
+            }`}
             href={href}
             title={title}
             target={target}
@@ -34,6 +49,8 @@ export const NavLinks = () => {
         ))}
       </nav>
 
+      <LanguageSwitcher locale={locale} label={dictionary.language} />
+
       <div className={styles.headerActions}>
         <Link
           className={styles.headerActions__player}
@@ -41,11 +58,14 @@ export const NavLinks = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Player
+          {dictionary.player}
         </Link>
 
-        <Link className={styles.headerActions__donate} href="/podrzi-sunce">
-          Donate
+        <Link
+          className={styles.headerActions__donate}
+          href={localizedPath(locale, "/podrzi-sunce")}
+        >
+          {dictionary.donate}
         </Link>
       </div>
     </div>

@@ -1,10 +1,16 @@
 import { PageHeader } from "@/components/page-header";
 import { ContentCard } from "@/components/templates/content-card";
 import { getPodcasts } from "@/lib/content";
+import { formatDate } from "@/lib/i18n/date";
+import { getDictionary } from "@/lib/i18n/get-dictionary";
+import { getRequestLocale } from "@/lib/i18n/locale";
+import { localizedPath } from "@/lib/i18n/paths";
 import styles from "@/styles/pages/podcasts.module.scss";
 import cardStyles from "@/styles/components/podcasts-articles.module.scss";
 
-export default function PodcastPage() {
+export default async function PodcastPage() {
+  const locale = await getRequestLocale();
+  const dictionary = getDictionary(locale);
   const podcasts = getPodcasts();
 
   return (
@@ -22,7 +28,7 @@ export default function PodcastPage() {
 
       <section className={styles.podcastListSection}>
         <div className={styles.podcastListSection__header}>
-          <h2>Latest episodes</h2>
+          <h2>{dictionary.home.latestEpisodes}</h2>
           <p>Selected shows and sessions from the SunRadio archive.</p>
         </div>
 
@@ -30,13 +36,14 @@ export default function PodcastPage() {
           {podcasts.map((podcast) => (
             <ContentCard
               key={podcast.slug}
-              href={`/podcasts/${podcast.slug}`}
+              href={localizedPath(locale, `/podcasts/${podcast.slug}`)}
               imageSrc={podcast.imageSrc}
               imageAlt={podcast.imageAlt}
               category={podcast.category}
               title={podcast.title}
               description={podcast.description}
-              meta={`${podcast.displayDate} · ${podcast.duration}`}
+              meta={`${formatDate(podcast.date, locale)} · ${podcast.duration}`}
+              readMoreLabel={dictionary.ui.readMore}
             />
           ))}
         </div>

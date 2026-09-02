@@ -1,15 +1,16 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   RiPauseCircleLine,
   RiPlayCircleLine,
   RiVolumeMuteLine,
   RiVolumeUpLine,
-} from 'react-icons/ri';
+} from "react-icons/ri";
 
-import styles from '@/styles/player/sticky-player.module.scss';
-import Image from 'next/image';
+import styles from "@/styles/player/sticky-player.module.scss";
+import Image from "next/image";
+import type { FrontendDictionary } from "@/lib/i18n/dictionaries";
 
 type PlayerStateEvent = CustomEvent<{
   isPlaying?: boolean;
@@ -20,28 +21,32 @@ type PlayerStateEvent = CustomEvent<{
   volume?: number;
 }>;
 
-export const StickyPlayer = (): React.ReactElement => {
-  const FALLBACK_ARTWORK = '/images/speakers-back.png';
+type StickyPlayerProps = { dictionary: FrontendDictionary["player"] };
+
+export const StickyPlayer = ({
+  dictionary,
+}: StickyPlayerProps): React.ReactElement => {
+  const FALLBACK_ARTWORK = "/images/speakers-back.png";
   const [isVisible, setIsVisible] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [trackInfo, setTrackInfo] = useState('SunRadio Live');
+  const [trackInfo, setTrackInfo] = useState("SunRadio Live");
   const [volume, setVolume] = useState(70);
   const [radiojarArtwork, setRadiojarArtwork] = useState<string | null>(null);
 
   const [currentArtwork, setCurrentArtwork] = useState(FALLBACK_ARTWORK);
 
-  const [artist, songName] = trackInfo.includes(' - ')
-    ? trackInfo.split(' - ', 2).map((item) => item.trim())
-    : ['', trackInfo.trim()];
+  const [artist, songName] = trackInfo.includes(" - ")
+    ? trackInfo.split(" - ", 2).map((item) => item.trim())
+    : ["", trackInfo.trim()];
 
   const formatTrackInfo = (value: string): string => {
     return value
       .trim()
-      .replace(/^Unknown\s*-\s*/i, '')
+      .replace(/^Unknown\s*-\s*/i, "")
       .replace(/\.mp3"?$/i, '"')
-      .replace(/^\d+[_\-\s.]*/, '')
-      .replace(/_/g, ' ')
+      .replace(/^\d+[_\-\s.]*/, "")
+      .replace(/_/g, " ")
       .trim();
   };
 
@@ -52,29 +57,32 @@ export const StickyPlayer = (): React.ReactElement => {
       setIsVisible(window.scrollY > 300);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   useEffect(() => {
     const handlePlayerState = (event: Event): void => {
-      const { artwork, isPlaying, isMuted, trackInfo, volume } = (event as PlayerStateEvent).detail;
+      const { artwork, isPlaying, isMuted, trackInfo, volume } = (
+        event as PlayerStateEvent
+      ).detail;
 
-      if (typeof artwork === 'string') setRadiojarArtwork(artwork || null);
-      if (typeof isPlaying === 'boolean') setIsPlaying(isPlaying);
-      if (typeof isMuted === 'boolean') setIsMuted(isMuted);
-      if (typeof trackInfo === 'string') setTrackInfo(formatTrackInfo(trackInfo));
-      if (typeof volume === 'number') setVolume(volume);
+      if (typeof artwork === "string") setRadiojarArtwork(artwork || null);
+      if (typeof isPlaying === "boolean") setIsPlaying(isPlaying);
+      if (typeof isMuted === "boolean") setIsMuted(isMuted);
+      if (typeof trackInfo === "string")
+        setTrackInfo(formatTrackInfo(trackInfo));
+      if (typeof volume === "number") setVolume(volume);
     };
 
-    window.addEventListener('sunradio-player-state', handlePlayerState);
+    window.addEventListener("sunradio-player-state", handlePlayerState);
 
     return () => {
-      window.removeEventListener('sunradio-player-state', handlePlayerState);
+      window.removeEventListener("sunradio-player-state", handlePlayerState);
     };
   }, []);
 
@@ -109,7 +117,7 @@ export const StickyPlayer = (): React.ReactElement => {
           return;
         }
 
-        setCurrentArtwork(artworkUrl.replace('100x100bb', '600x600bb'));
+        setCurrentArtwork(artworkUrl.replace("100x100bb", "600x600bb"));
       } catch {
         if (!controller.signal.aborted) {
           setCurrentArtwork(FALLBACK_ARTWORK);
@@ -125,7 +133,7 @@ export const StickyPlayer = (): React.ReactElement => {
   }, [artist, songName, radiojarArtwork]);
 
   useEffect(() => {
-    const trackInfoElement = document.querySelector('#trackInfo');
+    const trackInfoElement = document.querySelector("#trackInfo");
 
     if (!trackInfoElement) return;
 
@@ -153,68 +161,66 @@ export const StickyPlayer = (): React.ReactElement => {
   }, []);
 
   useEffect(() => {
-    if (!('mediaSession' in navigator)) return;
+    if (!("mediaSession" in navigator)) return;
 
     navigator.mediaSession.metadata = new MediaMetadata({
       title: songName || trackInfo,
-      artist: artist || 'SunRadio',
-      album: 'SunRadio Live',
+      artist: artist || "SunRadio",
+      album: "SunRadio Live",
       artwork: [
         {
           src: currentArtwork,
-          sizes: '512x512',
-          type: 'image/png',
+          sizes: "512x512",
+          type: "image/png",
         },
       ],
     });
   }, [artist, songName, trackInfo, currentArtwork]);
 
   useEffect(() => {
-    if (!('mediaSession' in navigator)) return;
+    if (!("mediaSession" in navigator)) return;
 
     navigator.mediaSession.metadata = new MediaMetadata({
       title: songName || trackInfo,
-      artist: artist || 'SunRadio',
-      album: 'SunRadio Live',
+      artist: artist || "SunRadio",
+      album: "SunRadio Live",
       artwork: [
         {
           src: currentArtwork,
-          sizes: '512x512',
-          type: 'image/png',
+          sizes: "512x512",
+          type: "image/png",
         },
       ],
     });
 
-    navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
+    navigator.mediaSession.playbackState = isPlaying ? "playing" : "paused";
 
-    navigator.mediaSession.setActionHandler('play', handlePlay);
-    navigator.mediaSession.setActionHandler('pause', handlePause);
+    navigator.mediaSession.setActionHandler("play", handlePlay);
+    navigator.mediaSession.setActionHandler("pause", handlePause);
   }, [artist, songName, trackInfo, currentArtwork, isPlaying]);
 
-
   const handlePlay = (): void => {
-    document.querySelector<HTMLButtonElement>('.jp-play')?.click();
+    document.querySelector<HTMLButtonElement>(".jp-play")?.click();
     setIsPlaying(true);
   };
 
   const handlePause = (): void => {
-    document.querySelector<HTMLButtonElement>('.jp-pause')?.click();
+    document.querySelector<HTMLButtonElement>(".jp-pause")?.click();
     setIsPlaying(false);
   };
 
   const handleMute = (): void => {
     document
-      .querySelector<HTMLButtonElement>(isMuted ? '.jp-unmute' : '.jp-mute')
+      .querySelector<HTMLButtonElement>(isMuted ? ".jp-unmute" : ".jp-mute")
       ?.click();
 
     // isMuted updates via the sunradio-player-state event dispatched by the click above
   };
 
-  const handleVolumeClick = (
-    event: React.MouseEvent<HTMLDivElement>,
-  ): void => {
-    const realVolumeBar =
-      document.querySelector<HTMLElement>('#rj-player .jp-volume-bar');
+  const handleVolumeClick = (event: React.MouseEvent<HTMLDivElement>): void => {
+    const realVolumeBar = document.querySelector<HTMLElement>(
+      "#rj-player .jp-volume-bar",
+    );
 
     if (!realVolumeBar) return;
 
@@ -228,7 +234,7 @@ export const StickyPlayer = (): React.ReactElement => {
     const realRect = realVolumeBar.getBoundingClientRect();
 
     realVolumeBar.dispatchEvent(
-      new MouseEvent('click', {
+      new MouseEvent("click", {
         bubbles: true,
         cancelable: true,
         view: window,
@@ -242,8 +248,9 @@ export const StickyPlayer = (): React.ReactElement => {
 
   return (
     <div
-      className={`${styles.stickyPlayer} ${isVisible ? styles.stickyPlayerVisible : ''
-        }`}
+      className={`${styles.stickyPlayer} ${
+        isVisible ? styles.stickyPlayerVisible : ""
+      }`}
     >
       <div className={styles.stickyPlayer__inner}>
         <div className={styles.stickyPlayer__chevrons} aria-hidden="true">
@@ -257,7 +264,7 @@ export const StickyPlayer = (): React.ReactElement => {
 
           <button
             type="button"
-            title={isPlaying ? 'Pause' : 'Play'}
+            title={isPlaying ? dictionary.pause : dictionary.play}
             className={styles.stickyPlayer__playButton}
             onClick={isPlaying ? handlePause : handlePlay}
           >
@@ -268,7 +275,7 @@ export const StickyPlayer = (): React.ReactElement => {
         <div className={styles.stickyPlayer__artwork}>
           <Image
             src={currentArtwork}
-            alt="Now playing"
+            alt={dictionary.artworkAlt}
             width={52}
             height={52}
             unoptimized
@@ -276,14 +283,14 @@ export const StickyPlayer = (): React.ReactElement => {
         </div>
 
         <div className={styles.stickyPlayer__track}>
-          <span>NOW PLAYING</span>
+          <span>{dictionary.nowPlaying}</span>
           <p>{trackInfo}</p>
         </div>
 
         <div className={styles.stickyPlayer__volume}>
           <button
             type="button"
-            title={isMuted ? 'Unmute' : 'Mute'}
+            title={isMuted ? dictionary.unmute : dictionary.mute}
             className={styles.stickyPlayer__soundButton}
             onClick={handleMute}
           >
@@ -293,7 +300,7 @@ export const StickyPlayer = (): React.ReactElement => {
           <div
             role="slider"
             tabIndex={0}
-            aria-label="Volume"
+            aria-label={dictionary.volume}
             aria-valuemin={0}
             aria-valuemax={100}
             aria-valuenow={volume}
@@ -307,7 +314,7 @@ export const StickyPlayer = (): React.ReactElement => {
           </div>
         </div>
 
-        <div className={styles.stickyPlayer__live}>LIVE</div>
+        <div className={styles.stickyPlayer__live}>{dictionary.live}</div>
       </div>
     </div>
   );

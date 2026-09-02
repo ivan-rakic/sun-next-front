@@ -1,14 +1,15 @@
-import styles from '../styles/components/footer.module.scss';
+import styles from "../styles/components/footer.module.scss";
 
-import {
-  ABOUT_CONTENT,
-  CONTACT_CONTENT,
-  NETWORKS_CONTENT,
-} from '@/constants';
+import { ABOUT_CONTENT, CONTACT_CONTENT, NETWORKS_CONTENT } from "@/constants";
 
-import { FooterSection } from '@/components/footer-section';
+import { FooterSection } from "@/components/footer-section";
+import type { FrontendDictionary } from "@/lib/i18n/dictionaries";
 
-export default function Footer(): React.ReactElement {
+type FooterProps = { dictionary: FrontendDictionary["footer"] };
+
+export default function Footer({
+  dictionary,
+}: FooterProps): React.ReactElement {
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__bannerLeft} />
@@ -19,32 +20,32 @@ export default function Footer(): React.ReactElement {
       <div className={styles.footer__content}>
         <div className={styles.footer__grid}>
           <FooterSection
-            title="ABOUT"
+            title={dictionary.about}
             content={ABOUT_CONTENT}
             style={styles.footer__about}
           />
 
           <FooterSection
-            title="CONTACT"
+            title={dictionary.contact}
             content={CONTACT_CONTENT}
             style={styles.footer__contact}
           />
 
           <FooterSection
-            title="TUNE IN"
-            content="24/7 streaming across all major platforms."
+            title={dictionary.tuneIn}
+            content={dictionary.streaming}
             style={styles.footer__tunein}
           />
 
           <FooterSection
-            title="NETWORKS"
+            title={dictionary.networks}
             content={NETWORKS_CONTENT}
             style={styles.footer__networks}
           />
         </div>
 
         <div className={styles.footer__bottom}>
-          <p>Copyright © Sun Radio 2017 - 2026</p>
+          <p>{dictionary.copyright}</p>
         </div>
       </div>
     </footer>

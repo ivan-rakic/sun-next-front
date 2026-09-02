@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-import styles from '@/styles/components/podcasts-articles.module.scss';
+import styles from "@/styles/components/podcasts-articles.module.scss";
 
 type ContentCardProps = {
   href: string;
@@ -11,6 +11,7 @@ type ContentCardProps = {
   title: string;
   description: string;
   meta: string;
+  readMoreLabel: string;
 };
 
 export const ContentCard = ({
@@ -21,6 +22,7 @@ export const ContentCard = ({
   title,
   description,
   meta,
+  readMoreLabel,
 }: ContentCardProps): React.ReactElement => {
   return (
     <Link href={href} className={styles.articleCard}>
@@ -36,7 +38,7 @@ export const ContentCard = ({
 
         <p>{description}</p>
 
-        <strong>READ MORE &rarr;</strong>
+        <strong>{readMoreLabel} &rarr;</strong>
       </div>
     </Link>
   );

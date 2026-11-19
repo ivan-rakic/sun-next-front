@@ -1,5 +1,5 @@
 import type { LyricsBlock as LyricsBlockData } from "@/types/content-blocks";
-import styles from "@/components/content/content.module.scss";
+import styles from "@/styles/components/content.module.scss";
 export const LyricsBlock = ({
   block,
 }: {

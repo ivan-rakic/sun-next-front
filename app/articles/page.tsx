@@ -1,47 +1,54 @@
+import type { Metadata } from "next";
+
 import { PageHeader } from "@/components/page-header";
-import { ContentCard } from "@/components/templates/content-card";
-import { getArticles } from "@/lib/content";
-import { formatDate } from "@/lib/i18n/date";
+import { ContentListing } from "@/components/content/content-listing";
+import { getContentListing, getListingPageSettings } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getRequestLocale } from "@/lib/i18n/locale";
-import { localizedPath } from "@/lib/i18n/paths";
+import { createLocalizedMetadata } from "@/lib/seo/metadata";
 import styles from "@/styles/pages/podcasts.module.scss";
-import cardStyles from "@/styles/components/podcasts-articles.module.scss";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale();
+  const dictionary = getDictionary(locale);
+  const settings = await getListingPageSettings("articles", locale);
+  const fallback = dictionary.seo.pages.articles;
+  return createLocalizedMetadata(locale, "/articles", {
+    title: settings?.header?.title,
+    description: settings?.header?.subtitle,
+    fallbackTitle: fallback.title,
+    fallbackDescription: fallback.description,
+    seo: settings?.seo,
+  });
+}
 
 export default async function ArticlesPage() {
   const locale = await getRequestLocale();
   const dictionary = getDictionary(locale);
-  const articles = getArticles();
+  const listing = await getContentListing("articles", locale, 1, 12);
+  const fallbackHeader = dictionary.archive.articles;
+  const header = listing.pageSettings?.header;
 
   return (
     <main className={styles.podcastPage}>
       <PageHeader
-        eyebrow="SunRadio portal"
-        title="Articles"
-        description="Tekstovi, kolumne i priče iz SunRadio redakcije."
+        eyebrow={header?.eyebrow || dictionary.archive.portalEyebrow}
+        title={header?.title || fallbackHeader.title}
+        description={header?.subtitle || fallbackHeader.description}
       />
 
       <section className={styles.podcastListSection}>
         <div className={styles.podcastListSection__header}>
-          <h2>Najnoviji tekstovi</h2>
-          <p>Odabrani članci iz SunRadio arhive.</p>
+          <h2>{fallbackHeader.sectionTitle}</h2>
+          <p>{fallbackHeader.sectionDescription}</p>
         </div>
-
-        <div className={cardStyles.articleRail}>
-          {articles.map((article) => (
-            <ContentCard
-              key={article.slug}
-              href={localizedPath(locale, article.href)}
-              imageSrc={article.imageSrc}
-              imageAlt={article.imageAlt}
-              category={article.category}
-              title={article.title}
-              description={article.description}
-              meta={formatDate(article.date, locale)}
-              readMoreLabel={dictionary.ui.readMore}
-            />
-          ))}
-        </div>
+        <ContentListing
+          kind="articles"
+          locale={locale}
+          initialResult={listing}
+          dictionary={dictionary.listing}
+          readMoreLabel={dictionary.ui.readMore}
+        />
       </section>
     </main>
   );

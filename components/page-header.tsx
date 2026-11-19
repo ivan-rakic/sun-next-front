@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import styles from '@/styles/components/page-header.module.scss';
+import styles from "@/styles/components/page-header.module.scss";
 
 type PageHeaderAction = {
   href: string;
@@ -32,10 +32,11 @@ export const PageHeader = ({
       {action ? (
         <Link
           href={action.href}
-          target={action.external ? '_blank' : undefined}
-          rel={action.external ? 'noopener noreferrer' : undefined}
+          target={action.external ? "_blank" : undefined}
+          rel={action.external ? "noopener noreferrer" : undefined}
         >
-          {action.label}{' ->'}
+          {action.label}
+          {" ->"}
         </Link>
       ) : null}
     </section>

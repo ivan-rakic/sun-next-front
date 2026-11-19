@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-import styles from '@/styles/components/podcasts-articles.module.scss';
+import styles from "@/styles/components/podcasts-articles.module.scss";
 
 type ArticleProps = {
   href: string;
@@ -10,7 +10,8 @@ type ArticleProps = {
   category: string;
   title: string;
   description: string;
-  featured?: boolean;
+  date: string;
+  readMoreLabel: string;
 };
 
 export const ArticleCard = ({
@@ -20,25 +21,24 @@ export const ArticleCard = ({
   category,
   title,
   description,
-  featured,
+  date,
+  readMoreLabel,
 }: ArticleProps): React.ReactElement => {
   return (
     <Link href={href} className={styles.articleCard}>
-
       <div className={styles.articleCard__image}>
         <span>{category}</span>
         <Image fill src={imageSrc} alt={imageAlt} />
       </div>
 
       <div className={styles.articleCard__content}>
-
-        <small>MAY 12, 2024</small>
+        <small>{date}</small>
 
         <h3>{title}</h3>
 
         <p>{description}</p>
 
-        <strong>READ MORE →</strong>
+        <strong>{readMoreLabel} →</strong>
       </div>
     </Link>
   );

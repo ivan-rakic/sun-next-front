@@ -1,19 +1,10 @@
 import Link from "next/link";
 import { navLinks } from "@/constants";
 import styles from "@/styles/navigation/header.module.scss";
-import { IconType } from "react-icons";
 import type { Locale } from "@/lib/i18n/config";
 import type { FrontendDictionary } from "@/lib/i18n/dictionaries";
 import { localizedPath } from "@/lib/i18n/paths";
 import { LanguageSwitcher } from "@/components/header/language-switcher";
-
-type NavLink = {
-  href: string;
-  title: string;
-  icon: IconType;
-  color: string;
-  target?: "_blank" | "_self";
-};
 
 type NavLinksProps = {
   locale: Locale;

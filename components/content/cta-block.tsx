@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { isExternalUrl } from "@/lib/content/embeds";
 import type { CtaBlock as CtaBlockData } from "@/types/content-blocks";
-import styles from "@/components/content/content.module.scss";
+import styles from "@/styles/components/content.module.scss";
 export const CtaBlock = ({
   block,
 }: {

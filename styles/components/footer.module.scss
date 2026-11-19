@@ -1,4 +1,4 @@
-﻿@use '../responsive/breakpoints' as *;
+﻿@use "../responsive/breakpoints" as *;
 .footer {
   position: relative;
 
@@ -9,12 +9,11 @@
 
   margin-top: 120px;
 
-  background:
-    url("/images/stars.png"), rgba(0, 0, 0, 0.2);
+  background: url("/images/stars.png"), #00000033;
 
   background-size: cover;
 
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: var(--border-soft);
 
   &__bannerLeft,
   &__bannerRight {
@@ -52,13 +51,13 @@
     inset: 0;
 
     background:
-      radial-gradient(circle at center,
-        rgba(0, 0, 0, 0.2) 0%,
-        rgba(0, 0, 0, 0.42) 58%,
-        rgba(0, 0, 0, 0.52) 100%),
-      linear-gradient(rgba(0, 0, 0, 0.42),
-        rgba(0, 0, 0, 0.82)),
-      url("/images/fake-brick.png");
+      radial-gradient(
+        circle at center,
+        #00000033 0%,
+        #0000006b 58%,
+        #00000085 100%
+      ),
+      linear-gradient(#0000006b, #000000d1), url("/images/fake-brick.png");
 
     z-index: 1;
   }
@@ -94,7 +93,7 @@
 
       padding-bottom: 10px;
 
-      color: #fff;
+      color: var(--color-white);
 
       font-size: var(--t-sm);
       font-weight: 500;
@@ -106,7 +105,7 @@
     p {
       margin-top: 18px;
 
-      color: rgba(255, 255, 255, 0.801);
+      color: var(--color-white);
 
       font-size: var(--t-base);
       line-height: 1.7;
@@ -134,12 +133,12 @@
 
     padding-top: 24px;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: var(--border-soft);
 
     text-align: center;
 
     p {
-      color: rgba(255, 255, 255, 0.4);
+      color: var(--color-text-faint);
       font-size: var(--t-sm);
       letter-spacing: 0.08em;
     }

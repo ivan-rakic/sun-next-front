@@ -1,52 +1,65 @@
+import type { Metadata } from "next";
+
 import { PageHeader } from "@/components/page-header";
-import { ContentCard } from "@/components/templates/content-card";
-import { getPodcasts } from "@/lib/content";
-import { formatDate } from "@/lib/i18n/date";
+import { ContentListing } from "@/components/content/content-listing";
+import { getContentListing, getListingPageSettings } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getRequestLocale } from "@/lib/i18n/locale";
-import { localizedPath } from "@/lib/i18n/paths";
+import { createLocalizedMetadata } from "@/lib/seo/metadata";
 import styles from "@/styles/pages/podcasts.module.scss";
-import cardStyles from "@/styles/components/podcasts-articles.module.scss";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale();
+  const dictionary = getDictionary(locale);
+  const settings = await getListingPageSettings("podcasts", locale);
+  const fallback = dictionary.seo.pages.podcasts;
+  return createLocalizedMetadata(locale, "/podcasts", {
+    title: settings?.header?.title,
+    description: settings?.header?.subtitle,
+    fallbackTitle: fallback.title,
+    fallbackDescription: fallback.description,
+    seo: settings?.seo,
+  });
+}
 
 export default async function PodcastPage() {
   const locale = await getRequestLocale();
   const dictionary = getDictionary(locale);
-  const podcasts = getPodcasts();
+  const listing = await getContentListing("podcasts", locale, 1, 12);
+  const fallbackHeader = dictionary.seo.pages.podcasts;
+  const header = listing.pageSettings?.header;
+  const headerLink = header?.link;
 
   return (
     <main className={styles.podcastPage}>
       <PageHeader
-        eyebrow="SunRadio archive"
-        title="Podcasts"
-        description="Emisije, miksevi i specijalni audio zapisi iz SunRadio kosmosa. Slušaj direktno ovde ili otvori kompletnu arhivu na Mixcloudu."
+        eyebrow={header?.eyebrow || dictionary.pages.podcasts.eyebrow}
+        title={header?.title || fallbackHeader.title}
+        description={header?.subtitle || fallbackHeader.description}
         action={{
-          href: "https://www.mixcloud.com/sunradiosan/uploads/",
-          label: "Mixcloud archive",
-          external: true,
+          href:
+            headerLink?.url ?? "https://www.mixcloud.com/sunradiosan/uploads/",
+          label: headerLink?.label ?? dictionary.pages.podcasts.mixcloudArchive,
+          external:
+            headerLink?.openInNewTab ??
+            headerLink?.url.startsWith("http") ??
+            true,
         }}
       />
 
       <section className={styles.podcastListSection}>
         <div className={styles.podcastListSection__header}>
           <h2>{dictionary.home.latestEpisodes}</h2>
-          <p>Selected shows and sessions from the SunRadio archive.</p>
+          <p>{dictionary.pages.podcasts.latestDescription}</p>
         </div>
 
-        <div className={cardStyles.articleRail}>
-          {podcasts.map((podcast) => (
-            <ContentCard
-              key={podcast.slug}
-              href={localizedPath(locale, `/podcasts/${podcast.slug}`)}
-              imageSrc={podcast.imageSrc}
-              imageAlt={podcast.imageAlt}
-              category={podcast.category}
-              title={podcast.title}
-              description={podcast.description}
-              meta={`${formatDate(podcast.date, locale)} · ${podcast.duration}`}
-              readMoreLabel={dictionary.ui.readMore}
-            />
-          ))}
-        </div>
+        <ContentListing
+          kind="podcasts"
+          locale={locale}
+          initialResult={listing}
+          dictionary={dictionary.listing}
+          readMoreLabel={dictionary.ui.readMore}
+        />
       </section>
     </main>
   );

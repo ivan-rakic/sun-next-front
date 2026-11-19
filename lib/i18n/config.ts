@@ -14,7 +14,7 @@ export const localeLabels: Record<Locale, string> = {
 };
 
 export const localeHtmlLang: Record<Locale, string> = {
-  "sr-Latn": "sr-Latn",
+  "sr-Latn": "sr-RS",
   en: "en",
   de: "de",
 };

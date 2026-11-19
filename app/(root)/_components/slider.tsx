@@ -1,13 +1,11 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+import type { StaticImageData } from "next/image";
 import Link from "next/link";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import pic1 from "@/public/images/astronaut.jpg";
-import pic2 from "@/public/images/flowers.jpg";
-import pic3 from "@/public/images/trees.jpg";
 import styles from "@/styles/components/slider.module.scss";
 
 import "swiper/css";
@@ -17,48 +15,23 @@ import { useEffect, useState } from "react";
 type SlideItem = {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   href: string;
   tag: string;
-  image: StaticImageData;
+  image: StaticImageData | string;
+  imageAlt?: string;
+  priority?: boolean;
 };
 
-const slides: SlideItem[] = [
-  {
-    id: "1",
-    title: "Ponesi Sunce sa Sobom",
-    description: "Pobedi mrak, budi sunca zrak! Skini mobilnu aplikaciju.",
-    href: "/podcasts/decije-igre",
-    tag: "Show",
-    image: pic2,
-  },
-  {
-    id: "2",
-    title: "Novi serijal emisija",
-    description: "Autorski program, razgovori i muzika koju volimo.",
-    href: "/podcasts/orbit-sounds-episode-09",
-    tag: "Podcast",
-    image: pic1,
-  },
-  {
-    id: "3",
-    title: "SunRadio događaji",
-    description: "Prati najave, gostovanja i specijalne live programe.",
-    href: "/program",
-    tag: "Event",
-    image: pic3,
-  },
-  {
-    id: "4",
-    title: "Priče iz redakcije",
-    description: "Kultura, muzika i ljudi koji donose drugačiji zvuk.",
-    href: "/articles/protraceni-zivoti-irski",
-    tag: "Article",
-    image: pic1,
-  },
-];
+type SliderProps = {
+  slides: SlideItem[];
+  desktopSlidesPerView?: number;
+};
 
-export default function Slider() {
+export default function Slider({
+  slides,
+  desktopSlidesPerView = 3,
+}: SliderProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -71,7 +44,6 @@ export default function Slider() {
     };
   }, []);
 
-
   return (
     <div className={styles.slider}>
       {!isMounted && (
@@ -80,8 +52,9 @@ export default function Slider() {
         </div>
       )}
       <div
-        className={`${styles.sliderContent} ${isMounted ? styles.sliderContentVisible : ""
-          }`}
+        className={`${styles.sliderContent} ${
+          isMounted ? styles.sliderContentVisible : ""
+        }`}
       >
         <Swiper
           autoplay={{ delay: 8000 }}
@@ -97,7 +70,7 @@ export default function Slider() {
               spaceBetween: 18,
             },
             1200: {
-              slidesPerView: 3,
+              slidesPerView: desktopSlidesPerView,
               spaceBetween: 24,
             },
           }}
@@ -109,10 +82,10 @@ export default function Slider() {
                   <div className={styles.sliderCard__image}>
                     <Image
                       src={slide.image}
-                      alt={slide.title}
+                      alt={slide.imageAlt ?? slide.title}
                       fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      priority={slide.id === "1"}
+                      sizes={`(max-width: 768px) 100vw, (max-width: 1200px) 50vw, ${Math.floor(100 / desktopSlidesPerView)}vw`}
+                      priority={slide.priority ?? false}
                     />
                   </div>
 
@@ -120,7 +93,7 @@ export default function Slider() {
 
                   <div className={styles.sliderCard__info}>
                     <h2>{slide.title}</h2>
-                    <p>{slide.description}</p>
+                    {slide.description && <p>{slide.description}</p>}
                   </div>
                 </Link>
               </article>

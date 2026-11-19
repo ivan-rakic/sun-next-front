@@ -1,31 +1,44 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import styles from '@/styles/components/donate-banner.module.scss';
+import type { FrontendDictionary } from "@/lib/i18n/dictionaries";
+import type { Locale } from "@/lib/i18n/config";
+import { localizedPath } from "@/lib/i18n/paths";
+import styles from "@/styles/components/donate-banner.module.scss";
 
-export const DonateContainer = (): React.ReactElement => {
+type DonateContainerProps = {
+  dictionary: FrontendDictionary["donateBanner"];
+  locale: Locale;
+};
+
+export const DonateContainer = ({
+  dictionary,
+  locale,
+}: DonateContainerProps): React.ReactElement => {
   return (
     <section className={styles.donateBanner}>
       <div className={styles.donateBanner__content}>
         <div>
-          <span>Support SunRadio</span>
+          <span>{dictionary.eyebrow}</span>
 
-          <h3>PODRŽITE SUNCE — DA NASTAVI DA SIJA</h3>
+          <h3>{dictionary.title}</h3>
 
-          <p>
-            Pozivamo Sunca zrake da podrže opstanak i rast našeg radija. Nemamo
-            sponzore niti finansijere. Jedini od kojih hoćemo da zavisimo ste vi.
-          </p>
+          <p>{dictionary.description}</p>
         </div>
 
         <div className={styles.donateBanner__actions}>
-          <Link href="/podrzi-sunce">Saznaj Više</Link>
+          <Link href={localizedPath(locale, "/podrzi-sunce")}>
+            {dictionary.learnMore}
+          </Link>
 
-          <Link href="https://www.paypal.com/paypalme/sunradiors" target="_blank">
-            PayPal
+          <Link
+            href="https://www.paypal.com/paypalme/sunradiors"
+            target="_blank"
+          >
+            {dictionary.paypal}
           </Link>
 
           <Link href="https://www.patreon.com/sunradio" target="_blank">
-            Patreon
+            {dictionary.patreon}
           </Link>
         </div>
       </div>

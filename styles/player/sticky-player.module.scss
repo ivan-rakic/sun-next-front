@@ -1,469 +1,455 @@
-﻿@use '../responsive/breakpoints' as *;
+﻿@use "../responsive/breakpoints" as *;
 .stickyPlayer {
-    position: fixed;
-    bottom: 6px;
-    left: 50%;
-    z-index: 999;
+  position: fixed;
+  bottom: 6px;
+  left: 50%;
+  z-index: 999;
 
-    width: 100%;
-    max-width: 1400px;
-    padding: 0 var(--content-padding);
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 var(--content-padding);
 
-    transform: translateX(-50%) translateY(-120%);
-    opacity: 0;
-    pointer-events: none;
+  transform: translateX(-50%) translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
 
-    transition:
-        transform 0.35s ease,
-        opacity 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
 
-    @include mobile {
-        bottom: 10px;
-    }
+  @include mobile {
+    bottom: 10px;
+  }
 
-    @include xs {
-        bottom: 4px;
-        padding: 0 8px;
-    }
+  @include xs {
+    bottom: 4px;
+    padding: 0 8px;
+  }
 }
 
 .stickyPlayerVisible {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-    pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .stickyPlayer__inner {
-    height: 74px;
+  height: 74px;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
+  position: relative;
+  overflow: hidden;
+
+  padding: 0 18px;
+
+  border-radius: 14px;
+  border: 1px solid #ffffff57;
+
+  background: #08080ceb;
+
+  background-repeat: repeat, repeat;
+
+  background-blend-mode: screen;
+  backdrop-filter: blur(6px);
+
+  box-shadow: 0 20px 50px #00000073;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: url("/images/fake-brick.png");
+    background-size: 140px auto;
+    background-repeat: repeat;
+
+    opacity: 0.35;
+
+    filter: sepia(1) saturate(4) hue-rotate(-10deg) brightness(0.7);
+
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: radial-gradient(
+      circle at 80% 50%,
+      var(--color-accent-faint),
+      transparent 60%
+    );
+
+    pointer-events: none;
+  }
+
+  > * {
     position: relative;
-    overflow: hidden;
+    z-index: 1;
+  }
 
-    padding: 0 18px;
+  @include mobile {
+    height: 64px;
+    padding: 0 12px;
+  }
 
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.34);
-
-    background: rgba(8, 8, 12, 0.92);
-
-    background-repeat:
-        repeat,
-        repeat;
-
-    background-blend-mode: screen;
-    backdrop-filter: blur(6px);
-
-
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-
-    &::before {
-        content: "";
-
-        position: absolute;
-        inset: 0;
-
-        background: url("/images/fake-brick.png");
-        background-size: 140px auto;
-        background-repeat: repeat;
-
-        opacity: 0.35;
-
-        filter:
-            sepia(1) saturate(4) hue-rotate(-10deg) brightness(0.7);
-
-        pointer-events: none;
-    }
-
-    &::after {
-        content: "";
-
-        position: absolute;
-        inset: 0;
-
-        background:
-            radial-gradient(circle at 80% 50%,
-                rgba(255, 166, 0, 0.18),
-                transparent 60%);
-
-        pointer-events: none;
-    }
-
-    >* {
-        position: relative;
-        z-index: 1;
-    }
-
-    @include mobile {
-        height: 64px;
-        padding: 0 12px;
-    }
-
-    @include xs {
-        height: 58px;
-        padding: 0 8px;
-        border-radius: 10px;
-    }
+  @include xs {
+    height: 58px;
+    padding: 0 8px;
+    border-radius: 10px;
+  }
 }
 
 .stickyPlayer__controls {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 
-    width: 50px;
-    height: 50px;
-    flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 // same chevron shape as the play button accent, repeated 3x: tapering width + fading opacity
 // absolutely positioned behind the play button and artwork/thumb, fits the bar's full vertical height
 .stickyPlayer__chevrons {
-    position: absolute;
-    top: 50%;
-    left: 4px;
-    z-index: 0;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  z-index: 0;
 
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-    transform: translateY(-50%) scaleX(-1);
-    pointer-events: none;
+  transform: translateY(-50%) scaleX(-1);
+  pointer-events: none;
+
+  span {
+    flex-shrink: 0;
+    height: 74px;
+
+    background: linear-gradient(to right, #ea003ad1 0%, #ffc70ef2 100%);
+
+    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+
+    filter: drop-shadow(0 0 3px #000000d9);
+  }
+
+  span:nth-child(1) {
+    width: 46px;
+    opacity: 0.11;
+  }
+
+  span:nth-child(2) {
+    width: 46px;
+    opacity: 0.2;
+  }
+
+  span:nth-child(3) {
+    width: 46px;
+    opacity: 0.4;
+  }
+
+  @include mobile {
+    left: -4px;
 
     span {
-        flex-shrink: 0;
-        height: 74px;
-
-        background: linear-gradient(to right,
-                rgba(234, 0, 58, 0.82) 0%,
-                rgba(255, 199, 14, 0.95) 100%);
-
-        clip-path: polygon(100% 0%,
-                75% 50%,
-                100% 100%,
-                25% 100%,
-                0% 50%,
-                25% 0%);
-
-        filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.85));
+      height: 64px;
     }
 
     span:nth-child(1) {
-        width: 46px;
-        opacity: 0.11;
+      width: 34px;
     }
 
     span:nth-child(2) {
-        width: 46px;
-        opacity: 0.2;
+      width: 34px;
     }
 
     span:nth-child(3) {
-        width: 46px;
-        opacity: 0.4;
+      width: 34px;
+    }
+  }
+
+  @include xs {
+    left: -12px;
+
+    span {
+      height: 58px;
     }
 
-    @include mobile {
-        left: -4px;
-
-        span {
-            height: 64px;
-        }
-
-        span:nth-child(1) {
-            width: 34px;
-        }
-
-        span:nth-child(2) {
-            width: 34px;
-        }
-
-        span:nth-child(3) {
-            width: 34px;
-        }
+    span:nth-child(1) {
+      width: 24px;
     }
 
-    @include xs {
-        left: -12px;
-
-        span {
-            height: 58px;
-        }
-
-        span:nth-child(1) {
-            width: 24px;
-        }
-
-        span:nth-child(2) {
-            width: 24px;
-        }
-
-        span:nth-child(3) {
-            width: 24px;
-        }
+    span:nth-child(2) {
+      width: 24px;
     }
+
+    span:nth-child(3) {
+      width: 24px;
+    }
+  }
 }
 
 .stickyPlayer__playButton,
 .stickyPlayer__soundButton {
-    appearance: none;
-    border: 0;
-    outline: 0;
-    cursor: pointer;
+  appearance: none;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
 
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: transparent;
-    color: #fff;
+  background: transparent;
+  color: var(--color-white);
 }
 
 .stickyPlayer__playButton {
+  width: 50px;
+  height: 50px;
+
+  position: relative;
+  z-index: 2;
+
+  svg {
     width: 50px;
     height: 50px;
+    padding: 5px;
 
-    position: relative;
-    z-index: 2;
+    fill: currentColor;
 
-    svg {
-        width: 50px;
-        height: 50px;
-        padding: 5px;
-
-        fill: currentColor;
-
-        filter:
-            drop-shadow(0 3px 8px rgba(43, 16, 33, 0.68)) drop-shadow(0 0 1px rgba(43, 16, 33, 0.85));
-    }
+    filter: drop-shadow(0 3px 8px #2b1021ad) drop-shadow(0 0 1px #2b1021d9);
+  }
 }
 
 .stickyPlayer__artwork {
-    position: relative;
-    width: 44px;
-    height: 44px;
-    flex: 0 0 44px;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
 
-    margin-left: 8px;
+  margin-left: 8px;
 
-    overflow: hidden;
+  overflow: hidden;
 
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.46);
+  border-radius: 8px;
+  border: 1px solid #ffffff75;
 
-    background: rgba(255, 255, 255, 0.18);
+  background: #ffffff2e;
 
-    box-shadow:
-        0 4px 14px rgba(43, 16, 33, 0.32),
-        0 0 1px rgba(43, 16, 33, 0.9);
+  box-shadow:
+    0 4px 14px #2b102152,
+    0 0 1px #2b1021e6;
 
-    img {
-        display: block;
+  img {
+    display: block;
 
-        width: 100%;
-        height: 100%;
+    width: 100%;
+    height: 100%;
 
-        object-fit: cover;
-    }
+    object-fit: cover;
+  }
 
-    @include mobile {
-        width: 40px;
-        height: 40px;
-        flex-basis: 40px;
-        margin-left: 4px;
-    }
+  @include mobile {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+    margin-left: 4px;
+  }
 
-    @include xs {
-        width: 34px;
-        height: 34px;
-        flex-basis: 34px;
-        margin-left: 2px;
-    }
+  @include xs {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+    margin-left: 2px;
+  }
 }
 
 .stickyPlayer__track {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 
-    margin-left: 12px;
+  margin-left: 12px;
+
+  span {
+    display: block;
+
+    color: var(--color-accent);
+    font-size: var(--t-xs);
+    letter-spacing: 0.16em;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 1px;
+  }
+
+  p {
+    margin-top: 3px;
+
+    overflow: hidden;
+
+    color: var(--color-white);
+    font-size: var(--t-base);
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @include mobile {
+    margin-left: 10px;
 
     span {
-        display: block;
-
-        color: orange;
-        font-size: var(--t-xs);
-        letter-spacing: 0.16em;
-        text-decoration: underline;
-        text-underline-offset: 6px;
-        text-decoration-thickness: 1px;
+      display: none;
     }
 
     p {
-        margin-top: 3px;
-
-        overflow: hidden;
-
-        color: #ffffff;
-        font-size: var(--t-base);
-
-        text-overflow: ellipsis;
-        white-space: nowrap;
-
-
+      margin-top: 0;
+      font-size: var(--t-sm);
     }
+  }
 
-    @include mobile {
-        margin-left: 10px;
+  @include xs {
+    margin-left: 6px;
 
-        span {
-            display: none;
-        }
-
-        p {
-            margin-top: 0;
-            font-size: var(--t-sm);
-        }
+    p {
+      font-size: var(--t-sm);
     }
-
-    @include xs {
-        margin-left: 6px;
-
-        p {
-            font-size: var(--t-sm);
-        }
-    }
+  }
 }
 
 .stickyPlayer__volume {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 
-    margin-right: 20px;
+  margin-right: 20px;
 
-    color: #fff;
+  color: var(--color-white);
 
-    @include mobile {
-        margin-right: 8px;
-    }
+  @include mobile {
+    margin-right: 8px;
+  }
 }
 
 .stickyPlayer__soundButton {
-    width: 28px;
-    height: 28px;
+  width: 28px;
+  height: 28px;
 
-    svg {
-        width: 22px;
-        height: 22px;
+  svg {
+    width: 22px;
+    height: 22px;
 
-        fill: currentColor;
+    fill: currentColor;
 
-        filter:
-            drop-shadow(0 3px 8px rgba(43, 16, 33, 0.68)) drop-shadow(0 0 1px rgba(43, 16, 33, 0.85));
-    }
+    filter: drop-shadow(0 3px 8px #2b1021ad) drop-shadow(0 0 1px #2b1021d9);
+  }
 }
 
 .stickyPlayer__volumeBar {
-    position: relative;
+  position: relative;
 
-    width: 110px;
-    height: 4px;
+  width: 110px;
+  height: 4px;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  border: 1px solid #ffffff57;
 
-    background: rgba(255, 255, 255, 0.28);
+  background: #ffffff47;
 
-    box-shadow: 0 2px 6px rgba(43, 16, 33, 0.28);
+  box-shadow: 0 2px 6px #2b102147;
 
-    @include mobile {
-        display: none;
-    }
+  @include mobile {
+    display: none;
+  }
 }
 
 .stickyPlayer__volumeBarValue {
-    position: relative;
+  position: relative;
 
-    height: 100%;
+  height: 100%;
 
-    border-radius: 999px;
+  border-radius: 999px;
 
-    background: #fff;
+  background: var(--color-white);
 
-    box-shadow:
-        0 0 7px rgba(43, 16, 33, 0.36),
-        0 0 1px rgba(43, 16, 33, 0.9);
+  box-shadow:
+    0 0 7px #2b10215c,
+    0 0 1px #2b1021e6;
 
-    &::after {
-        content: "";
+  &::after {
+    content: "";
 
-        position: absolute;
-        top: 50%;
-        right: -6px;
+    position: absolute;
+    top: 50%;
+    right: -6px;
 
-        width: 12px;
-        height: 12px;
+    width: 12px;
+    height: 12px;
 
-        border-radius: 50%;
-        border: 1px solid rgba(43, 16, 33, 0.22);
+    border-radius: 50%;
+    border: 1px solid #2b102138;
 
-        background: #fff;
+    background: var(--color-white);
 
-        transform: translateY(-50%);
+    transform: translateY(-50%);
 
-        box-shadow: 0 2px 8px rgba(43, 16, 33, 0.36);
-    }
+    box-shadow: 0 2px 8px #2b10215c;
+  }
 }
 
 .stickyPlayer__live {
-    padding: 5px 10px;
-    margin-left: 6px;
+  padding: 5px 10px;
+  margin-left: 6px;
 
-    border-radius: 999px;
-    border: 1px solid rgba(255, 166, 0, 0.45);
+  border-radius: 999px;
+  border: 1px solid var(--color-accent-muted);
 
-    background: rgba(255, 166, 0, 0.1);
-    color: orange;
+  background: var(--color-accent-faint);
+  color: var(--color-accent);
 
-    font-size: var(--t-xs);
-    font-weight: 800;
-    letter-spacing: 0.12em;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
 
-    text-shadow:
-        0 2px 5px rgba(43, 16, 33, 0.68),
-        0 0 1px rgba(43, 16, 33, 0.95);
+  text-shadow:
+    0 2px 5px #2b1021ad,
+    0 0 1px #2b1021f2;
 
-    box-shadow:
-        0 3px 10px rgba(43, 16, 33, 0.22),
-        inset 0 0 12px rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 3px 10px #2b102138,
+    inset 0 0 12px #ffffff14;
 
-    animation: stickyLivePulse 2s ease-in-out infinite;
+  animation: stickyLivePulse 2s ease-in-out infinite;
 }
 
 @keyframes stickyLivePulse {
-    0%,
-    100% {
-        box-shadow:
-            0 3px 10px rgba(43, 16, 33, 0.22),
-            inset 0 0 12px rgba(255, 255, 255, 0.08),
-            0 0 0 rgba(255, 166, 0, 0);
-    }
+  0%,
+  100% {
+    box-shadow:
+      0 3px 10px #2b102138,
+      inset 0 0 12px #ffffff14,
+      0 0 0 transparent;
+  }
 
-    50% {
-        box-shadow:
-            0 3px 10px rgba(43, 16, 33, 0.22),
-            inset 0 0 12px rgba(255, 255, 255, 0.08),
-            0 0 9px rgba(255, 166, 0, 0.55);
-    }
+  50% {
+    box-shadow:
+      0 3px 10px #2b102138,
+      inset 0 0 12px #ffffff14,
+      0 0 9px var(--color-accent-muted);
+  }
 }

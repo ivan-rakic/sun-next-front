@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { getStrapiMediaUrl, hasRenderableMedia } from "@/lib/content/media";
 import type { GalleryBlock as GalleryBlockData } from "@/types/content-blocks";
-import styles from "@/components/content/content.module.scss";
+import styles from "@/styles/components/content.module.scss";
 import "swiper/css";
 import "swiper/css/navigation";
 

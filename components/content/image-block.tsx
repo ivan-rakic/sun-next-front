@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { getStrapiMediaUrl, hasRenderableMedia } from "@/lib/content/media";
 import type { ImageBlock as ImageBlockData } from "@/types/content-blocks";
-import styles from "@/components/content/content.module.scss";
+import styles from "@/styles/components/content.module.scss";
 
 type ImageBlockProps = { block: ImageBlockData; fallbackAlt: string };
 

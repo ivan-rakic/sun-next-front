@@ -1,389 +1,365 @@
-﻿@use '../responsive/breakpoints' as *;
+﻿@use "../responsive/breakpoints" as *;
 /* -------------------------------------------------------------------------- */
 /* ------------------------------- PLAYER ------------------------------  */
 /* -------------------------------------------------------------------------- */
 
 .player {
-    max-width: 600px;
-    width: 100%;
-    margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
 
-    transition: all 0.3s;
+  transition: all 0.3s;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+  padding: 40px 20px;
+
+  @include tablet {
     padding: 40px 20px;
+  }
 
-    @include tablet {
-        padding: 40px 20px;
-    }
+  @include mobile {
+    padding: 40px 12px 30px;
+  }
 
-    @include mobile {
-        padding: 40px 12px 30px;
-    }
-
-    @include xs {
-        padding: 30px 8px 20px;
-    }
+  @include xs {
+    padding: 30px 8px 20px;
+  }
 }
-
 
 // PLAYER - play and pause buttons and animation
 //-----------------------------------------------
 
 .controls {
-    @include mobile {
-        width: 180px;
-        height: 180px;
-    }
+  @include mobile {
+    width: 180px;
+    height: 180px;
+  }
 
-    @include xs {
-        width: 160px;
-        height: 160px;
-    }
+  @include xs {
+    width: 160px;
+    height: 160px;
+  }
 }
 
 .controls::before {
-    @include mobile {
-        width: 210px;
-        height: 210px;
-    }
+  @include mobile {
+    width: 210px;
+    height: 210px;
+  }
 
-    @include xs {
-        width: 188px;
-        height: 188px;
-    }
+  @include xs {
+    width: 188px;
+    height: 188px;
+  }
 }
 
 .controls::after {
-    @include mobile {
-        width: 240px;
-        height: 240px;
-    }
+  @include mobile {
+    width: 240px;
+    height: 240px;
+  }
 
-    @include xs {
-        width: 216px;
-        height: 216px;
-    }
+  @include xs {
+    width: 216px;
+    height: 216px;
+  }
 }
 
 .controls::before,
 .controls::after {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .controls {
-    width: 170px;
-    height: 170px;
+  width: 170px;
+  height: 170px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    position: relative;
+  position: relative;
 
-    margin-bottom: 6px;
-    z-index: 100;
+  margin-bottom: 6px;
+  z-index: 100;
 }
 
 .controls::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 190px;
-    height: 190px;
-    background-image: url("/images/roto-star.png");
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: rotate 46s both infinite;
-    z-index: 50;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 190px;
+  height: 190px;
+  background-image: url("/images/roto-star.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate 46s both infinite;
+  z-index: 50;
 }
 
 .controls::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 220px;
-    height: 220px;
-    background-image: url("/images/roto-star.png");
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: rotate 52s both infinite;
-    animation-delay: 4s;
-    opacity: 0.2;
-    z-index: 50;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  background-image: url("/images/roto-star.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate 52s both infinite;
+  animation-delay: 4s;
+  opacity: 0.2;
+  z-index: 50;
 }
 
 @keyframes rotate {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
 
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .player {
+  :global(.jp-play),
+  :global(.jp-pause) {
+    appearance: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    color: var(--color-white);
 
-    :global(.jp-play),
-    :global(.jp-pause) {
-        appearance: none;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 0;
-        margin: 0;
-        color: #fff;
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 150;
+    background-color: #976c00cc;
+  }
 
-        width: 82px;
-        height: 82px;
-        border-radius: 50%;
-        position: relative;
-        z-index: 150;
-        background-color: rgba(151, 108, 0, 0.8);
-    }
+  :global(.jp-play svg),
+  :global(.jp-pause svg) {
+    width: 70px;
+    height: 70px;
+    padding: 8px;
+    fill: white;
+    transition: all 0.3s ease-in-out;
+  }
 
-    :global(.jp-play svg),
-    :global(.jp-pause svg) {
-        width: 82px;
-        height: 82px;
-        padding: 8px;
-        color: currentColor;
-        fill: currentColor;
-        transition: all 0.3s ease-in-out;
-    }
+  :global(.jp-play:hover),
+  :global(.jp-pause:hover) {
+    color: red;
+  }
 
-    :global(.jp-play:hover),
-    :global(.jp-pause:hover) {
-        color: red;
-    }
+  :global(.jp-play:not([hidden])),
+  :global(.jp-pause:not([hidden])) {
+    display: inline-block;
+  }
 
-    :global(.jp-play:not([hidden])),
-    :global(.jp-pause:not([hidden])) {
-        display: inline-block;
-    }
+  :global(.rj-info) {
+    text-decoration: none;
+    font-family: "Changa", sans-serif;
+    display: flex;
+    flex-direction: column;
+    color: var(--color-white);
+    margin: 10px 10px 20px;
+  }
 
-    :global(.jp-play svg),
-    :global(.jp-pause svg) {
-        width: 70px;
-        height: 70px;
-        padding: 8px;
-        fill: white;
-        transition: all 0.3s ease-in-out;
-    }
+  :global(.rjp-trackinfo-container) {
+    width: 100%;
+    text-align: center;
+  }
 
-    :global(.rj-info) {
-        text-decoration: none;
-        font-family: "Changa", sans-serif;
-        display: flex;
-        flex-direction: column;
-        color: #fff;
-        margin: 10px 10px 20px;
-    }
+  :global(.rjp-label) {
+    font-size: var(--t-base);
+    font-weight: 400;
+    padding: 0 10px;
+    color: var(--color-accent);
+  }
 
-    :global(.rjp-trackinfo-container) {
-        width: 100%;
-        text-align: center;
-    }
+  :global(.rjp-info) {
+    font-size: var(--t-lg);
+    line-height: 1.2;
+    font-weight: 400;
+    padding: 0 10px;
+  }
 
-    :global(.rjp-label) {
-        font-size: var(--t-base);
-        font-weight: 400;
-        padding: 0 10px;
-        color: orange;
-    }
+  :global(.rjp-player-container) {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    z-index: 50;
+  }
 
-    :global(.rjp-info) {
-        font-size: var(--t-lg);
-        line-height: 1.2;
-        font-weight: 400;
-        padding: 0 10px;
-    }
+  :global(.jp-controls) {
+    position: relative;
 
-    :global(.rjp-player-container) {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin-top: 20px;
-        z-index: 50;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 
-    :global(.jp-controls) {
-        position: relative;
+    gap: 12px;
+  }
 
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
+  :global(.jp-controls a svg) {
+    fill: white;
+    margin: 5px;
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+  }
 
-        gap: 12px;
-    }
+  :global(.jp-mute),
+  :global(.jp-unmute) {
+    appearance: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
 
-    :global(.jp-controls a svg) {
-        fill: white;
-        margin: 5px;
-        width: 28px;
-        height: 28px;
-        padding: 4px;
-        background-color: orange;
-        border-radius: 2px;
-    }
+    width: 28px;
+    height: 28px;
 
-    :global(.jp-mute),
-    :global(.jp-unmute) {
-        appearance: none;
-        border: none;
-        outline: none;
-        cursor: pointer;
+    padding: 0;
+    margin: 0;
 
-        width: 28px;
-        height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        padding: 0;
-        margin: 0;
+    background: transparent;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    color: var(--color-white);
 
-        background: transparent;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
 
-        color: rgba(255, 255, 255, 0.9);
+  :global(.jp-mute[hidden]),
+  :global(.jp-unmute[hidden]) {
+    display: none;
+  }
 
-        transition:
-            opacity 0.3s ease,
-            transform 0.3s ease;
-    }
+  :global(.jp-mute:hover),
+  :global(.jp-unmute:hover) {
+    opacity: 0.7;
+    transform: scale(1.05);
+    background-color: #00000080;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+  }
 
-    :global(.jp-mute[hidden]),
-    :global(.jp-unmute[hidden]) {
-        display: none;
-    }
+  :global(.jp-mute svg),
+  :global(.jp-unmute svg) {
+    width: 22px;
+    height: 22px;
 
+    color: currentColor;
+    fill: currentColor;
+  }
 
-    :global(.jp-mute:hover),
-    :global(.jp-unmute:hover) {
-        opacity: 0.7;
-        transform: scale(1.05);
-    }
+  :global(.jp-volume-bar-wrapper) {
+    display: flex;
+    align-items: center;
 
-    :global(.jp-mute svg),
-    :global(.jp-unmute svg) {
-        width: 22px;
-        height: 22px;
+    width: 110px;
+    height: 4px;
 
-        color: currentColor;
-        fill: currentColor;
-    }
+    padding: 0;
 
-    :global(.jp-mute:hover),
-    :global(.jp-unmute:hover) {
-        background-color: rgba(0, 0, 0, 0.5);
-        border-top-left-radius: 50%;
-        border-bottom-left-radius: 50%;
-    }
+    background: #ffffff1f;
 
-    :global(.jp-volume-bar-wrapper) {
-        display: flex;
-        align-items: center;
+    border-radius: 999px;
 
-        width: 110px;
-        height: 4px;
+    overflow: hidden;
+  }
 
-        padding: 0;
+  :global(.jp-mute:hover ~ .jp-volume-bar-wrapper),
+  :global(.jp-unmute:hover ~ .jp-volume-bar-wrapper),
+  :global(.jp-volume-bar-wrapper:hover) {
+    display: flex;
+    align-items: center;
+  }
 
-        background: rgba(255, 255, 255, 0.12);
+  :global(.jp-volume-bar) {
+    position: relative;
 
-        border-radius: 999px;
+    width: 100%;
+    height: 100%;
 
-        overflow: hidden;
-    }
+    background: transparent;
 
+    cursor: pointer;
+  }
 
-    :global(.jp-mute:hover ~ .jp-volume-bar-wrapper),
-    :global(.jp-unmute:hover ~ .jp-volume-bar-wrapper),
-    :global(.jp-volume-bar-wrapper:hover) {
-        display: flex;
-        align-items: center;
-    }
+  :global(.jp-volume-bar-value) {
+    position: relative;
 
-    :global(.jp-volume-bar) {
-        position: relative;
+    height: 100%;
 
-        width: 100%;
-        height: 100%;
+    background: linear-gradient(90deg, #ffaa00a6, #ffdc78e6);
 
-        background: transparent;
+    border-radius: 999px;
 
-        cursor: pointer;
-    }
+    box-shadow: 0 0 6px #ffaa0073;
+  }
 
-    :global(.jp-volume-bar-value) {
-        position: relative;
+  :global(.jp-volume-bar-value::after) {
+    content: "";
 
-        height: 100%;
+    position: absolute;
+    top: 50%;
+    right: -6px;
 
-        background:
-            linear-gradient(90deg,
-                rgba(255, 170, 0, 0.65),
-                rgba(255, 220, 120, 0.9));
+    width: 14px;
+    height: 14px;
 
-        border-radius: 999px;
+    border-radius: 50%;
 
-        box-shadow:
-            0 0 6px rgba(255, 170, 0, 0.45);
-    }
+    background: var(--color-white);
 
-    :global(.jp-volume-bar-value::after) {
-        content: "";
+    transform: translateY(-50%);
 
-        position: absolute;
-        top: 50%;
-        right: -6px;
+    box-shadow: 0 0 8px #ffffff73;
 
-        width: 14px;
-        height: 14px;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
 
-        border-radius: 50%;
+  :global(.jp-volume-bar:hover .jp-volume-bar-value::after) {
+    transform: translateY(-50%) scale(1.12);
 
-        background: #ffffff;
+    box-shadow: 0 0 12px #ffffffe6;
+  }
 
-        transform: translateY(-50%);
+  :global(.jp-duration) {
+    min-width: 42px;
 
-        box-shadow:
-            0 0 8px rgba(255, 255, 255, 0.45);
-
-        transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease;
-    }
-
-    :global(.jp-volume-bar:hover .jp-volume-bar-value::after) {
-        transform: translateY(-50%) scale(1.12);
-
-        box-shadow:
-            0 0 12px rgba(255, 255, 255, 0.9);
-    }
-
-    :global(.jp-duration) {
-        min-width: 42px;
-
-        color: rgba(255, 255, 255, 0.68);
-        font-size: var(--t-sm);
-        line-height: 1;
-        text-align: right;
-        font-variant-numeric: tabular-nums;
-    }
+    color: var(--color-text-muted);
+    font-size: var(--t-sm);
+    line-height: 1;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
 }

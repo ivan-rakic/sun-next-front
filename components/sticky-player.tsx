@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   RiPauseCircleLine,
   RiPlayCircleLine,
@@ -22,23 +22,31 @@ type PlayerStateEvent = CustomEvent<{
 }>;
 
 type StickyPlayerProps = { dictionary: FrontendDictionary["player"] };
+const FALLBACK_ARTWORK = "/images/speakers-back.png";
 
 export const StickyPlayer = ({
   dictionary,
 }: StickyPlayerProps): React.ReactElement => {
-  const FALLBACK_ARTWORK = "/images/speakers-back.png";
   const [isVisible, setIsVisible] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [trackInfo, setTrackInfo] = useState("SunRadio Live");
   const [volume, setVolume] = useState(70);
   const [radiojarArtwork, setRadiojarArtwork] = useState<string | null>(null);
-
-  const [currentArtwork, setCurrentArtwork] = useState(FALLBACK_ARTWORK);
+  const [artworkLookup, setArtworkLookup] = useState<{
+    track: string;
+    artwork: string;
+  } | null>(null);
 
   const [artist, songName] = trackInfo.includes(" - ")
     ? trackInfo.split(" - ", 2).map((item) => item.trim())
     : ["", trackInfo.trim()];
+  const trackKey = `${artist} - ${songName}`;
+  const currentArtwork =
+    radiojarArtwork ??
+    (artworkLookup?.track === trackKey
+      ? artworkLookup.artwork
+      : FALLBACK_ARTWORK);
 
   const formatTrackInfo = (value: string): string => {
     return value
@@ -87,17 +95,10 @@ export const StickyPlayer = ({
   }, []);
 
   useEffect(() => {
-    if (radiojarArtwork) {
-      setCurrentArtwork(radiojarArtwork);
-      return;
-    }
-
-    if (!artist || !songName) {
-      setCurrentArtwork(FALLBACK_ARTWORK);
-      return;
-    }
+    if (radiojarArtwork || !artist || !songName) return;
 
     const controller = new AbortController();
+    const lookupTrack = `${artist} - ${songName}`;
 
     const fetchArtwork = async (): Promise<void> => {
       try {
@@ -113,14 +114,17 @@ export const StickyPlayer = ({
         const artworkUrl = data.results?.[0]?.artworkUrl100;
 
         if (!artworkUrl) {
-          setCurrentArtwork(FALLBACK_ARTWORK);
+          setArtworkLookup({ track: lookupTrack, artwork: FALLBACK_ARTWORK });
           return;
         }
 
-        setCurrentArtwork(artworkUrl.replace("100x100bb", "600x600bb"));
+        setArtworkLookup({
+          track: lookupTrack,
+          artwork: artworkUrl.replace("100x100bb", "600x600bb"),
+        });
       } catch {
         if (!controller.signal.aborted) {
-          setCurrentArtwork(FALLBACK_ARTWORK);
+          setArtworkLookup({ track: lookupTrack, artwork: FALLBACK_ARTWORK });
         }
       }
     };
@@ -160,22 +164,15 @@ export const StickyPlayer = ({
     };
   }, []);
 
-  useEffect(() => {
-    if (!("mediaSession" in navigator)) return;
+  const handlePlay = useCallback((): void => {
+    document.querySelector<HTMLButtonElement>(".jp-play")?.click();
+    setIsPlaying(true);
+  }, []);
 
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: songName || trackInfo,
-      artist: artist || "SunRadio",
-      album: "SunRadio Live",
-      artwork: [
-        {
-          src: currentArtwork,
-          sizes: "512x512",
-          type: "image/png",
-        },
-      ],
-    });
-  }, [artist, songName, trackInfo, currentArtwork]);
+  const handlePause = useCallback((): void => {
+    document.querySelector<HTMLButtonElement>(".jp-pause")?.click();
+    setIsPlaying(false);
+  }, []);
 
   useEffect(() => {
     if (!("mediaSession" in navigator)) return;
@@ -194,20 +191,17 @@ export const StickyPlayer = ({
     });
 
     navigator.mediaSession.playbackState = isPlaying ? "playing" : "paused";
-
     navigator.mediaSession.setActionHandler("play", handlePlay);
     navigator.mediaSession.setActionHandler("pause", handlePause);
-  }, [artist, songName, trackInfo, currentArtwork, isPlaying]);
-
-  const handlePlay = (): void => {
-    document.querySelector<HTMLButtonElement>(".jp-play")?.click();
-    setIsPlaying(true);
-  };
-
-  const handlePause = (): void => {
-    document.querySelector<HTMLButtonElement>(".jp-pause")?.click();
-    setIsPlaying(false);
-  };
+  }, [
+    artist,
+    currentArtwork,
+    handlePause,
+    handlePlay,
+    isPlaying,
+    songName,
+    trackInfo,
+  ]);
 
   const handleMute = (): void => {
     document

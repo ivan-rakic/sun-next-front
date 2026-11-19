@@ -1,0 +1,33 @@
+.shareActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+
+  button,
+  a {
+    padding: 8px 12px;
+    border: 1px solid var(--color-accent-muted);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: var(--t-xs);
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+  }
+}
+
+.shareActions__status {
+  color: var(--color-text-faint);
+  font-size: var(--t-xs);
+}

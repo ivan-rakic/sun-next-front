@@ -1,4 +1,4 @@
-﻿@use '../responsive/breakpoints' as *;
+﻿@use "../responsive/breakpoints" as *;
 .topVisual {
   position: relative;
 
@@ -12,9 +12,7 @@
 
   overflow: hidden;
 
-  background:
-    url("/images/stars.png"),
-    #000;
+  background: url("/images/stars.png"), var(--color-dark);
 
   background-position: center;
   background-size: cover;
@@ -38,11 +36,6 @@
     will-change: transform;
   }
 
-  .topVisual__bannerLeft,
-  .topVisual__bannerRight {
-    z-index: 0;
-  }
-
   .topVisual__backDrop {
     z-index: 1;
   }
@@ -55,10 +48,14 @@
   }
 
   .topVisual__bannerRight {
-    background-color: #000;       // fills transparent PNG areas — blocks bannerLeft beneath
+    background-color: var(
+      --color-dark
+    ); // fills transparent PNG areas — blocks bannerLeft beneath
     background-position: right center;
-    filter: brightness(0.18);     // compensates for raised opacity (0.18 × 0.75 ≈ 0.3 × 0.45)
-    opacity: 0.75;                // higher opacity = stronger block of layer behind
+    filter: brightness(
+      0.18
+    ); // compensates for raised opacity (0.18 × 0.75 ≈ 0.3 × 0.45)
+    opacity: 0.75; // higher opacity = stronger block of layer behind
     animation: bannerRightDrift 40s ease-in-out infinite alternate;
   }
 
@@ -70,14 +67,14 @@
 
     // background:
     //   radial-gradient(circle at center,
-    //     rgba(0, 0, 0, 0.45) 0%,
-    //     rgba(0, 0, 0, 0.75) 58%,
-    //     rgba(0, 0, 0, 0.92) 100%);
+    //     #00000073 0%,
+    //     #000000bf 58%,
+    //     #000000eb 100%);
 
     z-index: 1;
   }
 
-  >* {
+  > * {
     position: relative;
     z-index: 4;
   }
@@ -120,13 +117,13 @@
   inset: 0;
 
   background:
-    radial-gradient(circle at center,
-      rgba(0, 0, 0, 0.15) 0%,
-      rgba(0, 0, 0, 0.22) 55%,
-      rgba(0, 0, 0, 0.42) 100%),
-    linear-gradient(rgba(0, 0, 0, 0.25),
-      rgba(0, 0, 0, 0.32)),
-    url("/images/fake-brick.png");
+    radial-gradient(
+      circle at center,
+      #00000026 0%,
+      #00000038 55%,
+      #0000006b 100%
+    ),
+    linear-gradient(#00000040, #00000052), url("/images/fake-brick.png");
 
   z-index: 1;
 }
@@ -148,8 +145,7 @@
   top: 0;
 
   background:
-    linear-gradient(rgba(151, 108, 0, 0.7), rgba(0, 0, 0, 0)),
-    url("/images/fake-brick.png");
+    linear-gradient(#976c00b3, #00000000), url("/images/fake-brick.png");
 }
 
 .topVisual__bottomShade {
@@ -160,8 +156,7 @@
   overflow: hidden;
 
   background:
-    linear-gradient(rgba(0, 0, 0, 0), rgba(151, 108, 0, 0.7)),
-    url("/images/fake-brick.png");
+    linear-gradient(#00000000, #976c00b3), url("/images/fake-brick.png");
 }
 
 .topVisual__ticker {
@@ -184,13 +179,13 @@
   span {
     flex-shrink: 0;
 
-    color: rgba(241, 239, 233, 0.95);
+    color: #f1efe9f2;
 
     font-size: var(--t-xs);
     letter-spacing: 0.18em;
     text-transform: uppercase;
 
-    text-shadow: 0 0 6px rgba(0, 0, 0, 0.95);
+    text-shadow: 0 0 6px #000000f2;
 
     padding-right: 80px;
   }
@@ -217,15 +212,31 @@
 }
 
 @keyframes bannerLeftDrift {
-  0%   { transform: translate3d(-7%, 0, 0) scale(1.02); }
-  40%  { transform: translate3d(0%, 0, 0) scale(1.02); }  // arrive at overlap
-  60%  { transform: translate3d(0%, 0, 0) scale(1.02); }  // hold — ~8s pause
-  100% { transform: translate3d(7%, 0, 0) scale(1.02); }
+  0% {
+    transform: translate3d(-7%, 0, 0) scale(1.02);
+  }
+  40% {
+    transform: translate3d(0%, 0, 0) scale(1.02);
+  } // arrive at overlap
+  60% {
+    transform: translate3d(0%, 0, 0) scale(1.02);
+  } // hold — ~8s pause
+  100% {
+    transform: translate3d(7%, 0, 0) scale(1.02);
+  }
 }
 
 @keyframes bannerRightDrift {
-  0%   { transform: translate3d(7%, 0, 0) scale(1.02); }
-  40%  { transform: translate3d(0%, 0, 0) scale(1.02); }  // arrive at overlap
-  60%  { transform: translate3d(0%, 0, 0) scale(1.02); }  // hold — ~8s pause
-  100% { transform: translate3d(-7%, 0, 0) scale(1.02); }
+  0% {
+    transform: translate3d(7%, 0, 0) scale(1.02);
+  }
+  40% {
+    transform: translate3d(0%, 0, 0) scale(1.02);
+  } // arrive at overlap
+  60% {
+    transform: translate3d(0%, 0, 0) scale(1.02);
+  } // hold — ~8s pause
+  100% {
+    transform: translate3d(-7%, 0, 0) scale(1.02);
+  }
 }

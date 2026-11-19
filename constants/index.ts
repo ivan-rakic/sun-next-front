@@ -530,8 +530,10 @@ export const PODCASTS: PodcastItem[] = [
     category: "Show",
     duration: "62 min",
     image: "/images/mountains.jpg",
-    description: "Radio emisija iz SunRadio arhive. Muzika, razgovor i slobodna akcija u kosmickom ritmu.",
-    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2Fde%C4%8Dije-igre-emisija-4-sunradiors%2F",
+    description:
+      "Radio emisija iz SunRadio arhive. Muzika, razgovor i slobodna akcija u kosmickom ritmu.",
+    mixcloudUrl:
+      "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2Fde%C4%8Dije-igre-emisija-4-sunradiors%2F",
   },
   {
     id: 2,
@@ -542,8 +544,10 @@ export const PODCASTS: PodcastItem[] = [
     category: "Mix",
     duration: "60 min",
     image: "/images/flowers.jpg",
-    description: "Melodican izbor za lagano putovanje kroz suncane frekvencije.",
-    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2F",
+    description:
+      "Melodican izbor za lagano putovanje kroz suncane frekvencije.",
+    mixcloudUrl:
+      "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2F",
   },
   {
     id: 3,
@@ -555,7 +559,8 @@ export const PODCASTS: PodcastItem[] = [
     duration: "66 min",
     image: "/images/astronaut.jpg",
     description: "Zvukovi orbite, razgovori i selekcija za nocno slusanje.",
-    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2F",
+    mixcloudUrl:
+      "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2F",
   },
   {
     id: 4,
@@ -567,7 +572,8 @@ export const PODCASTS: PodcastItem[] = [
     duration: "68 min",
     image: "/images/trees.jpg",
     description: "Melodican deep journey kroz frekvencije kosmosa.",
-    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2F",
+    mixcloudUrl:
+      "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2F",
   },
   {
     id: 5,
@@ -579,7 +585,8 @@ export const PODCASTS: PodcastItem[] = [
     duration: "70 min",
     image: "/images/ocean.jpg",
     description: "Afro house putovanje kroz galaksiju zvukova sa Ariom.",
-    mixcloudUrl: "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2F",
+    mixcloudUrl:
+      "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fsunradiosan%2F",
   },
 ];
 export const slides = [
@@ -648,8 +655,7 @@ export const articles: ArticleItem[] = [
     description: "O hrani, nostalgiji i onome što nas veže za prošlost.",
     date: "2024-05-02",
     displayDate: "May 2, 2024",
-    content:
-      "Kompletan tekst o ajvaru i životu koji dolazi iz Strapi CMS-a.",
+    content: "Kompletan tekst o ajvaru i životu koji dolazi iz Strapi CMS-a.",
   },
   {
     slug: "mali-korak-za-muziku",
@@ -659,12 +665,10 @@ export const articles: ArticleItem[] = [
     category: "Muzika",
     title:
       'Mali korak za muziku, veliki za domaću bluz scenu - pesma "Locked Down"',
-    description:
-      "Kako jedna pesma može promeniti tok domaće muzičke scene.",
+    description: "Kako jedna pesma može promeniti tok domaće muzičke scene.",
     date: "2024-05-20",
     displayDate: "May 20, 2024",
-    content:
-      "Kompletan tekst o bluz sceni koji dolazi iz Strapi CMS-a.",
+    content: "Kompletan tekst o bluz sceni koji dolazi iz Strapi CMS-a.",
   },
   {
     slug: "kosmicka-putovanja",
@@ -715,8 +719,7 @@ export const news: NewsItem[] = [
     imageAlt: "Beach festival",
     category: "Događaji",
     title: "SunRadio na festivalu - Leto 2024",
-    description:
-      "SunRadio će biti prisutan na ovogodišnjem letnjim festivalu.",
+    description: "SunRadio će biti prisutan na ovogodišnjem letnjim festivalu.",
     date: "2024-07-15",
     displayDate: "July 15, 2024",
     content: "Detalji o festivalu koji dolaze iz Strapi CMS-a.",

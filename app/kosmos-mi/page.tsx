@@ -1,60 +1,85 @@
-import Image, { StaticImageData } from 'next/image';
-import { SiFacebook, SiInstagram } from 'react-icons/si';
+import type { Metadata } from "next";
+import Image from "next/image";
+import { SiFacebook, SiInstagram } from "react-icons/si";
 
-import { PageHeader } from '@/components/page-header';
-import { ContentRenderer } from '@/components/content/content-renderer';
-import { getDictionary } from '@/lib/i18n/get-dictionary';
-import { getRequestLocale } from '@/lib/i18n/locale';
-import styles from '@/styles/pages/about.module.scss';
-import type { ContentBlock } from '@/types/content-blocks';
-
-import img1 from '../../public/images/astronaut.jpg';
-import img2 from '../../public/images/mountains.jpg';
-
-type RedactionMember = {
-  name: string;
-  role: string;
-  image: StaticImageData;
-};
-
-const members: RedactionMember[] = [
-  { name: 'FirstName Lastname', role: 'Radio Editor', image: img1 },
-  { name: 'FirstName Lastname', role: 'Podcast Host', image: img2 },
-  { name: 'Vojislav Killo Killo Malešev', role: 'Social Media Manager', image: img1 },
-  { name: 'FirstName Lastname', role: 'Podcast Host', image: img1 },
-  { name: 'FirstName Lastname', role: 'Podcast Host', image: img2 },
-  { name: 'FirstName Lastname', role: 'Podcast Host', image: img1 },
-];
+import { PageHeader } from "@/components/page-header";
+import { ContentRenderer } from "@/components/content/content-renderer";
+import { getEditorialResidents, getStaticPageSettings } from "@/lib/content";
+import { getDictionary } from "@/lib/i18n/get-dictionary";
+import { getRequestLocale } from "@/lib/i18n/locale";
+import { createLocalizedMetadata } from "@/lib/seo/metadata";
+import styles from "@/styles/pages/about.module.scss";
+import type { ContentBlock } from "@/types/content-blocks";
 
 type AboutProps = {
   blocks?: ContentBlock[];
 };
 
-export default async function About({ blocks }: AboutProps): Promise<React.ReactElement> {
+export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale();
   const dictionary = getDictionary(locale);
+  const settings = await getStaticPageSettings("about-page", locale);
+  const fallback = dictionary.seo.pages.about;
+  return createLocalizedMetadata(locale, "/kosmos-mi", {
+    title: settings?.header?.title,
+    description: settings?.header?.subtitle,
+    fallbackTitle: fallback.title,
+    fallbackDescription: fallback.description,
+    seo: settings?.seo,
+  });
+}
+
+export default async function About({
+  blocks,
+}: AboutProps): Promise<React.ReactElement> {
+  const locale = await getRequestLocale();
+  const dictionary = getDictionary(locale);
+  const [members, pageSettings] = await Promise.all([
+    getEditorialResidents(locale),
+    getStaticPageSettings("about-page", locale),
+  ]);
+  const pageHeader = pageSettings?.header;
+  const pageBlocks = blocks ?? pageSettings?.content;
 
   return (
     <main className={styles.aboutPage}>
       <PageHeader
-        eyebrow="Kosmos Mi"
-        title="Redakcija"
-        description="Ljudi koji stvaraju i održavaju SunRadio zajednicu."
+        eyebrow={pageHeader?.eyebrow || dictionary.pages.about.eyebrow}
+        title={pageHeader?.title || dictionary.seo.pages.about.title}
+        description={
+          pageHeader?.subtitle || dictionary.seo.pages.about.description
+        }
+        action={
+          pageHeader?.link
+            ? {
+                href: pageHeader.link.url,
+                label: pageHeader.link.label,
+                external: pageHeader.link.url.startsWith("http"),
+              }
+            : undefined
+        }
       />
 
-      {blocks ? <ContentRenderer blocks={blocks} dictionary={dictionary.content} /> : null}
+      {pageBlocks?.length ? (
+        <ContentRenderer blocks={pageBlocks} dictionary={dictionary.content} />
+      ) : null}
 
       <section className={styles.aboutSection}>
         <div className={styles.redactionGrid}>
           {members.map((member) => (
             <article
-              key={`${member.name}-${member.role}`}
+              key={member.id}
               className={styles.redactionCard}
               itemScope
               itemType="http://schema.org/Person"
             >
               <div className={styles.redactionCard__image}>
-                <Image src={member.image} alt={member.name} itemProp="image" fill />
+                <Image
+                  src={member.imageSrc}
+                  alt={member.name}
+                  itemProp="image"
+                  fill
+                />
               </div>
 
               <div className={styles.redactionCard__content}>
@@ -62,12 +87,26 @@ export default async function About({ blocks }: AboutProps): Promise<React.React
                 <p itemProp="jobTitle">{member.role}</p>
 
                 <div className={styles.redactionCard__socials}>
-                  <a itemProp="url" href="http://www.facebook.com/person">
-                    <SiFacebook />
-                  </a>
-                  <a itemProp="url" href="http://www.instagram.com/person">
-                    <SiInstagram />
-                  </a>
+                  {member.socialLinks.map((socialLink) => (
+                    <a
+                      key={socialLink.label}
+                      itemProp="url"
+                      href={socialLink.url}
+                      target={socialLink.openInNewTab ? "_blank" : undefined}
+                      rel={
+                        socialLink.openInNewTab
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
+                      aria-label={socialLink.label}
+                    >
+                      {socialLink.label.toLowerCase().includes("facebook") ? (
+                        <SiFacebook />
+                      ) : (
+                        <SiInstagram />
+                      )}
+                    </a>
+                  ))}
                 </div>
               </div>
             </article>
@@ -77,7 +116,7 @@ export default async function About({ blocks }: AboutProps): Promise<React.React
 
       <section className={styles.aboutSection}>
         <div className={styles.aboutSection__header}>
-          <h2>Na Suncu svoje autorske sadržaje redovno emituju još</h2>
+          <h2>{dictionary.pages.about.residentsHeading}</h2>
         </div>
       </section>
     </main>

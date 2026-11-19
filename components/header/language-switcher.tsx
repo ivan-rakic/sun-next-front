@@ -17,12 +17,13 @@ export const LanguageSwitcher = ({
 }: LanguageSwitcherProps): React.ReactElement => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const query = searchParams.toString();
+  const query = searchParams?.toString() ?? "";
+  const currentPath = pathname ?? "/";
 
   return (
     <nav className={styles.languageSwitcher} aria-label={label}>
       {locales.map((candidate) => {
-        const href = `${localizedPath(candidate, pathname)}${query ? `?${query}` : ""}`;
+        const href = `${localizedPath(candidate, currentPath)}${query ? `?${query}` : ""}`;
 
         return (
           <a

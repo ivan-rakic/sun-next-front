@@ -1,4 +1,4 @@
-@use "../../styles/responsive/breakpoints" as *;
+@use "../responsive/breakpoints" as *;
 
 .richText,
 .image,
@@ -10,7 +10,7 @@
   margin-top: 28px;
 }
 .richText {
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--color-text-muted);
   font-size: var(--t-base);
   line-height: 1.7;
   > * + * {
@@ -19,11 +19,11 @@
   h2,
   h3,
   h4 {
-    color: #fff;
+    color: var(--color-white);
     line-height: 1.2;
   }
   a {
-    color: orange;
+    color: var(--color-accent);
     text-decoration: underline;
   }
   ul,
@@ -32,13 +32,13 @@
   }
   code {
     padding: 2px 5px;
-    background: rgba(255, 255, 255, 0.1);
+    background: #ffffff1a;
     font-size: 0.9em;
   }
   pre {
     overflow-x: auto;
     padding: 16px;
-    background: rgba(0, 0, 0, 0.28);
+    background: #00000047;
   }
 }
 .image {
@@ -63,7 +63,7 @@
 .image figcaption,
 .gallery figcaption {
   margin-top: 10px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-text-faint);
   font-size: var(--t-sm);
   line-height: 1.5;
 }
@@ -95,22 +95,22 @@
 .galleryControls button {
   width: 34px;
   height: 34px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid #ffffff4d;
   border-radius: 50%;
   background: transparent;
-  color: #fff;
+  color: var(--color-white);
   cursor: pointer;
 }
 .galleryControls button:hover {
-  border-color: orange;
-  color: orange;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 .quote {
   margin-inline: 0;
   padding: 20px 24px;
-  border-left: 3px solid orange;
-  background: rgba(255, 255, 255, 0.04);
-  color: #fff;
+  border-left: 3px solid var(--color-accent);
+  background: var(--surface-card);
+  color: var(--color-white);
 }
 .quote p {
   font-size: var(--t-lg);
@@ -120,7 +120,7 @@
   display: flex;
   gap: 8px;
   margin-top: 14px;
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--color-text-muted);
   font-size: var(--t-sm);
 }
 .quote cite::before {
@@ -128,10 +128,10 @@
 }
 .lyrics {
   max-width: 760px;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--color-white);
 }
 .lyrics h2 {
-  color: #fff;
+  color: var(--color-white);
   font-size: var(--t-xl);
 }
 .lyrics > div {
@@ -140,12 +140,12 @@
   line-height: 1.75;
 }
 .lyricsTranslation {
-  color: rgba(255, 255, 255, 0.54);
+  color: var(--color-text-faint);
   font-style: italic;
 }
 .lyrics p {
   margin-top: 16px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-text-faint);
   font-size: var(--t-sm);
 }
 .embed {
@@ -173,16 +173,16 @@
 }
 .invalidEmbed {
   margin-top: 20px;
-  color: rgba(255, 255, 255, 0.46);
+  color: var(--color-text-faint);
   font-size: var(--t-sm);
 }
 .ctaSection h2 {
-  color: #fff;
+  color: var(--color-white);
   font-size: var(--t-xl);
 }
 .ctaSection p {
   margin-top: 8px;
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--color-text-muted);
   line-height: 1.6;
 }
 .cta {
@@ -204,8 +204,8 @@
   color: #111;
 }
 .cta_secondary {
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #fff;
+  border: 1px solid #ffffff66;
+  color: var(--color-white);
 }
 @include mobile {
   .gallery_grid > div {

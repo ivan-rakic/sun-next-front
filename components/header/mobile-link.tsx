@@ -12,10 +12,7 @@ export default function MobileLink({
   setIsOpen,
 }: MobileLinkProps) {
   return (
-    <Link
-      href={href}
-      onClick={() => setIsOpen(false)}
-    >
+    <Link href={href} onClick={() => setIsOpen(false)}>
       {children}
     </Link>
   );

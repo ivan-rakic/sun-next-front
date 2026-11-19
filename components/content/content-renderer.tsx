@@ -16,7 +16,11 @@ type ContentRendererProps = {
 const warnedComponentTypes = new Set<string>();
 
 const warnUnsupportedBlock = (componentName: string): void => {
-  if (process.env.NODE_ENV === "production" || warnedComponentTypes.has(componentName)) return;
+  if (
+    process.env.NODE_ENV === "production" ||
+    warnedComponentTypes.has(componentName)
+  )
+    return;
 
   warnedComponentTypes.add(componentName);
   console.warn(`Unsupported Strapi content block: ${componentName}`);

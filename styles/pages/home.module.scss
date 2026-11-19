@@ -1,4 +1,4 @@
-﻿@use '../responsive/breakpoints' as *;
+﻿@use "../responsive/breakpoints" as *;
 .page {
   width: 100%;
 }
@@ -17,19 +17,19 @@
 
   h2 {
     display: inline-block;
-    color: #fff;
+    color: var(--color-white);
     font-size: var(--t-3xl);
     font-weight: 500;
     line-height: 1;
     text-transform: uppercase;
     padding-bottom: 12px;
-    border-bottom: 2px solid rgba(255, 166, 0, 0.85);
-    text-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
+    border-bottom: 2px solid var(--color-accent);
+    text-shadow: 0 0 12px #000000e6;
   }
 
   h5 {
     margin-top: 14px;
-    color: rgba(255, 255, 255, 0.68);
+    color: var(--color-text-muted);
     font-size: var(--t-base);
     font-weight: 400;
   }
@@ -50,7 +50,7 @@
     margin-bottom: 40px;
 
     h2 {
-      color: #fff;
+      color: var(--color-white);
       font-size: var(--t-3xl);
       font-weight: 500;
       letter-spacing: 0.18em;
@@ -58,8 +58,7 @@
     }
 
     p {
-
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--color-text-muted);
       font-size: var(--t-base);
     }
 
@@ -68,7 +67,7 @@
       border: 0;
       background: transparent;
 
-      color: orange;
+      color: var(--color-accent);
 
       font-size: var(--t-sm);
       letter-spacing: 0.12em;

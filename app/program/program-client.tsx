@@ -4,20 +4,30 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { PageHeader } from "@/components/page-header";
-import { programDays } from "@/constants";
 import type { Locale } from "@/lib/i18n/config";
 import type { FrontendDictionary } from "@/lib/i18n/dictionaries";
+import type { ProgramDay } from "@/types/content";
 import { localizedPath } from "@/lib/i18n/paths";
 import styles from "@/styles/pages/program.module.scss";
 
 type ProgramClientProps = {
   locale: Locale;
   dictionary: FrontendDictionary["program"];
+  pageCopy: FrontendDictionary["seo"]["pages"]["program"];
+  eyebrow: string;
+  title: string;
+  description: string;
+  programDays: ProgramDay[];
 };
 
 export const ProgramClient = ({
   locale,
   dictionary,
+  pageCopy,
+  eyebrow,
+  title,
+  description,
+  programDays,
 }: ProgramClientProps): React.ReactElement => {
   const currentDayIndex = (new Date().getDay() + 6) % 7;
   const [selectedDayIndex, setSelectedDayIndex] = useState(currentDayIndex);
@@ -34,7 +44,7 @@ export const ProgramClient = ({
       <div className={styles.programShow__time}>{show.time}</div>
       <div className={styles.programShow__content}>
         {show.isResident && show.slug ? (
-          <Link href={localizedPath(locale, `/resident/${show.slug}`)}>
+          <Link href={localizedPath(locale, `/residents/${show.slug}`)}>
             {show.title}
           </Link>
         ) : (
@@ -48,14 +58,14 @@ export const ProgramClient = ({
   return (
     <main className={styles.programPage}>
       <PageHeader
-        eyebrow="Program"
-        title="Raspored emitovanja"
-        description="Dnevni i nedeljni raspored emisija, rezidenata i specijalnih programa."
+        eyebrow={eyebrow}
+        title={title || pageCopy.title}
+        description={description || pageCopy.description}
       />
       <section className={styles.programTabs}>
         {programDays.map((programDay, index) => (
           <button
-            key={programDay.day}
+            key={programDay.dayOfWeek}
             type="button"
             className={`${styles.programTab} ${selectedDayIndex === index ? styles.programTabActive : ""}`}
             onClick={() => setSelectedDayIndex(index)}

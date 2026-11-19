@@ -5,7 +5,7 @@ import {
 } from "@strapi/blocks-react-renderer";
 import type { ReactNode } from "react";
 
-import styles from "@/components/content/content.module.scss";
+import styles from "@/styles/components/content.module.scss";
 
 type RichTextBlockProps = { body: unknown };
 
@@ -29,24 +29,46 @@ const isValidInlineNode = (value: unknown): boolean => {
 const isValidBlockNode = (value: unknown): boolean => {
   if (!isRecord(value) || typeof value.type !== "string") return false;
 
-  if (value.type === "paragraph" || value.type === "quote" || value.type === "code")
+  if (
+    value.type === "paragraph" ||
+    value.type === "quote" ||
+    value.type === "code"
+  )
     return hasTextChildren(value.children);
   if (value.type === "heading")
-    return typeof value.level === "number" && value.level >= 1 && value.level <= 6 && hasTextChildren(value.children);
+    return (
+      typeof value.level === "number" &&
+      value.level >= 1 &&
+      value.level <= 6 &&
+      hasTextChildren(value.children)
+    );
   if (value.type === "list")
-    return (value.format === "ordered" || value.format === "unordered") && Array.isArray(value.children) && value.children.every(isValidBlockNode);
+    return (
+      (value.format === "ordered" || value.format === "unordered") &&
+      Array.isArray(value.children) &&
+      value.children.every(isValidBlockNode)
+    );
   if (value.type === "image")
-    return isRecord(value.image) && typeof value.image.url === "string" && hasTextChildren(value.children);
+    return (
+      isRecord(value.image) &&
+      typeof value.image.url === "string" &&
+      hasTextChildren(value.children)
+    );
 
   return false;
 };
 
-const getSafeLink = (value: string): { href: string; external: boolean } | null => {
+const getSafeLink = (
+  value: string,
+): { href: string; external: boolean } | null => {
   try {
     const url = new URL(value, window.location.origin);
     if (url.protocol !== "http:" && url.protocol !== "https:") return null;
 
-    return { href: url.toString(), external: url.origin !== window.location.origin };
+    return {
+      href: url.toString(),
+      external: url.origin !== window.location.origin,
+    };
   } catch {
     return null;
   }

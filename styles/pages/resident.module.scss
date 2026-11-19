@@ -1,0 +1,82 @@
+.residentPage {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 48px var(--content-padding) 100px;
+}
+
+.residentBack {
+  display: inline-block;
+  margin-bottom: 28px;
+  color: var(--color-text-muted);
+  font-size: var(--t-sm);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+.residentProfile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 48px;
+}
+
+.residentImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: var(--border-soft);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card-featured);
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.residentInfo h1 {
+  margin-top: 8px;
+  color: var(--color-white);
+  font-size: var(--t-4xl);
+  line-height: 1.08;
+}
+
+.residentLabel {
+  color: var(--color-accent);
+  font-size: var(--t-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.residentTag {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 5px 10px;
+  border: var(--border-accent);
+  border-radius: 999px;
+  color: var(--color-accent);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+}
+
+.residentPlaceholder {
+  margin-top: 24px;
+  color: var(--color-text-muted);
+  font-size: var(--t-base);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .residentProfile {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .residentInfo h1 {
+    font-size: var(--t-3xl);
+  }
+}

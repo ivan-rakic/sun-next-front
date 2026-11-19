@@ -1,7 +1,7 @@
 // Thin REST client for Strapi. Not wired into any page yet — this is the
 // seam to use once a real Strapi backend exists (see lib/strapi/api.ts).
 
-const STRAPI_URL = process.env.SUN_API_URL ?? 'http://localhost:1337/api';
+const STRAPI_URL = process.env.SUN_API_URL || "http://localhost:1337/api";
 const STRAPI_TOKEN = process.env.SUN_API_TOKEN;
 
 export class StrapiError extends Error {
@@ -10,7 +10,7 @@ export class StrapiError extends Error {
     public status: number,
   ) {
     super(message);
-    this.name = 'StrapiError';
+    this.name = "StrapiError";
   }
 }
 
@@ -34,14 +34,17 @@ export const strapiFetch = async <T>(
   const res = await fetch(buildUrl(path, query), {
     ...init,
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       ...(STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {}),
       ...init?.headers,
     },
   });
 
   if (!res.ok) {
-    throw new StrapiError(`Strapi request failed: ${path} (${res.status})`, res.status);
+    throw new StrapiError(
+      `Strapi request failed: ${path} (${res.status})`,
+      res.status,
+    );
   }
 
   return res.json() as Promise<T>;
